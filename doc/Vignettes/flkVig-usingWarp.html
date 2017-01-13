@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<!-- META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" -->
+<TITLE> Flicker Vignette - How do I warp a gel image's geometry?
+</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FBFBFB" 
+ TEXT="Black" 
+ LINK="blue" 
+ VLINK="#FFad0f"
+ ALINK="#00FF00">
+
+
+<CENTER><H2>Flicker Vignette - How do I warp a gel image's geometry?
+</H2></CENTER>
+
+This vignette shows how do you can warp one image to the geometry of
+the other to make them easier to flicker compare. There are two
+warping transforms - affine that requires 3 landmarks and 6 for the
+polywarp. (The polywarp is not available yet- [FUTURE]).  You first
+define the required number of N pairs of corresponding landmarks
+between the triangular region you are interested in warping. Then
+select the gel you wish to warp.  You then apply the warp transform
+from the Transform menu. See the <A
+HREF="../flkRefMan.html#affineDemo">example</A> in the Reference
+Manual.
+
+
+<H3>Method</H3>
+
+<H4>Defining the N landmarks</H4>
+<OL>
+
+<LI>Select the left or right gel image window by clicking on it. Then
+select one of the N landmarks you want to use by clicking on it.
+
+<LI>Select the other gel image window by clicking on it. Then select
+the coresponding landmark. You may have to Flicker the gels to ensure
+they are in fact the correct spots.
+
+<LI>Add the landmark to the landmark database by using the
+(<B>Landmark | Add landmark (C-A)</B>) or type <B>C-A</B>.
+
+<LI>If you do not like the landmark, you can delete the landmark from
+the landmark database by using the (<B>Landmark | Delete landmark
+(C-D)</B>) or type <B>C-D</B>. You only need to do this step if you
+are not happy with the landmark you just created.
+
+<LI>Repeats steps [1] through [4] until you have the N landmarks.
+
+</OL>
+
+
+<H4>Warping the image</H4>
+<OL>
+
+<LI>Select the left or right gel image window you want to warp.
+
+<LI> Make sure that you have <IMG SRC="../Icons/checkboxON.gif" ALT="Checkbox on"><B>Allow
+transforms</B> checkbox enabled.
+
+<LI> Make sure that you have <IMG
+SRC="../Icons/checkboxOFF.gif" ALT="Checkbox off"><B>Sequential transforms</B> checkbox
+disabled.
+
+<LI> Perform the transform you want to try in the (<B>Transform |
+Affine warp</B>) or (<B>Transform | Poly warp</B>) command.
+
+<LI> Reposition the transformed image and the other image to the spot
+of interest inside of the landmark region.
+
+<LI> Enable flickering. It should be now easier to see the
+corresponding spots.
+
+</OL>
+
+
+<H3>Setup for the demo</H3>
+
+
+<H3>Related vignettes</H3>
+<UL>
+<LI> <A HREF="flkVig-positionImgs.html">Vignette</A> 
+    for positioning gel images in the left and right scrollable windows
+
+</LI>See the <A HREF="../flkRefMan.html#affineDemo">example</A> in
+     the Reference Manual.
+
+<P><HR><P>
+
+
+<TABLE WIDTH=100% BORDER=0>
+<TR>
+<TD>
+<A HREF="mailto:lemkin@ncifcrf.gov">
+<I>Contact us</I></A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;</TD>
+
+<TD>Flicker is a contributed program available at
+<A HREF="http://open2dprot.sourceforge.net/Flicker" TARGET="_top">
+open2dprot.sourceforge.net/Flicker</A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD>Revised: 01/19/2004</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

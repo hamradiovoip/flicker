@@ -1,0 +1,3165 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+ 
+<HTML>
+<HEAD>
+<TITLE>
+Flicker Reference Manual
+</TITLE>
+ 
+
+<BODY BGCOLOR="#FBFBFB" 
+      TEXT="Black"
+      LINK="blue" 
+      VLINK="#FFad0f" 
+      ALINK="#00FF00">
+ 
+<H2 ALIGN="CENTER">Flicker Reference Manual</H2>
+
+ 
+<TABLE Width=100% BORDER=0> 
+<TR> 
+<TD> 
+<CENTER> 
+<FONT FACE="Helvetica,Arial,sans-serif" size="2">
+ <A HREF="index.html">Home</A> |
+ <A HREF="#FlickeringDescription">Introduction</A> |
+ <A HREF="#transforms">Transforms</A> |
+ <A HREF="#popupReport">Reports</A> | 
+ <A HREF="#installFlicker">Download and install</A> |
+ <A HREF="#saveRestoreState">Saving your session</A> |
+ <A HREF="#menuCmds">Menus</A> |
+ <A HREF="#Demos">Demonstrations</A> |
+ <A HREF="#References">References</A>
+
+</FONT> 
+</CENTER>
+</TD> 
+</TR> 
+</TABLE>
+<P>
+
+This reference manual undergos revision as the program develops. A
+short form of the manual will appear as a chapter in the upcoming 3rd
+edition of <U>The Proteomics Handbook</U>, John Walker (ed) to be
+published in 2004 <A HREF="#References">[Lemkin2004]</A>.
+
+<P>
+
+The following <A HREF="#summaries">summaries</A> list some information
+on using the interactive controls to run the program.  You interact
+with the Flicker program using the <A HREF="#mouseCmds">mouse</A>
+movments, <A HREF="#keyboardCmds">keyboard</A> commands, <A
+HREF="#checkboxCmds">checkboxes</A> states, <A
+HREF="#sliderCtls">slider controls</A> parameter values, and <A
+HREF="#menuCmds">pull-down menus</A>. Figure 1 shows a screen view of
+the Flicker program.
+<P>
+
+<A NAME="Fig-1"><P>
+<PRE>
+</PRE>
+<CENTER>
+<IMG SRC="Gifs/Flicker-LabeledScreenView.jpg" ALIGN="CENTER" ALT="Screen view of Flicker program">
+</CENTER>
+<HR>
+
+<B>Figure.1 Screen view of the Flicker program</B> <FONT SIZE=-1> This
+screen shot shows the pull-down menus <B>(A)</B> at the top of the
+Flicker window used to invoke file operations, editing, view
+selection, landmarking, image transforms, spot quantification, and
+help commands. A set of scroll bars on the right determines various
+parameters used in some of the transforms. The <B>File</B> menu
+options include opening new gel images. Checkboxes on the left
+<B>(B)</B> activate flickering and active gel map access if the data
+supports it. A set of status lines <B>(C)</B> appear below the
+checkboxes and indicate the state of operation and various other
+messages. The flicker image <B>(D)</B> is in the upper-middle of the
+frame when it is enabled. The two labeled human blood plasma gel
+images are shown in the bottom left and right scrollable image windows
+<B>(E)</B> that may be positioned to the region of interest. These
+windows also have associated flicker time-delays <B>(F)</B> used when
+flickering. Image plasmaH is an IPG non-linear gradient gel from <A
+HREF="http://www.expasy.org/ch2d/"> SWISS-2DPAGE</A> and plasmaL is a
+carrier-ampholyte linear gradient gel from the Merril Lab at
+NIMH. Transformed image results are shown in the same scrollable
+windows. The four checkboxes are: <B>Flicker</B> to enable/disable
+flickering; <B>Click to access DB</B> checkbox enables/disables access
+to a Web server that is associated with a clickable image DB if it
+exists for the selected image; <B>Allow transforms</B> checkbox
+enables/disables image transforms; <B>Sequential transforms</B>
+checkbox enables/disables using the last image transform output as
+input for the next image transform. Parameters are directly specified
+using sliders <B>(G)</B> to adjust zoom magnification, contrast,
+brightness, etc. A popup scrollable report window (not shown) logs all
+text output that appears in the status lines. You can popup the report
+window with the current scroller values by the <B>Report scroller
+values</B> button <B>(H)</B>.  This text may be saved to a text file
+on your local disk for printing or further analysis. The size of the
+three image canvases may be increased/decreased using the "<B><FONT
+SIZE=+1>+</FONT></B>" / "<B><FONT SIZE=+1>-</FONT></B>" buttons under
+the parameter scrollbars <B>(H)</B>.
+
+</FONT>
+
+<P>
+<A NAME="summaries">
+<PRE>
+</PRE>
+
+<A NAME="FlickeringDescription"><P>
+<H3>1. Flickering gel images</H3>
+
+The basic concept of using flickering as a dynamic visualization
+technique is simple. If two images may be perfectly aligned then one
+could simply align them by overlaying one over the other and shifting
+one image until they line up. However, many images such as 2D PAGE
+gels have rubber-sheet distortion (i.e., local translation, rotation,
+and magnification - linear over short distances and non-linear over
+the entire gel). This means there is more distortion in some parts of
+the image than in others. Although it is often impossible to align the
+two whole images at one time, they may be locally aligned
+piece-by-piece by matching the morphology of local regions.<P>
+
+If it appears that a spot and the surrounding region do match, then
+one has more confidence that the objects are the same. This putative
+visual identification is our definition of matching when doing a
+comparison. Full identification of protein spots requires further work
+such as cutting spots out of the gels and subjecting them to sequence
+analysis, amino-acid composition analysis, mass spectrometry, testing
+them with monoclonal antibodies, or other methods.<P>
+
+<A NAME="Flickering"><P>
+<H4>1.1 Flickering</H4>
+
+When flickering two images with the computer, one aligns putative
+corresponding subregions of the two rapidly alternating images. The
+flicker window overlays the same space on the screen with the two
+images and is aligned by interactively moving one image relative to
+the other using the cursor in either or both of the lower
+images. Enable the <B>Flicker</B> checkbox (<A HREF="#fig-1">Figure
+1.B</A>) to turn on flickering and disable it to shut it off.<P>
+
+<A HREF="HREF="#mouseCmds">Using the mouse</A>, the user initially
+selects (by clicking on the image - left or right window) what they
+suspect is the same prominent spot or object in similar morphologic
+regions in the two gel images. If you click on the spot with the
+<B>Control</B> key pressed, it will center that image at that spot in
+the window and also center it in the flicker window.  You can
+continuously adjust the position in the flicker window, without
+changing the selected window position, by selecting the image you want
+to recenter and draging the mosue. When these two local regions come
+into alignment, they appear to pulse and the images appear to fuse
+together. At this point, differences are more apparent and it is
+fairly easy to see which spots or objects correspond, which are
+different, and how they differ. We have found that the user should be
+positioned fairly close to the flicker window on the screen to
+optimize this image-fusion effect (i.e., it does not work as well
+standing back more than a few feet from the screen).<P>
+
+Another useful trick is change the image canvas size after doing the
+initial alignment. This may help you focus on a smaller region after
+you have done the rough alignment. You can either use the "<B><FONT
+SIZE=+1>+</FONT></B>" / "<B><FONT SIZE=+1>-</FONT></B>" buttons under
+the parameter scrollbars (<A HREF="#fig-1">Figure 1.I</A>), or you can
+use the <B>Control-keypad +</B> and <B>Control-keypad -</B> keys.
+<P>
+
+<A NAME="FlickerDelays"><P>
+<H4>1.2 Selecting the proper time delays when flickering</H4>
+
+The proper flicker delays, or time each image is displayed on the
+screen, is critical for the optimal visual integration of image
+differences. We have also found that optimal flicker rates are
+dependent on a wide variety of factors including: amount of
+distortion, similarity of corresponding subregions, complexity and
+contrast of each image, phosphor decay time of the display, ambient
+light, distance from the display, individual viewer differences,
+etc. We have found the process of flickering images is easier for some
+people than for others.<P>
+
+When comparing a light spot in one gel with the putative paired darker
+spot in the other gel one may want to linger longer on the lighter
+spot to make a more positive identification. Because of this, we give
+the user the ability to set the display times independently for the
+two images (typically in the range of 0.01 second to 1.0 second with a
+default of 0.30 second) using separate <B>Delay</B> scroll bars
+located under each image (<A HREF="#fig-1">Figure 1.E</A>). If the
+regions are complex and have a lot of variation, longer display times
+may be useful for both images. Differential flicker delays with a
+longer delay for the light gel are useful for comparing light and dark
+sample gels. This lets you stare at the lighter spots to have more
+verification that they are actually there.<P>
+
+These flicker delay values are saved for the left and right images
+when you save the Flicker state.
+
+<A NAME="mouseCmds"><P>
+<H4>1.3 Mouse control of images</H4>
+ 
+The following mouse and key-modified mouse operations control various
+actions.
+
+<UL>
+<LI><B>Pressing the mouse</B> in either the left or right image
+selects it. If flickering is active, then it will move the flicker
+image center for the selected image to that position. A little orange
+"+" indicates the position of the trial object you have selected.  If
+you have enabled the (<B>View | Display gray value (C-G)</B>) then it
+may also show a circle which is the size of the circular mask used
+in the density measurement.  If the Click to access DB checkbox is
+enabled and the image has an associated active map database server
+associated with it, then it will request the spot identify when you
+click on a spot from the map database. Dragging the mouse is similar
+to pressing it. However, only pressing it will invoke a clickable
+database. It also displays the cursor coordinates in the image title.
+If you click on a spot in the active map and the <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>Click to access DB</B> 
+was enabled, it
+will try to locate that spot in the associate Web server for that
+image (see <A HREF="#clickToIDSpot">Figure 2</A>).
+
+<LI><B>Control/Press</B> will position the selected image at the trial
+object so that the point you have clicked on will be in the center of
+the crosshairs. If you are near the edge of the image, it will ignore
+this request as it can not put that position in the center of the
+window.
+
+<LI><B>Shift/Drag</B> activates the brightness-contrast filter with
+minimum brightness and contrast in the lower left hand corner and
+maximum brightness/contrast in the upper right hand
+corner. Alternatively, you can use the brightness and contrast
+scroller controls (Figure 1.G) instead after you have selected the
+image by clicking on it. Hint: try to make the images have similar
+brightness and contrast to make it easier to see differences when you
+flicker. <A HREF="#demoContrast">Figure 2</A> shows the effects of
+contrast adjustment.
+
+</UL>
+
+
+<A NAME="demoContrast"><P>
+<A NAME="Fig-2"><P>
+<PRE>
+<CENTER>
+<B>a)</B> <IMG SRC="Gifs/demo-plasmaHLbeforeContrastAdjust.jpg" ALIGN="absmiddle" ALT="A) Example - before adjusting image contrast of one image to the other">
+</CENTER>
+<CENTER>
+<B>b)</B> <IMG SRC="Gifs/demo-plasmaHLafterContrastAdjust.jpg" ALIGN="absmiddle" ALT="Example - after adjusting image contrast of one image to the other">
+</CENTER>
+</PRE>
+
+<HR>
+
+<B>Figure 2. Example of adjusting the image contrast on one image to
+match the overall contrast of the other.</B> <FONT SIZE=-1> <B>A)</B>
+shows the original plasmaH and PlasmaL images before contrast
+adjustment <B>b)</B> shows the plasma images after the contrast was
+adjusted in the plasmaL image.
+
+</FONT>
+<P>
+
+
+
+<A NAME="putativeSpotLookup"><P>
+<H4>1.4 Lookup of putative spot identification on Swiss-2DPAGE</H4>
+
+Protein spots may be putatively identified using active map images
+that link to federated 2D gel databases such as <A
+HREF="http://www.expasy.org/ch2d/"> SWISS-2DPAGE</A>.  First, load an
+active map image for your type of biological material (if it can be
+found). Then flicker align the two gels around the spot(s) you are
+interested in. Then enable the <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>Click to access DB</B> checkbox. Then
+set the (<B>View | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use protein DB
+browser, else lookup ID and name on active images</B>) menu checkbox
+command is enabled.  Finally, click on the spot of interest and this
+brings up the <A HREF="flkRefMan.html#clickToIDSpot"> specific protein
+annotation page</A> from the active DB server (in this case
+SWISS-2DPAGE) in a Web browser.  <A HREF="#clickToIDSpot">Figure 3</A>
+shows an illustration of procedure.<P>
+
+In place of the Web browser, you can just have it report the
+Swiss-Prot ID and the protein name annotation from the Swiss-2DPAGE
+Web server. Set the (<B>View | <IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">Use
+protein DB browser, else lookup ID and name on active images</B>) menu
+checkbox command is disabled.  Then when you click on a spot, it will
+now try to get the Swiss-Prot ID and the protein name by the spot's
+coordinates and display the results in your report window. <P>
+
+The <A HREF="#SpotListIDlookup">next discussion</A> describes looking
+up the (ID, protein names) for a set of spots you have defined.
+
+<P>
+<A NAME="clickToIDSpot"><P>
+<A NAME="Fig-3"><P>
+<PRE>
+<CENTER>
+<IMG SRC="Gifs/demo-FlkMapAndproteinIDinSwiss-2DPAGE.jpg" ALIGN="absmiddle" ALT="Protein spots putatively identified from SWISS-2DPAGE DB">
+</CENTER>
+</PRE>
+
+<HR>
+
+<B>Figure 3. Protein spots may be putatively identified using active
+map images that link to federated 2D gel databases.</B> <FONT SIZE=-1>
+First, load an active map image for you type of biological material
+(if it can be found). Then flicker align the two gels around the
+spot(s) you are interested in. Then enable the <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>Click to access DB</B>
+checkbox. Finally, click on the spot of interest and this brings up
+the Web page from the active DB server (in this case SWISS-2DPAGE).
+If the (<B>View | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use protein DB
+browser, else lookup ID and name on active images</B>) is enabled,
+then clicking on a spot will popup a Web browser with the associated
+database page (as is shown). If the checkbox is off, then it will get
+the data from that web page and report it. If you have defined a set
+of spots in a spot list in an active gel, the (<B>Quantify | Measure
+by Circle | Lookup Protein IDs and Names from active map server
+(selected image)</B>) menu command will try to lookup each spot in the
+list by its coordinates and will save the results (Swiss-Prot ID and
+protein name) as the spot annotation's (id,name).
+
+</FONT>
+<P>
+
+<A NAME="SpotListIDlookup"><P>
+<H3>1.4.1 Looking up and assigning putative spot IDs for lists of spots</H3>
+
+If you have defined a set of spots in a spot list for an active gel,
+the (<B>Quantify | Measure by Circle | Lookup Protein IDs and Names
+from active map server (selected image)</B>) menu command will try to
+lookup each spot in the list by its coordinates and will save the
+results (Swiss-Prot ID and protein name) as the spot annotation's
+(id,name). Note that you must be connected to the Internet. After this
+lookup has finished (it may take a while), use the (<B>Quantify |
+Measure by Circle | List spots in the spot list for selected
+image</B>) to view the filled in table. The (<B>C-Q</B>) key-command
+may be use to stop the lookup procedure for a long list of spots after
+it finishes the current spot lookup. <P>
+
+If you then have a set of corresponding spots you have defined in your
+gel, you can then edit their annotation so it matches the reference
+gel that you just assigned putative spot identifications. This is
+described in the following Figures <B>3.1a</B> through <B>3.1d</B> You
+can lookup the protein (ID,names) for a set of spots you have defined
+in the active gel map image that is link to federated 2D gel
+databases.  See the vignettes for <A
+HREF="Vignettes/flkVig-putativeID.html">query a spot's putative
+identity</A> and <A
+HREF="Vignettes/flkVig-putativeID-Assign.html">assigning a spot's
+putative identity</A> for more details.
+
+
+<P>
+
+<A NAME="SpotListIDlookupFig">
+<A NAME="Fig-3.1"><P>
+<PRE> 
+<CENTER>
+<B>a)</B> <IMG SRC="Gifs/demo-FlkMapProteinID-before-SP-lLookup.jpg" ALIGN="absmiddle" ALT="Define a set of spots to measure">
+</CENTER>
+</PRE>
+<HR>
+<B>Figure 3.1a) First define a set of spots in the active
+gel (described under the <A HREF="#quantifyMenu">Quantify menu</A>).</B>
+<FONT SIZE=-1>
+You might want to view the spot annotations by setting the (<B>View |
+Set view measurement options | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use
+'spot identifier ' for spot annotations</B>) menu checkbox.  Then
+enable the <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>Click to access DB</B>
+checkbox. Then, if you are connected to the Internet, with the active
+gel selected, use the (<B>Quantify | Measure by Circle | Lookup
+Protein IDs and Names from active map server (selected image)</B>)
+menu command. This will try to lookup each spot in the list by its
+coordinates and will save the results (Swiss-Prot ID and protein name)
+in each the spots annotation's (id,name).
+</FONT><P>
+
+<A NAME="SpotListIDafterLookupFig">
+<PRE>
+<CENTER>
+<B>b)</B> <IMG SRC="Gifs/demo-FlkMapProteinID-after-SP-lLookup.jpg" ALIGN="absmiddle" ALT="Spots in image after lookup identifiers">
+</CENTER>
+</PRE>
+<HR>
+<B>Figure 3.1b) Shows the updated spot list after the spots have
+been identified from the active reference gel database.</B>  <FONT
+SIZE=-1> Now disable the <IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off"><B>Click to
+access DB</B> checkbox so that it does not popup the Web browser when
+you then click on the image.  </FONT><P>
+
+
+
+<PRE>
+<CENTER>
+<B>c)</B> <IMG SRC="Gifs/demo-FlkMapProteinID-pairedAnnotated-SP-IDs.jpg" ALIGN="absmiddle"  ALT="Define a list of spots in other gel">
+</CENTER>
+</PRE>
+<HR>
+<B>Figure 3.1 c) Then define a list of spots in the other
+user gel by selecting the spot and typing (<B>C-M</B>).</B>  <FONT
+SIZE=-1> Repeat the following for each spot in the gel lists. First
+select a spot in the reference gel, and then select the corresponding
+spot in the user gel. Assign the same annotation to both by typing
+(<B>C-I</B>).  </FONT><P>
+
+
+<PRE>
+<CENTER>
+<B>d)</B> <IMG SRC="Gifs/demo-FlkMapProteinID-EditPariedAnnotated.jpg" ALIGN="absmiddle" ALT="Copy annotation by 'Edit spot annotation'">
+</CENTER>
+</PRE>
+<HR>
+<B>Figure 3.1 d) This will popup "Edit spot annotation"
+window with the spot identifier from the reference gel.</B> <FONT SIZE=-1>
+Just press the Done button and the annotation will be assigned to the
+user gel spot you are editing.</FONT><P>
+
+
+<A NAME="AccessingPIRserver"><P>
+<H4>1.4.2 Accessing PIR UniProt, iProClass and iProLink server Web pages for selected proteins</H4>
+
+You may optionally access PIR <A
+HREF="http://www.uniprot.org/">UniProt</A>, <A
+HREF="http://pir.georgetown.edu/iproclass">iProClass</A> and <A
+HREF="http://pir.georgetown.edu/iprolink">iProLink</A> server Web
+pages for selected proteins in the spot list through their Swiss-Prot
+accession names. This is accomplished in a two-step process enabled
+using the (<B>Edit | Select access to active DB server | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on"> ...</B>) checkbox command. You may select
+either SWISS-2DPAGE, UniProt, iProClass or iProLink servers - or none
+of these. If you measure a spot (select a spot in an active image and
+then type <B>C-M</B>) (and are connected to the Internet), it will
+also lookup the Swiss-Prot protein (accession name, and protein id) on
+the SWISS-2DPAGE server. Then, if you enable "Click to access DB", it
+will pop up the particular active DB server you have selected. Figures
+<A HREF="#SpotListIDafterUNIPROTlookupFig">3.2a</A> UniProt, 
+<A HREF="#SpotListIDafterIPROCLASSlookupFig">3.2b</A> iProClass, and
+<A HREF="#SpotListIDafterIPROLINKlookupFig">3.2c</A> iProLink.<P>
+
+An additional option that makes this easier to use is to enable the
+(<B>Edit | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">Auto measure, protein
+lookup and Web page popup</B>) checkbox command. Then when you click
+on a spot in an active image (associated with a Web database), it
+will: 1) measure the spot and add it to the spot list; 2) lookup the
+Swiss-Prot (name, id); and 3) pop up the Web server on the currently
+selected active DB server. <P>
+
+
+<A NAME="SpotListIDafterUNIPROTlookupFig">
+<PRE>
+<CENTER>
+<B>a)</B> <IMG SRC="Gifs/demo-FlkMapProteinID-after-UNIPROT-Lookup.jpg" ALIGN="absmiddle" ALT="Image after accessing PIR UniProt ids">
+</CENTER>
+</PRE>
+<HR>
+<B>Figure 3.2a) Results of accessing PIR <A
+HREF="http://www.uniprot.org/">UniProt</A> server Web pages for
+protein 3 P02760 from Figure 3.1b.</B> <FONT SIZE=-1> This was
+accessed using the method describe in section 1.4.2 above by enabling
+(<B>Edit | Select access to active DB server | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use PIR UniProt DB access</B>) checkbox
+command set, enabling (<B>Edit | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox off">Auto
+measure, protein lookup and Web page popup</B>) checkbox command, and
+then clicking on the spot.  </FONT><P>
+
+
+<A NAME="SpotListIDafterUNIPROTlookupFig">
+<PRE>
+<CENTER>
+<B>b)</B> <IMG SRC="Gifs/demo-FlkMapProteinID-after-IPROCLASS-Lookup.jpg" ALIGN="absmiddle" ALT="RImage after accessing PIR iProClass server">
+</CENTER>
+</PRE>
+<HR>
+<B>Figure 3.2b) Results of accessing PIR <A
+HREF="http://pir.geortetown.edu/iproclass">iProClass</A> server Web
+pages for protein 3 P02760 from Figure 3.1b.</B> <FONT SIZE=-1> This
+was accessed using the method describe in section 1.4.2 above by
+enabling (<B>Edit | Select access to active DB server | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on" ALT="Checkbox on">Use PIR iProClass DB access</B>) checkbox
+command set, enabling (<B>Edit | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox off">Auto
+measure, protein lookup and Web page popup</B>) checkbox command, and
+then clicking on the spot.  </FONT><P>
+
+
+<A NAME="SpotListIDafterIPROLINKlookupFig">
+<PRE>
+<CENTER>
+<B>c)</B> <IMG SRC="Gifs/demo-FlkMapProteinID-after-IPROLINK-Lookup.jpg" ALIGN="absmiddle" ALT="Result of accessing PIR iProLink server">
+</CENTER>
+</PRE>
+<HR>
+<B>Figure 3.2c) Results of accessing PIR <A
+HREF="http://pir.geortetown.edu/iprolink">iProLink</A> server Web
+pages for protein 3 P02760 from Figure 3.1b.</B> <FONT SIZE=-1> This
+was accessed using the method describe in section 1.4.2 above by
+enabling (<B>Edit | Select access to active DB server | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use PIR iProLink DB access</B>) checkbox
+command set, enabling (<B>Edit | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox off">Auto
+measure, protein lookup and Web page popup</B>) checkbox command, and
+then clicking on the spot.  </FONT><P>
+
+
+
+
+<A NAME="checkboxCmds"><P>
+<H4>1.5 Checkbox control of flickering and database access</H4>
+
+There are four checkboxes in the upper left part of the window (<A
+HREF="#fig-1">Figure 1.B</A>) that control commonly used
+options. Figure 3 describes these options in more detail.
+
+<UL>
+<LI><IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">
+<B>Flicker (C-F)</B> checkbox enables/disables flickering.
+       
+<LI><IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">
+<B>Click to access DB</B> checkbox enables/disables access to a
+Web database server that is associated with a clickable image - if it
+exists for the selected image. Turning on this option will disable
+flickering.
+       
+<LI><IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+<B>Allow transforms</B> checkbox enables/disables image transforms 
+
+<LI><IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off"> <B>Sequential transforms</B>
+checkbox enables/disables using the last image transform output as
+input for the next image transform (image composition) if the <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>Allow transforms</B> is enabled
+</UL>
+<P>
+
+<A NAME="Fig-4"><P>
+<PRE>
+</PRE>
+<CENTER>
+<IMG SRC="Gifs/flickerCheckboxControls.jpg" ALIGN="CENTER" ALT="Flicker checkbox controls interface">
+</CENTER>
+
+<HR>
+
+<B>Figure 4. Screen view of the Flicker checkbox controls.</B> <FONT
+SIZE=-1> This shows the global checkbox controls that are used to set
+operational modes for flickering, Web database access and image
+processing transforms.  These values are saved when you save the
+Flicker state.
+</FONT>
+
+
+<A NAME="transforms"><P>
+<H3>2. Image enhancement prior to flickering - Transforms</H3>
+
+It is well-known that 2D gels often suffer from local geometric
+distortions making perfect overlay impossible. Therefore, making the
+images locally morphologically similar while preserving their
+grayscale data may make them easier to compare. Even when the image
+subregions are well aligned, it is still sometimes difficult to
+compare images that are quite different. Enhancing the images using
+various image transforms before flickering may also help. The
+<B>Transforms</B> menu contains a number of image transforms. Click on
+the image you want to transform and <I>then</I> select the transform
+from the list of available transforms. If you select neither the left
+or right image, it will perform the transform on both images.<P>
+
+Some of these transforms involve spatial warping, which maps a local
+region of one image onto the geometry of the local region of another
+image while preserving its grayscale values. Another useful operation
+is contrast enhancement that helps when comparing light or dark
+regions by adjusting the dynamic range of image data to the dynamic
+range of the computer display. <A HREF="#demoContrast">Figure 2</A>
+shows the effects of contrast adjustment.  Other transforms include
+image sharpening and contrast enhancement. Image sharpening is
+performed using edge enhancement techniques such as adding a
+percentage of the gradient or Laplacian edge detection functions to
+the original grayscale image. The gradient and Laplacian have higher
+values at the edges of objects. In all cases, the transformed image
+replaces the image previously displayed. Flicker will normally
+transform the input imate to an output image. You can use another
+transform on the previously transformed image if you had set the <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>Sequential transforms</B> checkbox.<P>
+
+<A NAME="displayModels"><P>
+<H4>2.1 Display models for image transform and brightness-contrast 
+operations</H4>
+
+There are several display models for combinations of using image
+transforms and brightness contrast or zoom filtering. These are
+applied to the left and right windows and also are shown in the
+flicker window. Two checkboxes in the upper left of the main window
+control transforms: <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>Allow
+transform</B> enables/disables transforms, and <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox off"><B>Sequential transforms</B> allows using
+the previous transform as the input to the next transform, i.e., image
+composition. The original image is denoted <I>iImg</I>. If you allow
+transforms and are also composing image transforms, you may optionally
+use the previous transformed output image (denoted <I>oImg</I>) as
+input to the next image transform. The output (either <I>iImg</I> or
+<I>oImg</I>) is then sent to the output1. Then the output2 which is
+either zoomed or not is sent to the brightness-contrast filter if
+active (specified by dragging the mouse in the selected window with
+the <B>SHIFT-key</B> pressed). The output2 of the brightness-contrast
+filter is denoted as <I>bcImg</I>. If you have never used the zoom or
+brightness-contrast filtering since loading an image, then <I>zImg</I>
+and <I>bgImg</I> are not generated and hence not used in the displayed
+image.  Figure 5. illustrates these four cases.
+<P>
+
+<A NAME="Fig-5"><P>
+<PRE>
+<TT>
+ a) If <I>no</I> transforms or brightness-contrast filtering is used 
+    on the selected image<B>
+                   (No transforms)
+        iImg -----------------------------------> output1</B>
+  
+ b) Image transforms may be composed from the original image (iImg) or
+    from <I>Sequential composition</I> of image transforms on the
+    selected image<B>
+                   (optional sequential)
+                  +----------------------+
+                  |                      |
+                  V                      |
+        iImg -----> Transform -----------> oImg --> output1 </B>
+ 
+  c) The image may be optionally zoomed if the magnification is not 1.0X
+     on the selected image<B>
+                 (zoom)
+        output1 --------> zImg ------------> output2 </B>
+     or<B>
+                 (No zoom)
+        output1 ---------------------------> output2 </B> 
+ 
+ 
+  d) Using brightness-contrast filter on output image<B>
+                 (BC filter)
+        output2 -----------------> bcImg --> display </B>
+     or<B>
+                 (No BC filter)
+        output2 ---------------------------> display </B> 
+</TT>
+</PRE>
+<HR>
+
+<B>Figure 5. Output image as a function of image processing modes.</B>
+<FONT SIZE=-1> This shows the four modes that create an output image
+depending on whether the brightness-contrast processing is used and if
+image transforms are used. The (<B>File Reset images</B>) menu command
+resets the display processors to the initial state (a).
+</FONT>
+<P>
+
+
+<A NAME="keyboardCmds"><P>
+<H4>2.2 Keyboard menu shortcut controls</H4>
+
+There are several menu short-cut key combinations that may be used to
+perform operations instead of selecting the command from the pull-down
+menus. The command short-cut notation <B>C-<I>key</I></B> means to
+hold the Control key and then press the specified <I>key</I>.
+
+<UL>
+<LI> <B>C-A</B> add landmark (you must have selected both left and
+right image trial objects) (see <A HREF="#landmarkMenu">Landmark menu</A>)
+
+<LI> <B>C-B</B> capture background intensity value for current image
+under a circular mask (see <A HREF="#quantifyMenu">Quantify menu</A>)
+ 
+<LI> <B>C-D</B> delete landmark - the last landmark defined
+(see <A HREF="#landmarkMenu">Landmark menu</A>)
+
+<LI><B>C-E</B> edit selected measured spot (click on spot to select
+it) (see <A HREF="#quantifyMenu">Quantify menu</A>)
+
+<LI> <B>C-F</B> toggle flickering the lower left and right images into
+the upper flicker window (see <A HREF="#viewMenu">View menu</A> or the
+<IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on"> <B>Flicker (C-F)</B>)
+
+<LI> <B>C-G</B> toggle displaying gray values in the left and right
+image titles as move the cursor (see <A HREF="#viewMenu">View menu</A>)
+
+<LI><B>C-H</B> show grayscale ROI histogram. Popup a histogram of
+the computation region ROI (see <A HREF="#quantifyMenu">Quantify menu</A>)
+
+<LI><B>C-I</B> Define or edit selected measured spot(s) annotation
+'id' field (see <A HREF="#quantifyMenu">Quantify menu</A>)
+
+<LI><B>C-J</B> toggle the spot measurement mode between list-of-spots
+measurement mode and the single spot trial-spot measurement mode
+(see <A HREF="#quantifyMenu">Quantify menu</A>)
+
+<LI><B>C-K</B> delete selected measured spot (click on spot to select
+it (see <A HREF="#quantifyMenu">Quantify menu</A>)
+
+<LI> <B>C-L</B> Define the lower right hand corner (LRHC) of the
+region of interest (ROI) and assign that to the computing window 
+(see <A HREF="#quantifyMenu">Quantify menu</A>)
+
+<LI> <B>C-M</B> measure and show intensity under a circular mask for
+current image. Report background-corrected value if background was
+defined (see C-B shortcut and <A HREF="#quantifyMenu">Quantify
+menu</A>). An alternative way to measure spots is to hold the
+<B>ALT-key</B> when you press the mouse to select the spot. This
+combines spot selection and measurement in one operation.
+
+<LI> <B>C-R</B> measure and show intensity under a the computing
+window defined by the ROI (see commands (<B>C-U</B>) and (<B>C-L</B>))
+for the current image. Report background-corrected value if circular
+mask background was defined (see (<B>C-B</B>) shortcut and <A
+HREF="#quantifyMenu">Quantify menu</A>)
+
+<LI> <B>C-T</B> repeat the last Transform used, if one was previously
+performed else no-op (see <A HREF="#transformMenu">Transform menu</A>)
+
+<LI> <B>C-U</B> Define the upper left hand corner (ULHC) of the region
+of interest (ROI) and assign that to the computing window
+(see <A HREF="#quantifyMenu">Quantify menu</A>)
+
+<LI><B>C-V</B> Show data-window of selected pixel in the popup report
+window.
+
+<LI> <B>C-W</B> Clear the region of interest (ROI) and computing window
+(see <A HREF="#quantifyMenu">Quantify menu</A>)
+
+<LI> <B>C-Y</B> set 3 pre-defined landmarks for demo gels for Affine
+transform (see <A HREF="#landmarkMenu">Landmark menu</A>)
+
+<LI> <B>C-Z</B> set 6 pre-defined landmarks for demo gels for Polywarp
+transform (see <A HREF="#landmarkMenu">Landmark menu</A>)
+
+<LI> <B>C-Keypad "+"</B> increase the canvas size for all three images
+(see <A HREF="#editMenu">Edit menu</A>)
+
+<LI> <B>C-Keypad "-"</B> decrease the canvas size for all three images
+(see <A HREF="#editMenu">Edit menu</A>)
+
+</UL>
+
+
+<P>
+<A NAME="sliderCtls"><P>
+
+<H4>2.3 Sliders for defining transform parameters</H4>
+
+The set of parameter sliders are in the upper right part of the window
+(<A HREF="#fig-1">Figure 1.G</A> and <A HREF="#fig-6">Figure 6</A>)
+are used for adjusting parameters for the various image transforms
+(see <A HREF="#transformMenu">Transform menu</A>). The size of the
+three image canvases may be increased/decreased using the "<B><FONT
+SIZE=+1>+</FONT></B>" / "<B><FONT SIZE=+1>-</FONT></B>" buttons under
+the parameter scrollbars. The current canvas size for the three image
+windows is displayed (in pixels).  
+
+<UL>
+<LI> <B>zoomMag</B> (X) to zoom both left and right images from 1X to 16X
+<LI> <B>angle</B> (degrees) used in the pseudo 3D transform
+<LI> <B>eScale</B>(%) used in the sharpening transforms
+<LI> <B>zScale</B> (%)used in the pseudo 3D transform
+<LI> <B>contrast</B> (%) set by Shift/Drag to change the image contrast
+<LI> <B>brightness</B> (%) set by Shift/Drag to change the image brightness
+<LI> <B>threshold1</B> (grayscale or od) is the minimum grayscale value to 
+     show pixels otherwise they are shown as white    
+<LI> <B>threshold2</B> (grayscale or od) is the maximum grayscale value to
+     show pixels otherwise they are shown as white
+<LI> <B>measurement circle size</B> diameter (pixels)of the measurement
+     circle
+</UL>
+
+<A NAME="Fig-6"><P>
+<PRE>
+</PRE>
+<CENTER>
+<IMG SRC="Gifs/flickerParameterScrollerControls.jpg" ALIGN="CENTER" ALT="Flicker parameter slider controls interface">
+</CENTER>
+<HR>
+
+<B>Figure 6. Screen view of the Flicker parameter slider controls.</B>
+<FONT SIZE=-1> This screen shot shows the parameter slider control
+that are used to set parameters for the various transforms. Separate
+parameter values are assigned to the left and right windows and are
+saved when you save the Flicker state. Pressing the <B>Report scroller
+values</B> button will popup the report window and display the current
+parameter values for both the left and right windows. The size of the
+three image canvases may be increased/decreased by pressing the
+"<B><FONT SIZE=+1>+</FONT></B>" / "<B><FONT SIZE=+1>-</FONT></B>"
+buttons under the parameter scrollbars. The current canvas size for
+the three is displayed (in pixels).
+</FONT><P>
+
+<A NAME="zoomDemo"><P>
+<H4>2.4 Example of changing image magnfication</H4>
+
+Sometimes when comparing gels from different sources, you want want to
+change the magnification of one of them so they are easier to compare.
+<A HREF="#fig-7">Figure 7</A> shows an example of adjusting the
+magnification of the selected image by 1X, 2X and 0.5X using the zoom
+mag slider.
+
+<A NAME="fig-7"><P>
+<PRE>
+<CENTER>
+<B>a)</B> <IMG SRC="Gifs/demo-Zoom-1.0X.jpg" ALIGN="absmiddle" ALT="Image with zoom 1.0X">
+</CENTER>
+<CENTER>
+<B>b)</B> <IMG SRC="Gifs/demo-Zoom-2X.jpg" ALIGN="absmiddle" ALT="Image with zoom  2.0X">
+</CENTER>
+<CENTER>
+<B>c)</B> <IMG SRC="Gifs/demo-Zoom-0.5X.jpg" ALIGN="absmiddle" ALT="Image with zoom  0.5X">
+</CENTER>
+</PRE>
+
+<HR>
+
+<B>Figure 7 shows an example of adjusting the magnification of the
+selected image by 1X, 2X and 0.5X using the zoom mag slider.</B> <FONT
+SIZE=-1><B>a)</B> is the original image at 1.0X zoom.  <B>b)</B> is
+the original image at 2.0X zoom.  <B>c)</B> is the original image at
+0.5X (de)zoom.  
+
+</FONT><P>
+  
+
+<P>
+<A NAME="popupReport"><P>
+<H3>3. Reporting the status in the popup status window</H3>
+
+The Flicker status information is displayed in several places.<P>
+<UL>
+ 
+<LI> There are <B>two status lines</B> in the upper left part of the
+main window (<A HREF="#fig-1">Figure 1.C</A>). The output is also
+appended to the Popup Report window.<P>
+
+<LI> There are an additional <B>six status lines</B> in the upper left
+part of the main window under the above two status lines. These are
+used for a few operations to include additional information (e.g.,
+affine transform).  The output is also appended to the Report
+window.<P>
+ 
+<LI>When you have created data (e.g., spot lists) and attempt to exit,
+it will ask you if you want to save the data first by poping up a
+<B>Yes/No/Cancel window</B>.  Press Yes to save the data and then
+exit, No to not save the data and then exit, and Continue to not
+exit.<P>
+ 
+<LI>When errors or warnings occur, an <B>alert window</B> is popped up
+to bring it to your attention. Press the <B>Ok</B> button to
+continue.<P>
+
+<LI> The <B>title line</B> of the selected image (selected by clicking
+on the left or right image) changes from black to blue (<A
+HREF="#fig-1">Figure 1.E</A>). If neither image is selected (click on
+the top flicker window (<A HREF="#fig-1">Figure 1.D</A>)), then both
+titles are black. It will also display the (x,y) coordinates of the
+current cursor position. You may also display the pixel gray scale
+value (OD if calibrated) if you enable it with the (<B>View | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Display gray values (C-G)</B>) option.  It
+reports the total measurement circle density if the (<B>Quantify |
+<IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use sum density else mean
+density)</B>) option is enabled.<P>
+
+<LI> A <B>report popup window</B> is created when Flicker is started
+(see Figure 8 below). It may be temporarily removed by closing it. You
+can get it back at any time by selecting <B>(View | Show report
+popup)</B> or by pressing the <B>Report scroller values</B>
+button. All text output is appended to this window. The <B>Clear</B>
+button clears all text. The <B>SaveAs</B> button lets you save the
+text in the window into a local text file in the <B>tmp/</B> directory
+or some other file.<P>
+
+</UL>
+<P>
+
+<A NAME="Fig-8"><P>
+<PRE>
+
+</PRE>
+
+<B> a)</B> <IMG SRC="Gifs/yes-no-cancel-PromptPopup.jpg" ALIGN="absmiddle" ALT="Popup information windows - yes/no/cancel">
+<P>
+
+<B> b)</B> <IMG SRC="Gifs/popupAlertMessage.jpg" ALIGN="absmiddle" ALT="Popup information windows - Alert">
+<P>
+
+<B> c)</B> <IMG SRC="Gifs/flickerReportWindow.jpg" ALIGN="absmiddle" ALT="Popup information windows - Report">
+<P>
+
+<HR>
+
+<B>Figure 8. Screen view of the popup information windows.</B> <FONT
+SIZE=-1> <B>a) Flicker Yes/No/Cancel window</B> to give you a chance
+to save data that you have edited or created.  <B>b) Flicker error or
+warning alert window</B> when illegal conditions occur.  <B>c) Flicker
+Report window</B> This screen shot shows the popup report window that
+contains a log of all activity. You can save this window's contents or
+clear it. If you close the window, it continues to log activity and
+may be popped up again using the <B>(View | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Show report popup)</B> command or the
+<B>Report scroller values</B> button underneath the parameter
+scrollers.
+
+</FONT>
+<P>
+
+  
+<A NAME="installFlicker"><P>
+<H3>4. Downloading, installing and running Flicker</H3>
+
+The following method can be used todownload the 
+<A HREF="#installFlicker-FilesMirror">Zipped Flicker-dist</A>
+and install it as described below. This includes a 
+<A HREF="http://launch4j.sf.net/">launch4j</A> windows installer.<P>
+
+<A NAME="installFlicker-FilesMirror"><P>
+<H3>4.1 Downloading and installing Flicker</H3>
+
+The installation packages are now available from the 
+<A HREF="https://sourceforge.net/project/showfiles.php?group_id=99808">
+Files mirror</A> under the Flicker releases. Look for the most recent release named 
+"Flicker-V.XX.XX-dist.zip". These include the program, required jar libraries,
+demo data, Windows batch and Unix shell scripts. Download the zip file and put the
+contents where you want to install the program. Note that there is a Flicker.exe
+(for Windows program). You might make a short-cut to this to use in more easily
+starting the program. Alternatively, you can use the  sample .bat and .sh scripts
+to run the program explicitly via the java interpreter. Note that this method
+assumes that you have Java installed on your computer and that it is at <I>least</I>
+JDK (Java Development Kit) or JRE (Java Runtime Environment) version 1.5.0. 
+If you don't have this, you can download the latest version free from the
+<A HREF="http://java.sun.com/">java.sun.com</A> Website. 
+<P>
+
+
+<A NAME="installFlicker-Procedure"><P>
+<H3>4.2 Downloading and installing Flicker</H3>
+
+The following is a short procedure that is suggested for downloading
+and installing Flicker.
+
+<OL>
+<LI> In the table of contents of the home page, click on "Files mirror"
+    under "Source Code".
+
+<LI> Under latest file releases, where it has the header "Package", click
+    on the "open2dprot" below that.
+
+<LI> This will refresh the page and if you scroll down, it will show
+   "Flicker files".
+
+<LI> Select the "+" on this to list the files. Pick the one with
+   the highest version number called something like
+     <TT>Flicker-V0.87.1.1-dist.zip</TT>
+
+<LI> Click on that to download it.
+
+<LI> Put it where you want to install it and unpack it.
+   There is a <TT>Flicker.exe</TT> file (for Windows) as well as .bat and .sh file  scripts.
+
+<LI> If you have images to compare, you can copy them or subfolders of images
+    into the Image\ folder in the distribution directory.
+
+</OL>
+<P>
+
+<A NAME="StartingFlicker">
+<A NAME="RunningFlicker"><P>
+<H3>4.3 Starting Flicker</H3>
+
+There are several ways to run the program. On Windows, you can start 
+Flicker by clicking on the startup icon shown in Figure 10 below. 
+For Unix systems including MacOS-X, you can start Flicker from
+the command line by running the Flicker.jar file. If your computer is setup
+to execute jar files, just type the jar file. Normally it
+comes up with the two demonstration human plasma 2D-gel images
+(plasmaH.gif - an IPG gel from SWISS-2DPAGE on the left) and
+(plasmaL.gif - a carrier ampholyte gel from Dr. Carl Merril/NIMH on
+the right).<P>
+
+In both systems, you can specify additional command line arguments in 
+Windows .bat and unix .sh scripts below.
+<P>
+
+<PRE>
+<FONT SIZE=-1>
+REM File: Flicker-startup.bat
+REM Simple Flicker batch script for Windows.
+REM Starts Flicker from its jar file  on the command line.
+REM To use more memory on startup, increase 96 (Mbytes) to a larger value.
+
+java -Xmx96M -jar Flicker.jar
+</FONT>
+</PRE>
+
+and
+
+<PRE>
+<FONT SIZE=-1>
+#!/bin/sh
+# File: Flicker-startup.sh
+# Simple Flicker batch script for Unix.
+# Starts Flicker from its jar file  on the command line.
+# To use more memory on startup, increase 96 (Mbytes) to a larger value.
+
+java -Xmx96M -jar Flicker.jar
+</FONT>
+</PRE>
+
+<A NAME="Fig-10"><P>
+<PRE>
+</PRE>
+<CENTER>
+<IMG SRC="Gifs/flickerStartupIcon.jpg" ALIGN="CENTER" ALT="Startup Flicker icon">
+</CENTER>
+<HR>
+
+<B>Figure 10. Startup icon for Flicker.</B> <FONT SIZE=-1> This is
+installed on your computer (default is the desktop) when you install
+Flicker. Clicking on the icon starts Flicker. When you (<B>File |
+SaveAs state file</B>) to save the state of your session with the gels
+you have loaded, it will let you name the .flk startup file. You then
+can reload the state using the (<B>File | Open state file</B>) to
+restore the state.
+</FONT>
+<P>
+
+If you have your own gels (JPEG, GIF or TIFF formats), you can try
+loading them. You may want to limit resolution by first decreasing
+their size using an image editing program like Adobe PhotoShop or the
+shareware program ThumbsPlus (<A
+HREF="http://www.cerious.org/">www.cerious.org</A> ). Large very high
+resolution images that are 20Mb to 40Mb will not work as well. We
+suggest reducing the size to about 1Kx1K for good interactivity if you
+have any problems with running out of memory or very sluggish
+response. These image editing programs can also be used for converting
+other formats to JPEG, GIF or TIFF formats that Flicker can read.<P>
+
+<A NAME="minRequirements"><P>
+<H4>4.4 Requirements: minimum hardware and software requirements</H4>
+
+A Windows PC, MacIntosh with MacOS-X, a Linux computer or a Sun
+Solaris computer having a display resolution of at <I>least</I>
+1024x768.  We find that a 1024x768 is adequate, but a 1280x1024 screen
+size much better since you can make the flicker windows larger and see
+the Popup Report window at the same time. At least 30 Mb of memory
+available for the application is required and more is desirable for
+comparing large images or performing transforms. If there is not
+enough memory, it will be unable to load the images, the transforms
+may crash the program or other problems may occur.<P>
+
+An Internet connection is required to download the program from the
+Flicker Web site. New versions of the program and associated demo data
+will become available on this Web site and can be <A
+HREF="#UpdateCmds">uploaded</A> to your computer using the various
+<B>(File | Update | ...)</B> menu commands. If you have obtained the
+installer software that someone else downloaded and gave to you, then
+you do not need the Internet connection to install the program. If you
+will be using the active gel image maps associated with federated
+2D-gel databases, then you will need the Internet connection for
+accessing those databases. You do not need the Internet for local
+image comparisons.<P>
+
+<A NAME="increasingMemory"><P>
+<H4>Increasing or decreasing the allowable memory used by Flicker</H4>
+
+You may increase memory by adjusting the startup .bat or .sh shell
+startup scripts. For very large images you could set it to 512 mb or more
+if your computer has at least that much memory. The allowable memory
+range you may set it to is 30 Mb to 1768 Mb. If you are working with 
+very large images that require a lot of memory, you might want to 
+increase the memory available at startup.<P>
+
+If you are using the Windows Flicker.exe file to start the program 
+or clicking on the Flicker.jar file, you can't change the default 
+startup memory.
+<P>
+
+If you are using the Flicker.jar in a script using the java interpreter 
+as in the following example which uses the <B>-Xmx<I>96</I>M</B> 
+(specifying using 96 at startup). Change 96 to a larger size 
+if you want to increase startup memory.
+<PRE>
+   java -Xmx96M -jar Flicker.jar {additional command line args}
+</PRE>
+
+
+<A NAME="filesDownloaded"><P>
+<H4>4.5 Files included in the download</H4>
+
+The following files are packaged in the distribution and installed
+when you <A HREF="install.html">download</A> and install Flicker from
+the Web server.
+
+<UL>
+<LI> <B>Flicker.jar</B> is the Java Archive File for Flicker that is
+     executed when you run Flicker
+
+<LI> <B>jai_core.jar</B> is the core Java runtime from SUN's Java Advanced
+     Imaging (JAI) at <A HREF="http://java.sun.com">java.sun.com</A>
+  
+<LI> <B>jai_codec.jar</B> is the JAI tiff file reader from SUN's Java Advanced
+    Imaging JAI at <A HREF="http://java.sun.com">java.sun.com</A>
+ 
+<LI> <B>DB/</B> is a directory containing the set of tab-delimited DB
+     files <B>Flk*DB.txt</B> read at startup
+
+<LI> <B>Images/</B> is a directory holding demo .gif, .tif, and .ppx
+     sample files. If you add directories of user files, then Flicker
+     will discover these and you can access them with (<B>File | Open
+     user images | ...</B>) submenus
+
+<LI><B>FlkStartups/</B> is empty directory to put the startup Flicker
+     .flk startup files. When you do a (<B>File | SaveAs state
+     file</B>), it allows you to name the .flk file
+     (<B>FlkStartup.flk</B> is the default). At a later sessions,
+     you can restore this state using the (<B>File | Open state 
+     file</B>) command.
+</UL>
+
+<A NAME="localDatabases"><P>
+<H4>4.6 Local (Flk...DB.txt) database files</H4> 
+
+When Flicker is installed, several tab-delimited (spreadheet derived
+with column names) <TT>.txt</TT> files are available in the <B>DB/</B>
+directory (located where the <B>Flicker.jar</B> file is
+installed). These <B>DB/Flk*DB.txt</B> files are read on startup and
+are used to setup the <B>(File | Open ... image | ...)</B> menu trees.
+
+<UL>
+<LI> <B>DB/FlkMapDB.txt</B> - contains instances of Web-based active
+     image maps with fields:(<I>MenuName, ClickableURL, ImageURL,
+     BaseURL, DatabaseName</I>)
+
+<LI> <B>DB/FlkDemoDB.txt</B> - contains instances of pairs of images
+     in the local Images/ directory and contains fields:
+     (<I>SubMenuName, SubMenuEntry, ClickableURL1, ImageURL1,
+     ClickableURL2, ImageURL2, StartupData</I>)
+     
+<LI> <B>DB/FlkRecentDB.txt</B> - contains instances of recently
+      accessed non-demo images with fields (1 or 2 images/entry):
+      (<I>DbMenuName, ClickableURL1, ClickableURL2, ImageURL1,
+      ImageURL2, DatabaseName, TimeStamp</I>)
+</UL>
+<P>
+
+
+<A NAME="localFolders"><P>
+<H4>4.7 Local Folders and files created and used by Flicker</H4> 
+
+When Flicker is first started, it will check for the following folders
+and files in the installation directory and create them if they can
+not be found.
+
+<UL>
+<LI> <B>Flicker.properties</B> - is the user specific preferences for
+generic properties such as colors, view options, etc. This file is
+created when you exit flicker and read (if it exists) when you start
+it.  For example, you may want to use a red trial object cursor
+instead of yellow, etc. Notes: (1) if you have both a
+"Flicker.properties" file and are starting Flicker using a .flk
+startup file, it (1) reads the user preferences first, and then (2)
+reads the .flk startup file to overide these preferences. (2) If you
+have startup problems when you use the (<B>File | Open state file</B>) 
+command on a .flk startup file, try deleting the Flicker.properties file 
+and then restarting. A new one will be created when you exit Flicker.
+
+<LI> <B>spt/</B> - contains <I>{image name}.spt</I> files. These are
+the last list of user defined spot measurements that were created
+using the circular mask Quantify operations for the corresponding
+images. If there is no spot list or it has been cleared, (<B>Quantify
+| Measure by circle | Clear spot list (ask first) for selected
+image</B>) command, then the .spt file will be deleted as well.
+
+<LI> <B>cal/</B> - contains <I>{image name}.cal</I> files. These are
+the last image grayscale to OD (or other measure) calibrations if they
+exist. If there is not calibration, then there is no .cal file.
+
+<LI> <B>Images/</B> is a directory where the user could put additional
+directories of images (we suggest you organize the directories by
+project or experiment) This directory is discussed in more detail
+below.
+
+<LI> <B>tmp/</B> is the user's temporary directory used for
+miscellaneous output reports and SaveAs files (.txt report files and
+.gif image files).
+
+</UL>
+<P>
+
+<A NAME="userImageData"><P>
+<H4>4.8 Adding your own image data to the user Images/ database</H4> 
+
+There is another way for users to add many of their gel images without
+editing the <B>DB/FlkDemoDB.txt</B> file. When you place your image
+data directories in the <B>Images/</B> directory, Flicker will
+discover them when it starts and add them to the demo menu. It works
+as follows:<P>
+
+<OL>
+
+<LI> You copy or move one or more of your directories of with the
+images you want to use with Flicker in the <B>Images/</B> folder.
+
+<LI> When Flicker starts, it creates additional submenu entries in the
+(<B>File | Open user images | Pairs of images | ...</B>) and (<B>File
+| Open user images | Single images | ...</B>) submenus that are the
+names of the user's directories. 
+
+<LI> The first submenu contains unique combinations of pairs of all
+images within each of the user's directories. Selecting one of these
+entries will load the pair of images into the left and right Flicker
+image windows.
+
+<LI> The second menu command lets you select the right or left Flicker
+image, and then load a single image from any of the user image
+directories into that Flicker image window. This would be useful if
+you wanted to compare one of your images with one of the Internet
+reference gels.
+
+</OL><P>
+
+<A NAME="Ex-imagePairs"><P>
+<H4>4.8.1 Example of pairs of images</H4>
+
+An example of the (<B>File | Open user images | Pairs of images |
+...</B>) may help clarify this.
+
+<OL>
+<LI> Within each submenu, it will generate all unique combinations of
+the image files within the corresponding directory and denote them as
+for example, "<I>image3 vs. image4</I>", etc.
+
+<LI> Then just access them from the demo menu as you would with the 
+built-in pairs of  images.
+
+</OL><P>
+
+For example, if you have four images <TT>image1, image2, image3</TT>
+and <TT>image4</TT> in your directory <TT>MyData-folder</TT>, then the
+submenu entries will be
+
+<TT>
+<DL>
+<DT> &nbsp;&nbsp;&nbsp;&nbsp;MyData-folder<IMG SRC="Icons/smicon.gif" ALT="Submenu">
+<DD>
+<UL>
+<LI> image1 vs. image2
+<LI> image1 vs. image3
+<LI> image1 vs. image4
+<LI> image2 vs. image3
+<LI> image2 vs. image4
+<LI> image3 vs. image4
+</UL>
+</DT>
+</DL>
+</TT>
+<P>
+
+
+Note that it does <I>not</I> generate comparisons between
+directories. You can still do that by clicking on the left (and then
+later the right) image and using the (<B>File | Open image file</B>)
+command to manually load the file into the image. If you want to do
+this often, put your images in the same directory.<P>
+
+If you have this type of data, it will also add the (<B>File | Open
+user images | List user's images by directory</B>) command. You
+can use this to get a report of all of the files in the popup report
+window.
+
+<A NAME="UpdateCmds"><P>
+
+<H4>4.9 Updating the latest versions of the program and data from the
+Web server</H4>
+
+You can update your program and active image map and demo image data
+files using the various Update options in the Files menu. The <B>(File
+| Update | Flicker program)</B> command downloads and installs the
+latest Flicker.jar file. The <B>(File | Update | Active Web Maps
+DB)</B> command downloads and installs the latest active Web maps
+database DB/FlkMapDB.txt file. The active maps point to federated
+2D-gel web servers with identified spots.  The <B>(File | Update |
+Demo images DB)</B> command downloads the latest demo images and the
+<B>DB/FlkDemoDB.txt</B> file.<P>
+
+<A NAME="usingOlderJAR"><P>
+<H4>4.9.1 Instructions for using an older version of Flicker</H4>
+
+The version of flicker you use is dependent on the version
+of the <TT>Flicker.jar</TT> file.<P>
+
+You will <I>not</I> use the (<B>Files | Update | Flicker program</B>)
+command.  Using this command will get the latest release which is not
+what you want if you want an earlier release.<P>
+
+Instead do the following.  You copy the version of
+<TT>Flicker.jar</TT> you want to the location on your disk where you
+had installed Flicker overwriting the previous version. For example,
+on MS Windows this is typically
+
+<PRE> 
+    C:\Program Files\Flicker\Flicker.jar
+</PRE>
+
+If you installed Flicker elsewhere on your computer, then that is
+where you need to change it. Go to the files distribution in the <A
+HREF="https://sourceforge.net/project/showfiles.php?group_id=99808">File
+mirror</A> web page.<P>
+
+There are a number of .jar files of the form
+<PRE>
+   Flicker.jar-V0.xx
+</PRE>
+
+Copy the one you want to your computer.<P>
+ 
+To be used with the Flicker startup process, this file <I>must</I> be
+called <TT>Flicker.jar</TT>, so you must rename it as Flicker.jar.
+The procedure is as follows:
+
+<OL>
+<LI> copy <TT>Flicker.jar-V0.xx</TT> to your computer (where <TT>V0.xx</TT> 
+     is the version number),
+<LI> rename the file to "Flicker.jar"
+<LI> copy it to  <TT>C:\Program Files\Flicker\Flicker.jar</TT> or to
+     where it was installed on your computer,
+<LI> then start (or restart) Flicker. It will then get the new version
+     of the <TT>Flicker.jar</TT> file you changed.
+</OL>
+<P>
+
+<A NAME="addingUserDemos"><P>
+<H4>4.9.2 Adding your own or another Web sites demo data to your
+Flicker Demo database</H4>
+
+You can add set set of demo gel data to the Flicker demo database from
+any Flicker demo-data compatible web site. This data must be is
+exactly the form required that is spelled out in this manual (see <A
+HREF="#localDatabases">Section 4.3 details on FlkDemoDB file
+formats</A>. Once you have confirmed that the Web site is compatible,
+it is simple to add that data to your local Demo database. If the Web
+site data changes, when you do the update, it will replace existing
+entries with the new data from that Web site. NOTE: all file names are
+case-dependent so becareful when building your <TT>DB/</TT> tables and
+in naming the images.  The Web site should have 2 folders:<P>
+
+<PRE>
+   DB/
+and
+   Images/
+</PRE>
+
+The <TT>DB/</TT> folder must have two files <TT>FlkDemoDB.dir</TT> (the
+list image images in the <TT>Images/</TT> folder, and
+<TT>FlkDemoDB.txt</TT> which is a tab-delimited spread sheet describing
+the demo images. NOTE: demo images generally live in the top level of
+the <TT>Images/</TT> directory. They are not in subdirectories of the
+<TT>Images/</TT> directory. If you are designing such a remote demo
+Web site, you could model the files from the current Flicker DB
+files.<P>
+
+Once you are sure your remote web site is set up correctly, then
+simply use the <B>(File | Update | Add user's Flicker Demo Images DB
+by URL)</B> command to download and and update the Flicker demo
+database. After it is successful, it will tell you to exit and restart
+Flicker. If you go to the <B>Files | Open demo images| ...</B> menu,
+you should see the new demo data you have installed.<P>
+
+
+<A NAME="saveRestoreState"><P>
+<H3>5. Saving and restoring the Flicker state</H3>
+
+Flicker gives you the option of saving the current state of your
+session including the images your are looking at and the parameter
+values of the sliders, etc. To save the current state, use the
+<B>(File | Save (or SaveAs) state file)</B> command. This creates a
+file with a .flk file extension in the installation
+<B>FlkStartups/</B> folder (default <B>DB/FlkStartup.flk</B>). 
+Any time while running Flicker, you can also use 
+<B>(File | Open state file)</B> command to change it to another 
+saved Flicker state.
+<P>
+
+The <B>Flicker.properties</B> file is the user-specific preferences
+for generic properties such as colors, view options, etc. This file is
+created when you exit flicker and read (if it exists) when you start
+it.  If you have never run flicker or the file was deleted, Flicker
+uses the default values. If the <B>Flicker.properties</B> file exists,
+it overides these files.  If you have started Flicker using a .flk
+startup file, this in turn overides any settings from the
+<B>Flicker.properties</B> file.
+
+For example, you may want to use a red trial object cursor instead of
+yellow, etc.  If you have both a <TT>Flicker.properties</TT> file and
+are starting Flicker using a .flk startup file, it (1) reads the user
+preferences first from <TT>Flicker.properties</TT>, and then (2) reads
+the .flk startup file to overide these preferences. If you want to
+reset the standard view, use the (<B>Edit | Reset default view</B>)
+command to overide the previous view read from
+<TT>Flicker.properties</TT>. If the you ever have problems starting
+Flicker because of a corrupted <TT>Flicker.properties</TT> file, just
+delete it (it is kept in the same directory where you installed
+Flicker) and restart Flicker. When you exit, it will create a new
+properties file.<P>
+
+
+<A NAME="menuCmds"><P>
+<H3>6. Pull-down menus</H3>
+The menu bar commands are divided into menus divided by function.
+
+
+<OL>
+
+<LI><A HREF="#fileMenu">File menu</A> - to load/save the Flicker .flk
+     state, load images, active map urls, update (from the server)
+     program, DB/Flk*DB.txt database files, demo images
+
+<LI><A HREF="#editMenu">Edit menu</A> - to change various defaults
+<LI><A HREF="#viewMenu">View menu</A> - to change the display overlay options
+<LI><A HREF="#landmarkMenu">Landmark menu</A> - to define landmarks for 
+    warping or other operations
+<LI><A HREF="#transformMenu">Transform menu</A> - contains various image
+    processing transforms
+<LI><A HREF="#quantifyMenu">Quantify menu</A> - contains circle and 
+    boundary measurements, ROI, gray to OD calibrations
+<LI><A HREF="#helpMenu">Help menu</A> - popup Web browser documentation on 
+     Flicker
+</OL>
+
+
+<A NAME="menuNotation"><P>
+<H4>Menu notation</H4>
+
+In the following menus, selections that are <I>sub-menus</I> are
+indicated by a '<IMG SRC="Icons/smicon.gif" ALT="Indicates that the
+menu has a submenu">'.  Selections prefaced with a '<IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">' and indicate '<IMG
+SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">' indicate that the command is a checkbox
+that is enabled and disabled respectively.  Selections prefaced with a
+'<IMG SRC="Icons/radioButtonON.gif" ALT="Radio button on">' and indicate '<IMG
+SRC="Icons/radioButtonOFF.gif" ALT="Radio button off">' indicate that the command is a
+multiple choice "radio button" that is enabled and disabled
+respectively, and that only one member of the group is allowed to be
+on at a time. The default values set for an initial database are shown
+in the menus.  Selections that are not currently available will be
+grayed out in the menus of the running program. The command short-cut
+notation <B>C-<I>key</I></B> means to hold the Control key and then
+press the specified <I>key</I>.
+<P>
+
+
+<A NAME="fileMenu"><P>
+<H4>6.1 File menu</H4>
+
+These commands are used to load/save the Flicker .flk state, load
+images, active map URLs, update (from the server) program,
+<B>DB/Flk*DB.txt</B> database files, demo images, and user's
+images. It also saves and restores the Flicker state, does updates
+from the server. You can save transformed or overlay images as GIF
+files in the <B>tmp/</B> directory.
+
+ <UL>
+  <LI> <B>Open image file</B> - pop up gel image file browser to load
+       gel to selected image
+
+  <LI> <B>Open image URL</B> - pop up gel image URL dialog to load gel
+       to selected image
+
+  <LI> <B>Open demo images</B><IMG SRC="Icons/smicon.gif"
+       ALT="Indicates that the menu has a submenu"> - load pairs of
+       demonstration gel images
+
+  <LI> <B>Open user images</B><IMG SRC="Icons/smicon.gif"
+       ALT="Indicates that the menu has a submenu"> - load single
+       (selected image) or pairs of user's image data if they had set
+       up the <A HREF="#userImageData">Images/</A> directory as
+       specified on their data
+
+  <LI> <B>Open active map image</B><IMG SRC="Icons/smicon.gif"
+       ALT="Indicates that the menu has a submenu"> - load active gel
+       image from the Internet in selected image
+
+  <LI> <B>Open recent images</B> - load an image (or images) you have
+       used recently
+
+  <LI> <B>Assign active image URL</B> - to one of the
+       open images to make it active
+
+  <BR> ------------------------------------
+
+  <LI> <B>Open state file</B> - restore the Flicker state of
+       previously saved session .flk state file
+  <LI> <B>Save state file</B> - save the Flicker state in current .flk
+       state file
+  <LI> <B>SaveAs state file</B> - save the Flicker state in new .flk
+       state file
+
+  <BR> ------------------------------------
+
+  <LI> <B>Update</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> - update Flicker
+       programs and data from open2dprot.sourceforge.net/Flicker
+       server
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <B>Flicker program</B> - to get the
+       latest program release (Flicker.jar) from Flicker server
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <B>Active Web Maps image DB</B> - get
+       latest active maps database from Flicker server
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <B>Demo images DB</B> - to get the
+       latest demo images database from Flicker server
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <B>Add user's Flicker Demo Images DB
+       by URL</B> - to add additional demo database from <A
+       HREF="#addingUserDemos">another Web server to the local Flicker
+       demo database</A>
+
+  <BR> ------------------------------------
+
+  <LI> <B>Save transformed image</B> - If you have transformed the
+       selected image and are allowing transforms, then this will save
+       the transformed image in a <B>tmp/</B> (default) directory as a
+       .gif file
+
+  <LI> <B>SaveAs overlay image</B> - If you have transformed the
+       selected image and are allowing transforms, then this will save
+       the transformed image in a <B>tmp/</B> (default) directory as a
+       .gif file
+
+  <LI> <B>Reset images</B> - to the initial state when they were loaded
+  <LI> <B>Abort transform</B> - abort any active image transforms
+
+  <BR> ------------------------------------
+
+  <LI> <B>Quit</B> - exit the program, saving the state in the
+       <B>Flicker.properties</B> file of Flicker in the process
+
+</UL><P>
+
+
+<A NAME="editMenu"><P>
+<H4>6.2 Edit menu</H4> 
+
+These commands are used to change various defaults. These are saved
+when you save the state and when you exit the program.
+
+<UL>
+
+  <LI> <B>Canvas size</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> - change the size
+       of the 3 canvases and the overall Flicker window
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;
+       <B>Increase size (C-Numpad '+')</B> - increase the canvas size
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;
+       <B>Decrease size (C-Numpad '-')</B> - decrease the canvas size
+
+  <LI> <B>Set colors</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> - change overlay
+       graphics colors
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;
+       <B>Target colors</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> -
+       to change the target color 
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;
+       <B>Trial object colors</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> -
+       to change the trial object color 
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;
+       <B>Landmarks colors</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> -
+       to change the landmarks color
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;
+       <B>Measurement colors</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> -
+       to change the circle mask measurement color        
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;
+       <B>Guard region colors</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> -
+       to change the image guard region color                
+
+  <BR> ------------------------------------
+  
+  <LI> <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+       <B> Use linear else log of TIFF files > 8-bits</B> - transform
+       the input TIFF image if it is more than 8-bits of intensity.
+
+  <LI> <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+       <B>Enable saving transformed images when do a 'Save(As)
+       state'</B> - If you have transformed the left and/or the right
+       image(s) and are allowing transforms, then this will save the
+       transformed images in a <B>tmp/</B> directory as .gif files
+       when you save the Flicker state.
+
+  <LI> <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+       <B>Use protein DB browser, else lookup ID and name on active
+       images</B> - used when click on a spot in an active DB that has
+       <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>click to access DB</B>
+       checkbox enabled. If this command is set, report the protein
+       identication in a popup window.  If it is not set, then lookup 
+       the protein ID and name and report it in the popup Report window.
+
+  <BR> ------------------------------------
+
+   <LI> <IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off"> <B>Auto measure, protein
+       lookup and Web page popup</B> - if one the following active DB
+       servers is enabled, it will: 1. measure the spot and add it to
+       the spot list; 2. lookup the Swiss-Prot (name, id); and 3. pop
+       up the Web server on the currently selected active DB server.
+
+
+  <LI> <B>Select access to active DB server</B><IMG
+       SRC="Icons/smicon.gif" ALT="Submenu"> - SWISS-2DPAGE, UniProt, iProClass or
+       iProLink servers. If you measure a spot (select a spot in an
+       active image and then type <B>C-M</B>) (and are connected to
+       the Internet), it will lookup the Swiss-Prot protein (accession
+       name, and protein id) on the Swiss-2DPAGE server. Then, if you
+       enable "Click to access DB", it will pop up the particular
+       active DB server you have selected.
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <B>Use SWISS-2DPAGE DB access</B> -
+       select <A HREF="http://www.expasy.org/ch2d/">SWISS-2DPAGE</A>
+       DB access.
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <B>Use UniProt DB access</B> -
+       select <A HREF="http://www.uniprot.org/">UniProt</A>
+       DB access.
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <B>Use iProClass DB access</B> -
+       select <A
+       HREF="http://pir.georgetown.edu/iproclass">iProClass</A> DB
+       access.
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <B>Use iProLink DB access</B> - select
+       <A HREF="http://pir.georgetown.edu/iprolink">iProLink</A> DB
+       access.
+
+
+  <BR> ------------------------------------
+
+  <LI> <B>Reset default view</B> - set to the default Flicker view
+       overiding your saved preferences in <B>Flicker.parameter</B> file 
+      (if it exists)
+
+  <LI> <B>Clear all 'Recent' image entries</B> - clear all recent
+       images from the recent images history list.
+
+</UL><P>
+
+
+
+<A NAME="viewMenu"><P>
+<H4>6.3 View menu</H4> 
+
+These checkbox menu commands are used to change the display overlay
+options. Some options (e.g., view Landmarks, view ROI, etc.) will not
+display any overlays until you define the corresponding data. The
+<B>Flicker images (C-F)</B> checkbox menu command can also be accessed
+from the Flicker checkbox in the upper left corner of the window.<P>
+
+ <UL>
+  <LI><IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">
+      <B>Flicker images (C-F)</B> - enables/disables flickering.
+  
+  <BR> ------------------------------------
+
+  <LI> <B>Set view overlays options</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> -
+       enable/disable various overlays for the images.
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+      <B>View landmarks</B> - add landmarks to the overlay display in
+      images
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+      <B>View target</B> - add target to the overlay display images
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+      <B>View trial object</B> - add trial object to the overlay display 
+      images
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">
+      <FONT COLOR="gray">
+      <B>View boundary</B> - add boundary to the overlay display images
+      </FONT>
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+      <B>View Region Of Interest (ROI)</B> - add ROI to the overlay
+      display images
+  
+  <BR> ------------------------------------
+
+  <LI> <B>Set view measurement options</B> <IMG
+       SRC="Icons/smicon.gif" ALT="Submenu"> - set various measurement overlay
+       options. Some of these require the (<B>Quantify | Measure by
+       circle | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on"> List-of-spots else
+       trial-spot measurement-mode (C-J)</B>) checkbox command be set.
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+       <B>View measurement circle</B> - add measurement ("+M") and
+       background circles ("+B") to the overlay display images. The
+       ("+M") is replaced with a series of spot measurements. These
+       are visible if the list-of-spots measurement mode is set.
+      
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+       <B>Use 'circle' for measured spot locations</B> - if you have
+       measured spots, show the location with a circle. These are
+       visible if the list-of-spots measurement mode is set.  This
+       will show the actual circle masks (of different sizes if you
+       changed the sizes) around each measured spot. Otherwise, it
+       shows it as a '+' marker.
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">
+       <B>Use '+ for measured spot locations</B> - if you have
+       measured spots, show the location with a '+'. These are visible
+       if the list-of-spots measurement mode is set.
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+       <B>Use 'spot number' for measured spot annotation</B> - if you
+       have measured spots, add the spot measurement number
+       annotation. These are visible if the list-of-spots measurement
+       mode is set.
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp; <IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">
+       <B>Use 'spot identifier for measured spot annotation</B> - if
+       you have measured spots, add the spot identifier (if it exists
+       else <B>&lt;none&gt;</B>) annotation.  These are visible if the
+       list-of-spots measurement mode is set. You may edit the spot
+       identifier using the (<B>Quantify | Measure by circle | Edit
+       selected spot from spot list (C-E)</B>).
+  
+  <BR> ------------------------------------
+
+  <LI> <B>Set gang options</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> -
+      enable/disable various multiple "ganged" image options where
+      performing a change will do the same change in several images
+      simultaneously. This is most useful after doing an initial
+      alignment, zoom, etc.
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">
+      <B>Multiple popups</B> - make multiple popup windows instead of reusing
+      one window
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">
+      <B>Gang scroll images</B> - move left and right images scrolling 
+      together
+
+  <LI> &nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">
+      <B>Gang zoom images</B> - zoom left and right images together. This
+      is useful if they are the same exact magnification
+  
+  <BR> ------------------------------------
+
+  <LI> <IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off"> <B>Add guard region to edges of
+      images</B> This is useful for aligning spots that are along the
+      edge of the images while flickering. The guard region's color
+      can be changed via the Edit menu (<B>Edit | Set colors | Guard
+      region color</B>).
+
+  <BR> ------------------------------------
+  
+  <LI><IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">
+      <B>Display gray values (C-G)</B> - show pixel gray values of cursor 
+      trial object in the left and right image titles as well as (x,y) 
+      coordinates. Also display the measurement circle if it is > 1 as 
+      you move the mouse.
+      
+  <LI><IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+      <B>Show report popup</B> - display the report popup window again if 
+      needed
+
+  </UL>
+
+<A NAME="landmarkMenu"><P>
+<H4>6.4 Landmark menu</H4> 
+
+These commands are used to define landmarks for image warping or other
+operations. First select the image, then click on the position you
+want to use as a landmark, then do <B>Add landmark (C-A)</B>.
+
+<UL>
+
+<LI><B>Add landmark (C-A)</B> - add trial objects (in images) as landmark  
+   
+<LI><B>Delete landmark (C-D)</B> - delete the last landmark defined 
+       
+<LI><B>Show landmarks similarity</B> - compute a least-square error
+     similarity measure of the two sets of landmarks
+
+<LI><B>Set 3 pre-defined landmarks for demo images (C-Y)</B> - only
+    for plasmaH/plasmaL or testA/testB (triangle) images   
+
+<LI><B>Set 6 pre-defined landmarks for plasmaH/plasmaL demo (C-Z)</B>
+    - only for plasmaH/plasmaL or testA/testB (triangle) images
+
+</UL>
+
+
+
+<A NAME="transformMenu"><P>
+<H4>6.5 Transform menu</H4> 
+
+These commands are used contains various image processing transforms.
+First select the image you want to transform. For some transforms, if
+you don't select either image it will do the transform on both
+images. Then select the transform from the Transform menu.
+
+<UL>
+
+<LI><B>Affine Warp</B> - warp selected image using first 3 pairs of
+    landmarks        
+<LI><FONT COLOR=gray>
+    <B>Polynomial Warp</B> - warp selected image using first 6 pairs of
+    landmarks
+    </FONT>        
+<LI><B>Pseudo 3D transform</B> - do pseudo 3D scaling based on image
+    intensity        
+
+  <BR> ------------------------------------
+
+<LI><B>Sharpen Gradient</B> - gradient + gray scale sharpen selected
+    image        
+<LI><B>Sharpen Laplacian</B> - Laplacian + gray scale sharpen selected
+    image        
+<LI><B>Gradient</B> - gradient of the selected image        
+<LI><B>Laplacian</B> - Laplacian of the selected image        
+<LI><B>Average</B> - average selected image        
+<LI><B>Median</B> - median of selected image    
+<LI><B>Max 3x3</B> - max of 3x3 neighborhood of selected image    
+<LI><B>Min 3x3</B> - min of 3x3 neighborhood of selected image    
+
+  <BR> ------------------------------------
+    
+<LI><B>Complement</B> - complement selected image        
+<LI><B>Threshold</B> - threshold the selected image by gray values in
+     [T1:T2]. This is also invoked by clicking on an image and moving
+     the threshold 1 or 2 parameter scrollers        
+<LI><B>Contrast Enhance</B> - Contrast enhance selected image        
+<LI><B>Histogram equalize</B> - histogram equalize selected image  
+
+  <BR> ------------------------------------
+      
+<LI><B>Original color</B> - Restore original data for selected
+    image 
+<LI><B>Pseudo color</B> - compute pseudo color scaling for selected
+    image 
+<LI><B>Color to grayscale</B> - compute NTSC RGB to grayscale transform
+    for selected image (gray= red*0.33 + green*0.50 + blue*0.17)
+
+  <BR> ------------------------------------
+       
+<LI><B>Flip Image Horizontally</B> - flip image horizontally selected
+    image        
+<LI><B>Flip Image Vertically</B> - flip image vertically selected image
+
+  <BR> ------------------------------------
+
+<LI><B>Repeat last transform (C-T)</B> - repeat last transform, if any
+  
+<LI><IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+    <B>Use threshold inside [T1:T2] filter</B> - filter by pixels inside
+    the range [T1:T2], otherwise pixels outside of [T1:T2]
+
+</UL>
+
+<P>
+<A NAME="affineDemo"><P>
+<H4>6.5.1 Example affine warping an image to the geometry of the other
+image</H4>
+
+This example warps the right image to the geometry of the left image
+to make them easier to flicker compare. There are two warping
+transforms - affine that requires 3 landmarks. You first define the
+required 3 pairs of corresponding landmarks between the triangular
+region you are interested in warping (see the <A
+HREF="Vignettes/flkVig-setLandmarks.html">landmark</A> vignette and
+the <A HREF="Vignettes/flkVig-usingWarp.html">using warping</A>
+vignette for more info). Then select the gel you wish to warp.  You
+then apply the warp transform from the Transform menu. We illustrate
+this with the two triangle test images testA and testB. Flicker has
+predefined landmarks for the plasmaH/plasmaH and testA/testB demo
+images that you can easily invoke for this example (see step [2]).<P>
+
+<OL>
+
+<LI>Load the test images using (<B>File menu | Open demo images | Test
+images | Affine warp test A and B</B>) command. The images are shown
+in Figure 11a.
+
+<LI> Define the landmarks. You can do this using the Landmark commands
+or use a demo short cut (<B>Landmark menu | Set 3 pre-defined
+landmarks for demo images (C-Y)</B>) command.  The images are shown
+in Figure 11b.
+
+<LI> Set <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>Allow transforms</B>
+checkbox enabled.
+
+<LI> Set <IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off"><B>Sequential
+transforms</B> checkbox disabled.
+
+<LI>Select the right image window you want to warp.
+
+<LI> Perform the transform you want to try in the (<B>Transform |
+Affine warp</B>) or (<B>Transform | Poly warp</B>) command. 
+
+<LI> Reposition the transformed image and the other image to the spot
+of interest inside of the landmark region. The recentered warped
+images are shown in Figure 11c.
+
+<LI> Enable flickering. It should then be easier to see the
+cooresponding spots.
+
+</OL>
+
+<A NAME="Fig-11"><P>
+<PRE>
+<CENTER>
+<B>a)</B> <IMG SRC="Gifs/demo-testABimages.jpg" ALIGN="absmiddle" ALT="Affine original test images A and B">
+</CENTER>
+
+<CENTER>
+<B>b)</B> <IMG SRC="Gifs/demo-testABwithLandmarks.jpg" ALIGN="absmiddle" ALT="Affine landmarked test images A and B">
+</CENTER>
+
+<CENTER>
+<B>c)</B> <IMG SRC="Gifs/demo-testABwithAffineWarpedB.jpg" ALIGN="absmiddle" ALT="Affine warped test images A and B">
+</CENTER>
+</PRE>
+
+<HR>
+
+<B>Figure 11. Example using the affine transform.</B> <FONT SIZE=-1>
+<B>a)</B> shows the original left and right images.  <B>b)</B> shows
+the left and right images with 3 pairs of landmarks after they are
+added (large red A, B and C labels).  <B>c)</B> shows the two images
+after applying the affine transform to the right image and recentering
+it.
+
+</FONT>
+<P>
+
+
+<A NAME="quantifyMenu"><P>
+<H4>6.6 Quantify menu</H4> 
+
+These commands are used to define and measure integrated density
+(grayscale or calibrated OD if calibrated) for circle, boundary,
+region-of-interest (ROI) measurements.  Integrated density
+measurements are made on the 8-bit (0:255 gray-value) data of
+pixels. It is only valid on grayscale data since we do the
+measurements on the least significant 8-bits (blue channel of the
+24-bit RGB data). If you have color data, you can use the NTSC color
+to gray-scale transform to convert it to gray scale first.  If you
+have calibrated grayscale to optical density (OD), you get the
+measurement in terms of OD rather than grayscale. The calibration
+wizard also lets you define the calibration in terms of other
+unitsy.<P>
+
+In the mean time, we refer to "density" as either of these two
+measurements. You may measure the total integrated density (summing
+the pixel gray values or OD), or mean density (the total
+density/#pixels in the region). This background density is used to
+correct the measurement density if it was defined (otherwise 0.0 is
+assumed). Note that you may clear the background measurement circle
+using the (<B>C-W</B>) command.<P>
+
+<A NAME="creatingSpotLists"><P>
+<H4>Creating lists of spots</H4>
+Flicker was not designed to measure very large numbers of spots.  That
+said, it could be used that way but with a lot of manual work. We
+provide some commands to make it easier to quantify (<B>C-B</B>) and
+(<B>C-M</B>) or (<B>ALT-click</B>), annotate (<B>C-I</B>), edit
+(<B>C-E</B>), and delete (<B>C-K</B>). You can also list and save the
+measured spot lists for the two images. The measured spot lists
+automatically get saved if you save the .flk startup state (<B>File |
+SaveAs state file</B>). Opening Flicker using that startup state file
+will restore the measured spot list.<P>
+
+You can save the spot list in a tab-delimited file suitable for import
+to Excel, by 1) clearing the Popup Report Window; 2) select the image
+you want and use (<B>Quantify | Measure by circle | List spots in the
+spot list (tab-delimited)</B>) command; 3) then, Save the text in the
+Popup Report Window or cut and paste it into Excel, etc.<P>
+
+It is possible to generate a list of paired spots between the two
+images using the (<B>Quantify | Measure by Circle | List paired 'id'
+annotated-spots in both spot lists (tab-delimited))</B> command.  It
+lists paired spots that occur in the spot lists of both gels and have
+the same annotation 'id' values (case-sensitive).  The user assigns
+the spot 'id' annotations using the (<B>C-I</B>) spot editing command
+to assign the case-sensitive spot identifiers. (<B>C-E</B>) command may
+also be used to edit the ids'. The paired spot data list may be
+exported to Excel similar to what was described in the last paragraph
+for spot lists.<P>
+
+Note that the background density is <I>not</I> the same everywhere on
+the gel image. Therefore if you are measuring spots in regions of the
+gel with quite different background (e.g., tail streaks from other
+spots, etc.), to get better estimated quantification you need to
+redefine the background adjacent to where you are making
+measurements. Recent versions of Flicker track the most recent
+background (<B>C-B</B>) estimate and associate it with new measured
+spots (<B>C-M</B>) until you redefine it.<P>
+
+
+<UL>
+
+<LI><B>Measure circle</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> - measure
+    intensity/density within the circlular mask
+
+<LI>&nbsp;&nbsp;&nbsp;&nbsp; <B>Capture background (C-B)</B> - get
+    background measurement at current position for a circular mask. It
+    draws a <B>+B</B> at that position.  It uses the currently
+    measurement circle diameter for that image.
+
+<LI>&nbsp;&nbsp;&nbsp;&nbsp; <B>Capture measurement (C-M)</B> - get
+    measurement at current position for a circular mask and report
+    background-corrected results (if background was defined). It uses
+    the currently measurement circle diameter for that image.It draws
+    a <B>+M</B> at that position or <B>+1</B>, <B>+2</B>, <B>+3</B>,
+    ... for a series of measurements if the (<B>Quantify | <IMG
+    SRC="Icons/checkboxON.gif" ALT="Checkbox on"> Use measurement counter</B>) is
+    enabled.  An alternative way to measure spots is to hold the
+    <B>ALT-key</B> when you press the mouse to select the spot. This
+    combines spot selection and measurement in one operation. Note
+    that you can toggle between trial- mode and spot-list measurement
+    mode using the (<B>Quantify | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">
+    List-of-spots else trial-spot measurement-mode (C-J)</B>) checkbox
+    command.
+
+<LI>&nbsp;&nbsp;&nbsp;
+    <B>Clear measurement</B> - clear measurement and background values
+
+<LI>&nbsp;&nbsp;&nbsp; <B>Edit selected spot(s) 'id's from the spot
+    list(s) (C-I)</B> - edit the spot annotation 'id' field for the
+    selected spot(s) you previously measured with the circular mask if
+    you are within 2 pixels. It will edit one or both spots from the
+    two images if they are selected (see <A
+    HREF="#ExamplePairSpotList">additional discussion</A>).
+
+<LI>&nbsp;&nbsp;&nbsp; <B>Edit selected spot(s) from the spot list(s)
+    (C-E)</B> - edit all of the fields of the selected spot(s) you
+    previously measured with the circular mask if you are within 2
+    pixels. It will edit one or both spots from the two images if they
+    are selected (see <A HREF="#ExamplePairSpotList">additional
+    discussion</A>).
+
+<LI>&nbsp;&nbsp;&nbsp; <B>Delete selected spot from the
+    spot list (C-K)</B> - delete the selected spot you previously
+    measured with the circular mask if you are within 2 pixels.
+
+  <BR> ------------------------------------
+
+<LI>&nbsp;&nbsp;&nbsp; <B>List spots in the spot list</B> - list spot
+    list report in the popup report window if there are any spots in
+    the list (see <A HREF="#ExampleSpotList">additional discussion</A>)
+
+<LI>&nbsp;&nbsp;&nbsp; <B>List spots in the spot list
+    (tab-delimited)</B> - list spot report in the popup report window
+    if there are any spots. The data is listed in a tab-delimited
+    format suitable for importing into Excel or other software (see <A
+    HREF="#ExampleSpotList">additional discussion</A>).
+
+<LI>&nbsp;&nbsp;&nbsp; <B>List 'id'-paired annotated mean norm. spots
+    in both spot lists (tab-delimited)</B> - list paired spots that
+    occur in the spot lists of both gels. The pairing is defined by
+    assigning the same annotation spot 'id' using the (<B>C-E</B>)
+    spot editing command to assign the case-sensitive spot
+    identifiers.  You must use the same calibration (if any), total or
+    mean density mode for both gels.  Data is mean-spot normalized
+    over the gels by dividing by the mean-spot density in each gel.
+    Spot report appears in the popup report window if there are any
+    spots. The data is listed in a tab-delimited format suitable for
+    importing into Excel or other software (see <A
+    HREF="#ExamplePairedSpotList">additional discussion</A>).
+
+<LI>&nbsp;&nbsp;&nbsp; <B>List 'id'-paired annotated spots in both
+    spot lists (tab-delimited)</B> - list paired spots that occur in
+    the spot lists of both gels. The pairing is defined by assigning
+    the same annotation spot 'id' using the (<B>C-E</B>) spot editing
+    command to assign the case-sensitive spot identifiers.  You must
+    use the same calibration (if any), total or mean density mode for
+    both gels.  Data is not normalized over the gels. Spot report
+    appears in the popup report window if there are any spots. The
+    data is listed in a tab-delimited format suitable for importing
+    into Excel or other software (see <A
+    HREF="#ExamplePairSpotList">additional discussion</A>).
+
+<LI>&nbsp;&nbsp;&nbsp;
+    <B>Clear spot list (ask first)</B> - clear spots in the spot list, but
+    ask them if they are sure first.
+
+  <BR> ------------------------------------
+
+<FONT COLOR=gray>
+<LI><B>Measure boundaries</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> - measure
+    intensity/density within user-drawn boundary
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Define background</B> - start measuring background region in image
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Define object</B> - start measuring object region in image
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Done boundary</B> - finished measuring region in image and report 
+    results
+
+  <BR> ------------------------------------
+
+</FONT>
+
+
+<LI><B>Print-data window</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> - Print
+    data-window
+
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Show data-window of selected pixel (C-V)</B> - print a 5x5 
+        through 40x40 gray-scale window (in decimal, octal, or 
+        hex number radix) in the popup report window. 
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Set print-window size</B> - set the print window size
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>5x5</B> - window size
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>10x10</B> - window size
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>15x15</B> - window size
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>20x20</B> - window size
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>25x25</B> - window size
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>30x30</B> - window size
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>35x35</B> - window size
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>40x40</B> - window size
+
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Set print-data radix</B> - set the data format radix
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>Decimal</B> - data format radix
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Octal</B> - data format radix
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Hexidecimal</B> - data format radix
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Optical density</B> - data format radix (if calibrated)
+
+  <BR> ------------------------------------
+</FONT>
+
+
+<LI><B>Calibrate</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> - calibrate
+    optical density or other step wedge           
+
+<LI>&nbsp;&nbsp;&nbsp;&nbsp; 
+    <B>Optical density by step wedge</B> - calibrate optical density
+    from ND step wedge. This will popup a calibration wizard which
+    includes a histogram and peak table that you can edit. This
+    assumes you have set up a computing window ROI over the step wedge
+    scanned with the data. You must also know the OD values
+    corresponding to the step wedge which you must enter into a peak
+    table.. It will compute a histogram over the ROI, find the peaks
+    and insert them into the peak table and extrapolate the grayscale
+    to OD curve over the dyanmic range of the histogram (see
+    <A HREF="#StepWedgeCal">additional discussion</A>).
+
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+
+   <IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off"><B>Use demo leukemia gels ND wedge
+   calibration preloads wedge</B> - used to demonstrate the ND step
+   wedge calibration process. We have built in four sample ROI's and
+   the corresponding OD values corresponding to the step wedge scanned
+   with the four demo gels (Leukemia-AML, Leukemia-ALL, Leukemia-CLL,
+   Leukemia-HCL). Enable this option <I>before</I> invoking the
+   <B>Optical density by step wedge</B> command.
+
+  <BR> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;------------------------------------
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+   <B>Optical density by spot list</B> - similar to the above
+   calibration, except that you specify the corresponding values by
+   measuring a set of spots that cover the corresponding calibration
+   values so there is no histogram analysis  (see
+   <A HREF="#SpotListCal">additional discussion</A>).
+
+<FONT COLOR=gray>
+ <BR> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;------------------------------------
+
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Molecular mass</B> - calibrate MW from MW standards
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>pIe</B> - calibrate pIe from pIe standards
+
+  <BR> ------------------------------------
+</FONT>
+
+<LI><B>Region of Interest (ROI)</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"></A> - 
+     region of interest operations
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Set ROI ULHC (C-U)</B> - define upper left hand corner of ROI
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Set ROI LRHC (C-L)</B> - define lower right hand corner of ROI
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Clear (ROI) (C-W)</B> - delete ROI
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Show grayscale ROI histogram (C-H)</B> - popup a histogram of
+    the computation region ROI. If you redefine the ROI, it will update
+    the histogram. If the ROI is not defined, it uses the entire image.
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Capture measurement by ROI (C-R)</B> - measure integrated density
+    inside the computation region ROI. Use the circular mask mean 
+     background for background correction
+
+  <BR> ------------------------------------
+
+<LI><B>Use sum density else mean density</B> - use sum of the density 
+    else mean density within the region (circular mask or ROI)
+
+<LI><IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>List-of-spots else trial-spot
+    measurement-mode (C-J)</B> to either measure spots or use a trial
+    measurement mode. In measurement mode, add spot label overlays
+    consisting of measurement locations (either "+" or circles or
+    neither) followed by measurement annotation (measurement # and/or
+    spot specific identifier (if edited), or neither). As specified by
+    the (<B>View | Set view measurement options | ...</B> checkbox
+    options. In measurement mode it will number the measurements 1, 2,
+    3, ... etc, whereas in trial-measurement mode it will show a
+    single "+M" instead. Note that in trial mode, it will redraw the
+    measurement circle as you change the size with the slider. Note
+    that if you are measuring several different ROI's with
+    (<B>C-R</B>), then it will assign sequential measurment numbers to
+    these ROI measurements.
+
+
+
+</UL>
+<P>
+
+Figures 12a-12h show various permuations of the spot list overlay
+options. Figure 13 shows an example of a histogram of the Region Of
+Interest (ROI). Figure 14 shows examples of calibrating gray scale a step
+wedge scanned with the image using the step wedge calibration
+wizard. Figure 15 shows calibrating grayscale where there are
+calibration spots in the image by using the spot list calibration
+wizard.<P>
+
+
+<A NAME="spotMeasurements"><P>
+<H4>6.6.1 Spot measurements</H4>
+
+Figures 12a-12h show various permuations of the viewing spot
+quantification using the various spot list overlay options.
+
+<A NAME="Fig-SpotOverlays">
+<A NAME="Fig-12"><P>
+<PRE>
+<CENTER>
+<TABLE>
+<TR>
+<TD> <B>a.1) </B><IMG SRC="Gifs/demo-MeasSpot-BM-pix.jpg" ALIGN="absmiddle" ALT="panel a.1 - single spot image"></TD>
+<TD> <B>a.2 </B><IMG SRC="Gifs/demo-MeasSpot-BM-rpt.jpg" ALIGN="absmiddle" ALT="panel a.2 - single spot report"></TD>
+</TR>
+<P>
+
+<TR>
+<TD> <B>b.1) </B><IMG SRC="Gifs/demo-MeasSpotList-nbr-circle-pix.jpg" ALIGN="absmiddle" ALT="panel b.1 - image measured spot list 3 spots"></TD>
+<TD> <B>b.2) </B><IMG SRC="Gifs/demo-MeasSpotList-nbr-circle-rpt.jpg" ALIGN="absmiddle" ALT="panel b.2 - report measured spot list 3 spots"></TD>
+</TR>
+<P>
+
+<TR>
+<TD> <B>c) </B> <IMG SRC="Gifs/demo-MeasSpotList-nbr-plus-pix.jpg" ALIGN="absmiddle" ALT="panel c.1 - measured spot list with '+'"></TD>
+<TD> <B>d) </B> <IMG SRC="Gifs/demo-MeasSpotList-nbr-circle-ann-pix.jpg" ALIGN="absmiddle" ALT="panel c.1 - measured spot list with 'circle'"></TD>
+</TR>
+<P>
+
+<TR>
+<TD> <B>e) </B> <IMG SRC="Gifs/demo-MeasSpotList-nbr-plus-ann-pix.jpg" ALIGN="absmiddle" ALT="panel d.1 - image annotated 3 measured spots"></TD>
+<TD> <B>f) </B> <IMG SRC="Gifs/demo-MeasSpotList-circle-ann-pix.jpg" ALIGN="absmiddle" ALT="panel d.2 - report annotated 3 measured spots"></TD>
+</TR>
+<P>
+
+<TR>
+<TD> <B>g) </B> <IMG SRC="Gifs/demo-MeasSpotList-plus-ann-pix.jpg" ALIGN="absmiddle"ALT="panel e.1 - image annotated 3 measured spots"></TD>
+<TD> <B>h) </B> <IMG SRC="Gifs/demo-MeasSpotList-ann-pix.jpg" ALIGN="absmiddle" ALT="panel e.2 - report annotated 3 measured spots"></TD>
+</TR>
+
+</TABLE>
+</CENTER>
+</PRE>
+
+<HR>
+
+<B>Figure 12. Examples of the measured spotlist.</B> <FONT SIZE=-1>
+This figures show various options in displaying the measured spots.
+As a shorthand for this legend, <B>VM:</B> is the (<B>View | Set view
+measurements options | ...</B>) submenu.<P>
+
+Panels (<B>a.1</B>) and (<B>a.2</B>) show a single spot measurement
+image and report and does not create a list of measured spots. The
+(<B>Quantify | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">List-of-spots else
+trial-spot measurement-mode (C-J)</B>) should be turned off. The
+<B>VM: <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox off">View measurement circle</B>
+option should be enabled.
+<HR>
+
+Panels (<B>b.1</B>) and (<B>b.2</B>) show a measured spot list with
+three spots, image and report respectively. Spots are shown with
+circles and spot number annotation. Since the user had clicked on the
+third spot, it is considered the "current" spot in the spot list and
+is indicated in yellow.  The rest are indicated in red. The
+(<B>Quantify | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">List-of-spots else
+trial-spot measurement-mode (C-J)</B>) should be turned on. The <B>VM:
+<IMG SRC="Icons/checkboxON.gif" ALT="Checkbox off">Use 'circle' for measured spot
+locations</B> option should be turned on, <B>VM: <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox off">Use 'spot number, for spot annotations</B>
+option should be turned on.
+<HR>
+
+Panel (<B>c</B>) shows the measured spot list with a "+" instead of a
+circle with spot numbers. Since the user had clicked on a different
+part of the screen, there is no "current" spot in the spot list so all
+spots are shown in red.  The (<B>Quantify | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox off">List-of-spots else trial-spot
+measurement-mode (C-J)</B>) should be turned on. The <B>VM: <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox off">Use '+ for measured spot locations</B>
+option should be turned on, <B>VM: <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox off">Use
+'spot number, for spot annotations</B> option should be turned on.
+<HR>
+
+Panel (<B>d</B>) show a measured spot list with three spot
+measurements image and report. Spots are shown with circles, spot
+numbers and spot annotation.  The (<B>Quantify | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">List-of-spots else trial-spot
+measurement-mode (C-J)</B>) should be turned on.  The <B>VM: <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use 'circle' for measured spot
+locations</B> option should be turned on, <B>VM: <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use 'spot number, for spot annotations</B>
+option should be turned on, and <B>VM: <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use 'spot identifier, for spot
+annotations</B> option should be turned on. The user had edited the
+spot identifiers by (1) clicking on a spot, (2) doing the (<B>Quantify
+| Measure by circle | Edit selected spot from spot list (C-E)</B>)
+command, and 3) typing a spot "identifier" for that spot and pressing
+"Done". Spots where the 'id was not edited are indicated by
+"&lt;none&gt;". For this example, we set 'id' to "SpotOfInterest" for
+spot #1 and a space for spot #3. Spaces make the identifier disappear.
+<HR>
+
+Panel (<B>e</B>) show a measured spot list with three spot
+measurements image and report. Spots are shown with pluses, spot
+numbers and spot annotation. The (<B>Quantify | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">List-of-spots else trial-spot
+measurement-mode (C-J)</B>) should be turned on.  The <B>VM: <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use '+' for measured spot locations</B>
+option should be turned on, <B>VM: <IMG SRC="Icons/checkboxON.gif">Use
+'spot number, for spot annotations</B> option should be turned on, and
+<B>VM: <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use 'spot identifier, for spot
+annotations</B> option should be turned on.
+<HR>
+
+Panel (<B>f</B>) show a measured spot list with three spot
+measurements image and report. Spots are shown with circles and spot
+annotation. The (<B>Quantify | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">List-of-spots else trial-spot
+measurement-mode (C-J)</B>) should be turned on. The <B>VM: <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use 'circle' for measured spot
+locations</B> option should be turned on, and <B>VM: <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use 'spot identifier, for spot
+annotations</B> option should be turned on.
+<HR>
+
+Panel (<B>g</B>) show a measured spot list with three spot
+measurements image and report. Spots are shown with pluses and spot
+annotation. The (<B>Quantify | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">List-of-spots else trial-spot
+measurement-mode (C-J)</B>) should be turned on. The <B>VM: <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use '+' for measured spot locations</B>
+option should be turned on, and <B>VM: <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use 'spot identifier, for spot
+annotations</B> option should be turned on.
+<HR>
+
+Panel (<B>h</B>) show a measured spot list with three spot
+measurements image and report. Spots are shown with just spot
+annotation. The (<B>Quantify | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">List-of-spots else trial-spot
+measurement-mode (C-J)</B>) checkbox option should be turned on. The
+<B>VM: <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use 'spot identifier, for spot
+annotations</B> option should be turned on.
+
+</FONT>
+<P>
+
+<A NAME="roiHistDisplay"><P>
+<H4>6.6.2 Region of Interest histogram display</H4>
+
+You can compute a histogram of the current region of interest in the
+selected image. Figure 13 shows an example of a histogram of the
+Region Of Interest (ROI).
+
+<A NAME="Fig-13"><P>
+<PRE>
+<CENTER>
+<B></B><IMG SRC="Gifs/demo-plasmaLROIhistogram.jpg" ALIGN="absmiddle" ALT="Example grayscale histogram of ROI of image">
+</CENTER>
+</PRE>
+
+<HR>
+
+<B>Figure 13. Example of a grayscale histogram of a region in the
+image.</B> <FONT SIZE=-1> This popup window shows the grayscale
+histogram under the computing window region of interest (ROI). If no
+ROI was defined (the case shown here), it computes the histogram over
+the entire image. It is invoked by (<B>Quantify | Region Of Interest
+(ROI) | Show RPI grayscale histogram (C-H)</B>). Clicking on a value
+of the histogram will show the frequency of the specified gray value
+at the top of the display.
+</FONT>
+<P>
+
+<A NAME="StepWedgeCal"><P>
+<H4>6.6.3 The ND step wedge grayscale calibration 
+<FONT COLOR=red>[ALPHA-level code]</FONT></H4>
+
+It is useful and sometimes essential to <A
+HREF="http://web.archive.org/web/20030322080619/http://tuts.cit.nih.gov/gel_density_evans/gel_density_evans1/long/2density/density.html">
+calibrate an image using known standard density values</A>. If the gel
+stain is stoichiometric within limits, density corresponds to protein
+concentration.  Then within the contraints of linearity of the
+staining, range and saturation of the scanner, it is possible to get
+more accurate spot density measurements. One way to do do this is to
+scan the gel (or image) with a neutral density step wedge (Suppliers:
+such as Stauffer Graphic Arts or similar) with known optical density
+(OD) values for each step. Note that if you have step wedges
+calibrated in other units (e.g., counts-per-minute or CPM, then you
+can specify that to the calibration wizard).  If the gray values are
+mapped to the corresponding optical density values, the wizard
+interpolates the intervening values constructing a translation table
+to map gray scale (in the range of [0:255] used in Flicker) to the
+coresponding OD or other calibration values. Then when measurements
+are made using the Quantify menu commands (circle mask or ROI), the
+data is first mapped to the calibrated units rather than grayscale.
+The sum of the pixel gray values is computed using this map so the
+measurement is the sum of the optical densities or integrated
+density/spot measurement area. This gives a better estimate of the
+protein concentration. <P>
+
+Once an image is calibrated and the calibration saved (in the
+<TT>{installation directory}/cal/{imageFile}.cal</TT> file), it may be
+reused everytime the image is loaded into Flicker. The initial
+calibration is created from the step wedge data and known
+corresponding OD values using a histogram specified by a region of
+interest (ROI) specified as the step wedge region.<P>
+
+To make it easier to demonstrate this process, we have set up special
+demo calibration data for the four demo Leukemia gels. If you have
+enabled (<B>Quantify | Calibration | Use demo leukemia gels ND wedge
+calibration preloads</B>) checkbox, it will preload the OD values and
+step-wedge ROI for demonstration purposes. If you are using any other
+data, you must specify the OD values and step-wedge ROI. You invoke
+the wizard by the (<B>Quantify | Calibration | Optical density by step
+wedge</B>) command. This will popup the calibration wizard window.<P>
+
+
+<H4>Procedure: for calibrating the ND step wedge</H4>
+
+<FONT SIZE=-1>
+<OL>
+
+<LI> If you are using the preloaded demo leukemia gels data specified
+above, then this step is done for you automatically.  Setup a
+well-define ROI region around the ND step wedge in the image using
+(C-U) upper left-hand corner and (C-L) lower right-hand corner. Then
+press the <B>Analyze wedge ROI</B> button in the wizard.  This
+computes the histogram of the step wedge region and attempts to find
+the peaks in the histogram corresponding to the mean wedge values. It
+will then put them in the peak table on the right of the wizard.<P>
+
+<LI> If there are no OD data in the peaks table, then enter the OD
+calibration values into the red Optical-Density fields. [If the
+calibration was set previously and we read them in from the .cal file,
+then these files are preset as well as the corresponding grayscale
+Gray-peak field values if you know what the values are. Press the
+<B>Update peak table</B> button in the wizard to recompute the OD
+calibration and update the calibration plot.  <B>Note</B>: If the
+current gel is not calibrated and the other gel has a calibration step
+list of OD values, then it will use it to save you having to type it
+in.<P>
+
+<LI> To force it to analyze the ROI wedge area, click on the
+<B>Analyze wedge ROI</B> button. This recomputes the histogram on the
+ROI (which may have changed) and the recomputes the calibration
+curve.<P>
+ 
+<LI> This will also update the Calibration Peak Table and generate the
+extrapolated gray to OD translation map calibration. The new histogram
+will show the Gray-peak values cooresponding to the OD values with red
+tick marks on the peaks as follows:<BR>
+
+4.1 It tries to find the peaks and copies the peaks into the
+Calibration Peak Table Gray-peak fields.<BR>
+
+4.2 It then generates a piecewise-linear extrapolation of the
+peak-table data to generate the translation map.<BR>
+
+4.3 It then redraws the histogram plot with
+       <B>a)</B> overlay calibration curve which is the gray to OD map,
+       <B>b)</B> updates the peaks table of (OD values, 
+          peak gray values) and draws this data into the plot.<P>
+
+<LI> You may edit the peak list, by selecting a peak with the mouse
+and then pressing either <B>Add peak</B> or <B>Delete peak</B> button
+in which case it redoes the step 4.<P>
+
+<LI> When you are done editing you may save the calibration by
+pressing the <B>Save calibration state</B> button. This saves the
+calibration data in the <TT>cal/{imageFile}.cal</TT> and makes the
+gray to OD calibration available to the image. You can then make
+measurements calibrated in OD.<P>
+
+<LI> Press <B>Done</B> to exit the calibration wizard. If you have not
+saved the calibration and do not want to, it will prompt you to save
+it and you should press the <B>No</B> button.<P>
+</OL>
+</FONT>
+
+<P>
+
+
+<A NAME="Fig-14"><P>
+<PRE>
+<CENTER>
+<B> a)</B> <IMG SRC="Gifs/demo-calibNDwedge-ROI-pix.jpg" ALIGN="absmiddle" ALT="Calibrating ND wedge ROI image">
+</CENTER>
+
+<CENTER>
+<B> b)</B> <IMG SRC="Gifs/demo-calibNDwedge-histTableBeforeEdit.jpg" ALIGN="absmiddle" ALT="Calibrating ND wedge table before edit">
+</CENTER>
+
+<CENTER>
+<B> c)</B> <IMG SRC="Gifs/demo-calibNDwedge-histTableAfterEdit.jpg" ALIGN="absmiddle" ALT="Calibrating ND wedge table after edit">
+</CENTER>
+</PRE>
+
+<HR>
+
+<B>Figure 14. Example of calibrating grayscale using the step wedge
+calibration wizard.</B> <FONT SIZE=-1> This shows an example of
+calibrating the gray scale using a ND step wedge that was scanned with
+the image. The OD values corresponding to the steps are known and are
+entered into the peak table. <B>a)</B> The ROI region over the ND step
+wedge was defined. In this example using one of the demo leukemia gels
+(AML), we used the preload option (<B>Quantify | Calibration | Use
+demo leukemia gels ND wedge calibration preloads</B>) command. Then,
+startup the wizard by using the (<B>Quantify | Calibration | Optical
+density by step wedge</B>) command.  If you did not do this, then you
+must define the ROI for the wedge region yourself and then press the
+<B>Analyze wedge ROI</B> button.  <B>b)</B> Shows the calibration
+wizard window with the histogram on the left, the peak table on the
+right and control buttons on the bottom. This is before editing the
+histogram. If you were defining the calibration values from scratch,
+enter them in the peak table and define the calibration units and
+units abbreviation. Then press the <B>Update peak table</B> button.
+<B>c)</B> Because there are some bad peaks (#7, grayscale of 143) and
+some that were missed (grayscale peaks at 214 and 220), we need to
+edit the peak table. Click on each peak in the histogram you want to
+delete and then press the <B>Delete peak</B> button. To add peaks,
+click on each peak in the histogram you want to add and then press the
+<B>Add peak</B> button. When you are satisfied with the calibration,
+press the <B>Save calibration file</B> to save the calibration in the
+<TT>{installation directory}/cal/{imageName}.cal</TT> file and then
+press <B>Close</B> to exit the wizard. A good calibration should be a
+smooth continuous function with no kinks. If you forgot to save the
+calibration when you leave the wizard, it will ask you if you want to
+save it. If you don't, it will revert to the previous calibration if
+any.
+</FONT>
+<P>
+
+
+<A NAME="SpotListCal"><P>
+<H4>6.6.4 The Spot list grayscale calibration
+<FONT COLOR=red>[ALPHA-level code]</FONT></H4>
+
+There is an alternative calibration method. You can calibrate
+grayscale if have a set of calibrated spots or regions in the image
+instead of a calibration step-wedge. You do not use the ROI, but
+instead will specify a set of spot measurements of increasing darker
+regions that correspond to your calibration values (such as OD, CPM,
+etc).  (<B>Quantify | Calibration | Optical density by spot list</B>)
+command. This will popup the calibration wizard window.<P>
+
+
+<A NAME="Fig-15"><P>
+<PRE>
+<CENTER>
+<B> a)</B> <IMG SRC="Gifs/demo-calibBySpotList-pix.jpg" ALIGN="absmiddle" ALT="Calibrating grayscale using spot lists">
+</CENTER>
+
+<CENTER>
+<B> b)</B> <IMG SRC="Gifs/demo-calibBySpotList-histTableBeforeEdit.jpg" ALIGN="absmiddle" ALT="Calibrating grayscale using spot lists - table before edit">
+</CENTER>
+</PRE>
+
+<HR>
+
+<B>Figure 15.  Example of calibrating grayscale using the spot list
+calibration wizard.</B> <FONT SIZE=-1> This shows an example of
+calibrating the gray scale using a set of known calibrated regions or
+spots that were scanned with the image. The OD or other calibration
+values corresponding to the spots are known and are entered into the
+peak table. <B>a)</B> We selected a set of spots over the ND step
+wedge but any set of known regions could be used. In this example
+using one of the demo leukemia gels (AML), we used the preload option
+(<B>Quantify | Calibration | Use demo leukemia gels ND wedge
+calibration preloads</B>) command. Then, startup the wizard by using
+the (<B>Quantify | Calibration | Optical density by spot list</B>)
+command. If you did not do this, then you must define the OD list of
+calibration values yourself and then press the <B>Update peak
+table</B> button.  <B>b)</B> Shows the calibration wizard window with
+the histogram on the left, the peak table on the right and control
+buttons on the bottom. If you are defining the calibration values from
+scratch, enter the OD (or other calibration values) into the peak
+table and define the calibration units and units abbreviation. Then
+press the <B>Update peak table</B> button.  You may edit the peak tale
+(just as you can for the ND wedge calibration).  When you are
+satisfied with the calibration, press the <B>Save calibration file</B>
+to save the calibration in the <TT>{installation
+directory}/cal/{imageName}.cal</TT> file and then press <B>Close</B>
+to exit the wizard. A good calibration should be a smooth continuous
+function with no kinks. If you forgot to save the calibration when you
+leave the wizard, it will ask you if you want to save it. If you
+don't, it will revert to the previous calibration if any.
+
+</FONT>
+<P>
+
+
+<P>
+<A NAME="ExampleSpotList"><P>
+<H4>6.6.5 Example of measuring multiple spots using the circular mask</H4>
+
+This gives an example of how do you can measure spot intensity under
+the circular mask. First, the background corrected measurement
+estimate is computed under the circular mask (<B>C-M</B>). This
+background estimate is then used for multiple measurements until you
+change this background estimate. The current background intensity
+measurement is associated with all spots measured since it was defined
+or redefined and is saved in the spot list. You number the spots by
+enabling the (<B>View menu | Set view measurement options | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">View measurement circle</B>) option. The
+numbered image is shown in Figure 16a.<P>
+
+You may also list the saved spots in the report window (shown in
+Figure 16b).  Hint, press the <B>Clear</B> button in the report window
+first. Note that if you save the flicker state, then the spot lists
+will be saved in the .flk file state and associated .spt spot list
+files in the <B>spt/</B> directory. Flicker will restore the spot
+lists if you start flicker on the saved .flk startup file.
+<P>
+
+<FONT SIZE=-1>
+<OL>
+<LI> Enable the multiple spot list measurements using the (<B>Quantify |
+<IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">List-of-spots else trial-spot
+measurement-mode (C-J)</B>) menu checkbox.
+
+<LI> Set the measurement circle size for the size spots you want to
+measure using the <B>meas circle diameter</B> scroller. This sets the box
+around the circle as <I>NxN</I> to 1x1, 3x3, 5x5, ..., or 51x51.
+
+<LI> Select the (<B>Quantify | Measure by circle | Capture background
+(C-B)</B>) or type (<B>C-B</B>) to capture the background value
+
+<LI> Select the (<B>Quantify | Measure by circle | Capture measurement
+(C-M)</B>) or type (<B>C-M</B>) to capture the spot measurement
+value. You may use (<B>ALT-key</B> click) to both select the spot and
+add it to the measurement list in one operation.
+
+<LI> To delete a spot, click on the spot. Then use the (<B>Quantify |
+Measure by circle | Delete selected spot from spot list(C-K)</B>)
+command. The next spot you measure will get the next spot measurement
+number - it does not reuse measurement numbers.
+
+<LI> To edit a spot's annotation 'id' data, click on the spot. Then
+use the (<B>Quantify | Measure by circle | Edit selected spot(s) 'id'
+field from spot list(s) (C-I)</B>).  If spots are selected in both
+images, then you can edit both spots together.
+
+<LI> To edit all of a spot's data, click on the spot. Then use the
+(<B>Quantify | Measure by circle | Edit selected spot(s) from spot
+list(s) (C-E)</B>). If spots are selected in both images, then you
+can edit both spots together.
+
+<LI> Repeatedly measure the spots you want using steps [2-7] as
+required.
+
+<LI> See the <A HREF="#Fig-SpotOverlays">discussion</A> on the various
+spot overlay options.
+
+<LI> You can review the list by first clearing the popup report window
+and then doing a (<B>Quantify | Measure by circle | List spots in the
+spot list</B>). You can also view the list as tab-delimited data that
+you can then either cut and paste into Excel.
+
+</OL>
+</FONT>
+<P>
+
+<A NAME="Fig-16"><P>
+<PRE>
+<CENTER>
+<B>a)</B><IMG SRC="Gifs/demo-MultipleSpotList.jpg" ALIGN="absmiddle" ALT="Image showing measuring multiple spots">
+</CENTER>
+
+<CENTER>
+<B>b)</B><IMG SRC="Gifs/demo-MultipleSpotListReport.jpg" ALIGN="absmiddle" ALT="Report for measuring multiple spots">
+</CENTER>
+</PRE>
+
+<HR>
+
+<B>Figure 16. Example of measuring multiple spots.</B> <FONT SIZE=-1>
+<B>a)</B> shows the left image window with 4 spots measured. The
+background spot has a magenta circle and "+B". The 4 spots are
+numbered "+1", "+2", to "+4".  The current cursor position is shown
+with the red circle with an orange "+" inside of it and the total gray
+value shown in the image title is the data under the circular mask at
+this position.  <B>b)</B> shows the popup report window with the 4
+spot measurements. We "Clear"ed the report to before posting the data
+to have it contain just the spot data.
+
+</FONT>
+<P>
+
+<A NAME="ExampleSpotListAnnotation"><P>
+<H4>6.6.6 Examples of annotating spot 'ID's in the spot lists</H4>
+
+Flicker allows you to annotate spots in the spot list and to then
+generate paired-spot tables (tab-delimited) that you can export (to
+Excel etc.). <A HREF="#Fig-17">Figure 17</A> shows 3 spots that were
+putatively identified by flickering the right gel against the
+Swiss-2DPAGE database image and then clicking on each of the
+corresponding spots to bring up the putative identifications (see <A
+HREF="#Fig-2">Figure 2</A>). Once the paired spot identifications are
+assigned, 
+<P>
+
+<A NAME="Fig-17"><P>
+<PRE>
+<CENTER>
+<B>a)</B><IMG SRC="Gifs/demo-Assigned-ID-labels-pix.jpg" ALIGN="absmiddle" ALT="Assigning ID labels for spots previously identified">
+</CENTER>
+
+<CENTER>
+<B>b)</B><IMG SRC="Gifs/demo-Assigned-ID-labels-prompt.jpg" ALIGN="absmiddle" ALT="Assigned ID labels prompt">
+</CENTER>
+
+<CENTER>
+<B>c)</B><IMG SRC="Gifs/demo-Assigned-ID-spotDataEdit.jpg" ALIGN="absmiddle" ALT="Assigned spot ID labels edit prompt">
+</CENTER>
+
+</PRE>
+
+<HR>
+
+<B>Figure 17. Example of assigning spot annotation 'id's.</B> <FONT
+SIZE=-1> <B>a)</B> shows the labeled spot annotations for three spots
+previously putatively identified (not shown here) using flickering
+against the SWISS-2DPAGE clickable database (see <A
+HREF="#Fig-2">Figure 2</A>). The spots were added to the spot lists in
+each of the two gels using the (<B>Quantify | Measure by circle |
+Capture measurement (C-M)</B>) command on each spot. Then, <B>b)</B>
+shows the prompt for assigning the paired-spot identifier that is
+popped up by first selecting the corresponding measured spots in each
+gel (shown in yellow) and then using the (<B>Quantify | Measure by
+circle | Edit selected spot(s) 'id' field from spot list(s) (C-I)</B>)
+command.  An alternate editing method, <B>c)</B> shows the prompt for
+editing all fields of the paired-spots that is popped up by first
+selecting the corresponding measured spots in each gel (shown in
+yellow) and then using the (<B>Quantify | Measure by circle | Edit
+selected spot(s) from spot list(s) (C-E)</B>) command.
+
+</FONT>
+<P>
+<PRE>
+
+</PRE>
+
+<A NAME="ExamplePairSpotList"><P>
+Flicker can then use the annotated spot lists you have generated to
+create a paired spot table shown below.<P>
+
+<A NAME="Fig-18"><P>
+<PRE>
+<CENTER>
+<B>a.1)</B><IMG SRC="Gifs/demo-3SpotListDemo-A1.jpg" ALIGN="absmiddle" ALT="Paired spot lists">
+</CENTER>
+
+<CENTER>
+<B>a.2)</B><IMG SRC="Gifs/demo-3SpotListDemo-A2.jpg" ALIGN="absmiddle" ALT="Paired spot lists">
+</CENTER>
+
+<CENTER>
+<B>b.1)</B><IMG SRC="Gifs/demo-3SpotPairListDemo-B1.jpg" ALIGN="absmiddle" ALT="Report of paired spot list data">
+</CENTER>
+
+<CENTER>
+<B>b.2)</B><IMG SRC="Gifs/demo-3SpotPairListDemo-B2.jpg" ALIGN="absmiddle" ALT="Report of paired spot list data">
+</CENTER>
+</PRE>
+
+<HR>
+
+<B>Figure 18. Example of paired spot lists exported to Excel.</B>
+<FONT SIZE=-1> <B>a.1-a.2)</B> shows data exported to Excel from the
+above example (<A HREF="#Fig-17">Figure 17</A>).  The annotated (ids')
+spot lists were generated by clicking (for each gel) on the image then
+using the (<B>Quantify | Measure by circle | List spots in the spot
+list (tab-delimited)</B>) command to generate a tab-delimited spot
+this. This was then cut and pasted into Excel and then reorganized to
+better show the data for this Web page.  Then, <B>b.1-b.2)</B> shows
+the paired spot table generated using the (<B>Quantify | Measure by
+circle | List 'id'-paired annotated mean norm. spots in both spot
+lists (tab-delimited)</B>) command. The table was then cut and pasted
+into Excel and then reorganized to better show the data for this Web
+page.
+
+</FONT>
+<P>
+
+<A NAME="ExamplePrintDataWindow"><P>
+<H4>6.6.7 Examples of typical print-data windows</H4>
+
+A spot was first selected by clicking on it. The print window size was
+set to 20x20 and the data radix to <B>Decimal</B> for grayscale
+values. Then the following output was generated in the popup Report
+window using the (<B>Quantify menu | Print data-window | Show
+data-window of selected pixel (C-V)</B>) command.  Normally, first set
+the print-window size and data radix then use the (<B>C-V</B>)
+short-cut key after you have selected the spot you want to view. The
+following shows typical output for an uncalibrated image where you can
+see tow spots in the lower left quadrant:
+
+<PRE>
+<FONT SIZE=-2>
+<TT>
+Windmp [183:203, 168:188] Center (193,178) 20X20 size,
+sampled: 1 pixels, data-radix: Decimal
+Image: Images\plasmaH.gif
+    X 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203
+  Y   --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+ 168   71  61  57  55  54  54  56  57  56  50  46  42  42  43  45  42  43  48  53  67  80
+ 169   71  53  50  48  45  48  50  55  60  56  46  42  40  43  42  40  37  41  47  54  65
+ 170   88  49  44  42  40  42  45  53  56  61  50  41  40  39  39  37  34  37  38  45  54
+ 171   97  49  41  39  39  40  43  53  60  61  54  43  39  38  37  36  34  36  37  43  50
+ 172  106  47  39  37  36  37  39  53  72  78  72  50  43  38  37  35  33  34  35  39  44
+ 173   84  41  38  37  34  33  35  50  82  94  84  58  48  41  40  37  34  35  35  39  44
+ 174   66  39  38  37  35  33  35  50  84  96  84  59  48  41  40  39  35  37  37  39  44
+ 175   47  41  43  40  36  34  34  49  78  84  71  56  50  43  44  43  38  37  37  47  46
+ 176   50  46  46  46  39  34  35  56  91  95  77  61  58  54  57  54  47  43  41  43  47
+ 177   53  49  51  50  42  37  38  69 117 122  98  74  66  62  65  62  51  47  44  45  50
+ 178   58  59  65  65  53  43  46 106 171 174 139  94  78  71  67  65  57  54  50  48  54
+ 179   63  77  97  97  82  59  55 104 163 164 120  76  64  58  62  62  61  58  55  52  56
+ 180   67  90 122 124 106  72  60  86 132 132  95  64  59  55  64  62  61  59  57  53  57
+ 181   76 140 189 193 174 128  94  59  70  68  60  55  55  54  59  63  60  60  58  55  58
+ 182   82 167 214 215 195 137  97  50  47  49  52  53  53  53  53  56  55  57  59  57  61
+ 183   73 142 194 194 160  97  67  42  44  46  51  52  52  50  53  52  54  57  60  62  63
+ 184   51  62  81  80  60  46  39  38  44  46  51  52  52  51  54  54  66  69  78  80  77
+ 185   48  50  52  52  46  40  39  40  45  48  51  52  51  53  56  57  56  65  70  72  72
+ 186   49  49  50  50  46  41  40  40  42  46  49  51  51  53  55  56  53  62  60  61  61
+ 187   51  55  63  62  56  46  43  40  40  41  45  51  53  57  58  55  50  48  52  49  50
+ 188   70  90  97  90  71  57  52  47  41  40  46  56  61  66  64  60  51  46  48  47  50
+</TT>
+</FONT></PRE>
+
+<P>
+
+<A NAME="exampleODwindump"><P>
+<H4>Example of a print-data window from an OD calibrated gel</H4>
+
+If you have a calibrated image (see (<B>Quantify menu | Calibrate |
+...</B>), then you can view the calibrated pixels in an OD radix. The
+following AML demo leukemia gel was calibrated in optical density.
+The spot was first selected by clicking on it. The print window size
+was set to 20x20 and the data radix to <B>Optical-density</B> for od
+values. Then the following output was generated in the popup Report
+window using the (<B>Quantify menu | Print data-window | Show
+data-window of selected pixel (C-V)</B>) command.  Normally, first set
+the print-window size and data radix then use the (<B>C-V</B>)
+short-cut key after you have selected the spot you want to view. The
+following shows typical output for an uncalibrated image:
+
+<PRE>
+<FONT SIZE=-2>
+
+Windmp [183:197, 322:336] Center (190,329) 15X15 size,
+sampled: 1 pixels, data-radix: Optical-density
+Image: Images\HUMAN-AML.ppx
+    X   183   184   185   186   187   188   189   190   191   192   193   194   195   196   197
+  Y   ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+ 322  0.022 0.022 0.027 0.033 0.038 0.056 0.066 0.072 0.084 0.056 0.049 0.047 0.033 0.040 0.047
+ 323  0.018 0.022 0.020 0.042 0.058 0.058 0.097 0.139 0.090 0.066 0.053 0.029 0.027 0.029 0.036
+ 324  0.020 0.013 0.024 0.040 0.049 0.051 0.127 0.133 0.072 0.060 0.058 0.038 0.036 0.042 0.033
+ 325  0.018 0.027 0.038 0.038 0.078 0.127 0.151 0.157 0.145 0.072 0.049 0.040 0.042 0.033 0.038
+ 326  0.024 0.022 0.033 0.066 0.139 0.188 0.291 0.304 0.265 0.115 0.056 0.040 0.038 0.031 0.033
+ 327  0.018 0.029 0.047 0.109 0.265 0.401 0.534 0.495 0.337 0.194 0.078 0.031 0.029 0.036 0.029
+ 328  0.038 0.029 0.058 0.182 0.394 0.665 0.766 0.648 0.466 0.252 0.097 0.058 0.033 0.022 0.022
+ 329  0.027 0.031 0.066 0.239 0.495 0.724 0.816 0.674 0.522 0.272 0.121 0.051 0.027 0.024 0.024
+ 330  0.036 0.044 0.127 0.220 0.394 0.557 0.622 0.557 0.372 0.246 0.139 0.040 0.033 0.038 0.027
+ 331  0.027 0.036 0.060 0.145 0.291 0.394 0.394 0.357 0.291 0.176 0.066 0.038 0.031 0.029 0.031
+ 332  0.024 0.033 0.044 0.090 0.133 0.233 0.285 0.246 0.207 0.151 0.090 0.058 0.056 0.042 0.049
+ 333  0.027 0.018 0.042 0.060 0.115 0.170 0.239 0.239 0.246 0.182 0.157 0.188 0.145 0.145 0.182
+ 334  0.018 0.031 0.044 0.051 0.097 0.157 0.252 0.304 0.272 0.291 0.246 0.233 0.291 0.317 0.365
+ 335  0.033 0.031 0.042 0.058 0.151 0.176 0.259 0.311 0.343 0.343 0.324 0.298 0.291 0.350 0.430
+ 336  0.018 0.036 0.056 0.090 0.139 0.252 0.291 0.304 0.357 0.298 0.265 0.246 0.272 0.265 0.317
+</FONT>
+</PRE>
+<P>
+
+<A NAME="helpMenu"><P>
+<H4>6.7 Help menu</H4> 
+
+These commands are used to invoke popup Web browser documentation on
+Flicker. The documentation is kept on the Internet at <A
+HREF="http://open2dprot.sourceforge.net/Flicker">
+http://open2dprot.sourceforge.net/Flicker</A>. Normally, these help
+commands should pop up a Web browser that directly points to the Web
+page on the http://open2dprot.sourceforge.net/Flicker site.  If your
+browser is not configured correctly, it may not be able to be launched
+directly from the Flicker program. Instead, just go to the Web site
+with your Web browser and look up the information there.
+
+
+<UL>
+
+<LI><B>Flicker Home</B> - the open2dprot.sourceforge.net/Flicker home page
+<LI><B>Reference Manual</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> - 
+this reference manual
+<LI><B>How-To use controls</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> 
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Keyboard shortcut options</B> - list of options
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Mouse controls</B> - list of options and using the controls
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Parameter sliders</B> - list of options and using the sliders
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Checkbox options</B> - list of options
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Menu command list</B> - list of menus and their commands
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Image transforms operation</B> - how to use image transforms
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Adding your images to DB</B> - how to add your image data
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Updating the program and data</B> - how to use the update commands
+
+<LI><B>Vignettes</B> - short demos to answer to specific "How do I
+...?" questions
+
+<LI><B>Sun's JAI license</B> - the sun.com Java Advanced Imaging (JAI) license
+<LI><B>Version on Web site</B> - display the version numbers available on 
+     the Web site.
+<LI><B>About Flicker</B> - information about the Flicker program
+
+<LI><B>Old Flicker applet documentation</B><IMG SRC="Icons/smicon.gif" ALT="Submenu"> 
+
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Flicker applet home page</B> - 
+    <A HREF="http://www.ccrnp.ncifcrf.gov/flicker">
+    http://www.ccrnp.ncifcrf.gov/flicker</A>
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>EP97 paper</B> - the 1997 Electrophoresis J. paper describing the 
+    old Flicker applet
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Poster 1 pIe</B> - poster describing Flicker applet
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Poster 2 pIe</B> - poster describing Flicker applet
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Poster 3 pIe</B> - poster describing Flicker applet
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;
+    <B>Poster 4 pIe</B> - poster describing Flicker applet
+
+</UL>
+
+<P>
+
+
+<A NAME="Demos"><P>
+<H3>7. Demonstrations</H3>
+
+The Flicker program integrates these various procedures to help you
+try to make putative spot identifications. See the <A
+HREF="flkHome.html#quickStart">Quick start examples</A> on the home
+page for a short list of some of these methods.<P>
+
+<P>
+As part of the demonstrations, we present a series of as <A
+HREF="Vignettes/flkVignettesToc.html">short vignettes</A> that have
+answers to specific "How do I do ...?"  types of questions.  There are
+several demonstration images that are available when you download and
+install Flicker. Look in the (<B>File | Open demo images</B>)
+menu. These commands will load pairs of demonstration images.
+<P>
+
+<P><HR><P>
+
+<A NAME="References"><P>
+<P>
+<H3>8. Flicker References</H3>
+
+<OL>
+
+<LI> <A HREF="PDF/Lemkin-ProteomicsProtocolsHandbook-279-306-2005.pdf"
+TARGET="doc">Lemkin PF, Thornwall G, Evans J (2005) Comparing 2-D
+Electrophoretic Gels Across Internet Databases.</A> John Walker (ed),
+<U>The Protein Protocols Handbook</U>, Humana Press Inc, Totowa, NJ,
+pp 279-305. [describing the application version]<P>
+
+<LI>Lemkin PF, Thornwall G (2002) Flicker image comparison of 2-D gel
+images over the Internet. John Walker (ed), <A
+HREF="http://www.amazon.com/exec/obidos/tg/detail/-/0896033384/qid=1067689067/sr=8-1/ref=sr_8_1/103-5590654-5691811?v=glance&n=507846">The
+Protein Protocols Handbook</A>, pp 197-214. [describing the applet
+version]
+
+<LI> <A
+HREF="http://www.ncbi.nlm.nih.gov/htbin-post/Entrez/query?uid=10596373&form=6&db=m&\
+Dopt=r">Lemkin PF</A>, Thornwall G (1999) Flicker image comparison of
+2-D gel images for putative protein identification using the 2DWG
+meta-database. <I>Molecular Biotechnology</I> <B>12</B>(2) 159-172.
+[describing the applet version]
+ 
+<LI> <A
+HREF="http://www.ncbi.nlm.nih.gov/htbin-post/Entrez/query?uid=98163336&form=6&db=m&\
+Dopt=r">Lemkin PF</A> (1997c) 2DWG meta-database of 2D electrophoretic
+gel images on the Internet.  <I>Electrophoresis</I>, <B>18</B>,
+2759-2773.  [<A
+HREF="http://www.ccrnp.ncifcrf.gov/2dwgDB/paper/2dwgPaper.html">Extended
+paper</A>, describing the applet version]. The <A
+HREF="http://www.ccrnp.ncifcrf.gov/2dwgDB">2DWG server</A>
+ 
+<LI>Lemkin PF (1997b) Comparing 2D Electrophoretic gels across Internet
+databases. In <U>2-D Protocols for Proteome Analysis</U>, Andrew
+Link (Ed), a book in Methods in Molecular Biology, Vol. 112, Humana
+Press, Totowa, NJ, pp 339-410. [describing the applet version]
+
+<LI> <A
+HREF="http://www.ncbi.nlm.nih.gov/htbin-post/Entrez/query?uid=9150925&form=6&db=m&D\
+opt=r">Lemkin PF</A> (1997a) Comparing Two-Dimensional electrophoretic
+gels across the Internet.  <I>Electrophoresis</I>, <B>18</B>, 461-470.
+[<A HREF="http://www.ccrnp.ncifcrf.gov/flicker/flkPaper.html">Extended
+paper</A>, describing the applet version].  The <A
+HREF="http://www.ccrnp.ncifcrf.gov/flicker" TARGET="_top">flicker
+applet server</A>
+
+</OL>
+
+
+<P><HR><P>
+
+<A NAME="ProtRefs"><P>
+<P>
+<H4>8.1 Additional Proteomics References</H4>
+
+[1] Herbert B.R., Pederson S.L., Harry J.L., Sebastian L., Traini
+M.D., McCarthy J.T., Wilkins M.R., Gooley A., Packer N.H., Williams
+K. (2003) Mastering genome complexity using two-dimensional gel
+electrophoresis. <I>PharmaGenomics</I> Sept, 22-36.<P>
+ 
+[2] Hood L. (2002) A Personal View of Molecular Technology and How It
+Has Changed Biology. <I>J Proteome Biology</I> 1, 399-409.<P>
+
+[3] Herbert B.R., Pedersen S.K., Harry J.L., Sebastian L., Grinyer
+J., Traini M.D., McCarthy J.T., Wilkins M.R., Gooley A.A., Righetti
+P.G., Packer N.H., Williams K.K. (2003) Mastering Proteome Complexity
+Using Two-Dimensional Gel Electrophoresis. <I>PharmaGenomics</I> 3, 21-36.<P>
+
+[4] Pedersen S.K., Harry J.L., Sebastian L., Baker J., Traini M.D.,
+McCarthy J.T., Manoharan A., Wilkins M.R., Gooley A.A., Righetti P.G.,
+Packer N.H., Williams K.L., Herbert B.R. (2003) Unseen Proteome:
+Mining Below the Tip of the Iceberg To Find Low Abundance and Membrane
+Proteins. <I>J Proteome Biology</I> 2, 303-311.<P>
+
+[5] Pieper R., Su Q., Gatlin C.L., Huang S.-T., Anderson N.L.,
+Steiner S. (2003) Multi-component immunoaffinity subtraction
+chromatography: An innovative step towards a comprehensive survey of
+the human plasma proteome. <I>Proteomics</I> 3, 422-432.<P>
+
+[6] Pieper R., Gatlin C.L., Makusky A.J., Russo P.S., Miller S.S., Su
+Q., McGrath A.M., Estock M.A., Parmar P.P., Zhao M., Huang S.-T., Zhou
+J., Wang F., Esquer-Blasco R., Anderson N.L., Taylor J., Steiner
+S. (2003) The human serum proteome: Display of nearly 3700
+chromatographically separated protein spots on two-dimensional
+electrophoresis gels and identification of 325 distinct
+proteins. <I>Proteomics</I> 3, 1345-1364.<P>
+
+[7] Anderson N.L., Anderson N.G. (2002). J Mol. <I>Cellular Proteomics</I>
+1, 845-867; and <I>J Mol. Cellular Proteomics</I> 2, 50.<P>
+
+[8] Liotta L.A., Espina V., Mehta A.I., Calvert V., Rosenblatt K.,
+Geho D., Munson P.J., Young L., Wulfkuhle J., Petricoin
+E.F. 3rd. (2003) Protein microarrays: meeting analytical challenges
+for clinical applications. <I>Cancer Cell</I> 3, 317-325.<P>
+
+[9] Hoving S,. Gerrits B., Voshol H., Muller D., Roberts R.C., van
+Oostrum J. (2002) Preparative two-dimensional gel electrophoresis at
+alkaline pH using narrow range immobilized pH gradients. Proteomics 2,
+127-134.<P>
+
+[10] Von Eggeling F., Gawriljuk A., Fiedler W., Ernst G., Claussen U.,
+Klose J., Romer I. (2001) Fluorescent dual colour 2D-protein gel
+electrophoresis for rapid detection of differences in protein pattern
+with standard image analysis software. <I>Int J Mol Med.</I> 8, 373-377.<P>
+
+[11] Lopez M.F., Mikulskis A., Golenko E., Herick K., Spibey C.A.,
+Taylor I., Bobrow M., Jackson P. (2003) High-content proteomics:
+Fluorescence multiplexing using an integrated, high-sensitivity,
+multi-wavelength charge-coupled device imaging system. <I>Proteomics</I> 3,
+1109-1116.<P>
+
+[12] Sanchez J.-C., Appel R.D., Golaz, O., Pasquali C., Rivier F.,
+Bairoch A., Hochstrasser, D.F. (1995) Inside SWISS-2DPAGE
+database. <I>Electrophoresis</I> 16, 1131-1151.<P>
+
+[13]  Appel R.D.,  Bairoch A.,  Sanchez J-C.,  Vargas J.R.,  Golaz O.,
+Pasquali  C.,  Hochstrasser  D.F.  (1996).  Federated  two-dimensional
+electrophoresis database: A simple means of publishing two-dimensional
+electrophoresis data. <I>Electrophoresis</I> 17, 540-546.<P>
+
+[14] Appel R.D., Sanchez J-C., Bairoch A., Golaz O., Miu M., Vargas
+J.R., Hochstrasser D.F. (1993) SWISS-2DPAGE: A database of
+two-dimensional gel electrophoresis images. <I>Electrophoresis</I> 14,
+1232-1238.<P>
+
+[15] Appel R.D., Sanchez J.-C., Bairoch A., Golaz O., Rivier F.,
+Pasquali C., Hughes G.J., Hochstrasser, D.F. (1994) SWISS-2DPAGE
+database of two-dimensional polyacrylamide gel
+electrophoresis. <I>Nucleic Acids Res.</I> 22(17), 3581-3582.<P>
+
+<P><HR><P>
+
+<TABLE WIDTH=100% BORDER=0>
+<TR>
+<TD>
+<A HREF="mailto:lemkin@users.sourceforge.net">
+<I>Contact us</I></A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;</TD>
+
+<TD>Flicker is a contributed program available at
+<A HREF="http://open2dprot.sourceforge.net/Flicker" TARGET="_top">
+open2dprot.sourceforge.net/Flicker</A>
+<BR>
+Powered by <A HREF="http://sourceforge.net/"> 
+  <IMG SRC="http://sourceforge.net/sflogo.php?group_id=99808"
+     WIDTH="88" HEIGHT="31" BORDER="0"
+     ALT="SourceForge Logo"></A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD>Revised: 05/12/2007</TD>
+</TR>
+</TABLE>
+ 
+</BODY>
+</HTML>
+
+

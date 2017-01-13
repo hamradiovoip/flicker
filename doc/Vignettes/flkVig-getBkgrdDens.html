@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+<!-- META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" -->
+<TITLE> Flicker Vignette - How do I measure background intensity near a spot?
+</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FBFBFB" 
+ TEXT="Black" 
+ LINK="blue" 
+ VLINK="#FFad0f"
+ ALINK="#00FF00">
+
+
+<CENTER>
+<H2>Flicker Vignette - How do I measure background intensity near a spot?
+</H2></CENTER>
+
+This vignette shows how do you can measure background intensity near a
+spot.  The background estimate is computed under the circular mask. A
+separate background estimate is defined for the left and right images.
+Note the background measurement is used for computing background
+corrected density for measurements made by circular mask <B>(C-M)</B>
+and by region of interest <B>(C-R)</B>. It will be used for multiple
+measurements until you change it. If you are measuring a series of
+spots by circular mask, then if you change the background intensity
+measurement, it will be associated with all spots measured since then
+and saved in the spot list until (or if) you change it again.
+
+<H3>Method</H3>
+
+<OL>
+
+<LI> To show the circular mask, make sure (<B>View | Set view
+measurement options | <IMG SRC="../Icons/checkboxON.gif" ALT="Checkbox
+on">View measurement circle</B>) is enabled.
+
+
+<LI> Select the new circular mask size in the <B>measure circle
+(diameter)</B> slider.  Note: the <I>NxN</I> is one of 1x1, 3x3, 5x5,
+..., 51x51 options which is the size of the rectangle enclosing the
+circular mask.
+
+<LI> Select the spot you want to use to estimate the background by
+clicking on it in either the left or right image.
+
+<LI> Capture the backround estimate using the (<B>Quantify |
+Measure by circle | Capture background (C-B)</B>).
+
+</OL>
+
+<H3>Setup for the demo</H3>
+
+
+<H3>Related vignettes</H3>
+<UL>
+<LI><A HREF="flkVig-getMeasDens.html">Vignette</A> 
+    for measuring circular mask intensity
+<LI><A HREF="flkVig-measROI.html">Vignette</A> 
+    for measuring ROI intensity
+</UL>
+
+
+
+<P><HR><P>
+
+
+<TABLE WIDTH=100% BORDER=0>
+<TR>
+<TD>
+<A HREF="mailto:lemkin@ncifcrf.gov">
+<I>Contact us</I></A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;</TD>
+
+<TD>Flicker is a contributed program available at
+<A HREF="http://open2dprot.sourceforge.net/Flicker" TARGET="_top">
+open2dprot.sourceforge.net/Flicker</A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD>Revised: 01/19/2004</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

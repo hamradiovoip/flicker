@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+ 
+<HTML>
+<HEAD>
+<TITLE>
+Flicker Program Status
+</TITLE>
+ 
+<BODY BGCOLOR="#FBFBFB" 
+      TEXT="Black"
+      LINK="blue" 
+      VLINK="#FFad0f" 
+      ALINK="#00FF00">
+
+ 
+<H2 ALIGN="CENTER">
+Flicker Program Status</H2>
+<P>
+
+The new version of Flicker which now runs as a stand-alone Java
+application is beta-level code. The following are known bugs,
+suggested features, functions that are being debugged or being
+developed, and resolved bugs.
+
+<UL>
+<LI><A HREF="flkRevisionHistory.html">Revision history</A>
+<LI><A HREF="#knownBugs">Known bugs</A>
+<LI><A HREF="#suggestedFeatures">Suggested Features/FAQ</A>
+<LI><A HREF="#resolvedBugs">Resolved bugs</A>
+</UL>
+
+<PRE>
+
+</PRE>
+
+<A NAME="knownBugs"><P>
+<H3>Known Bugs<IMG SRC="Icons/bug.gif" align="absmiddle" ALT="Known bugs"></H3>
+
+<P><LI><B>03-20-2004:</B> There is no Flicker.lax file for the
+MacOS-X, Linux and Solaris systems. So the (<B>Edit | Resize Flicker
+memory limits</B>) command does not work on these systems at this time
+- it does on Windows.
+
+<P><LI><B>02-23-2004:</B> The NTSC (R,G,B) image to grayscale option
+needs to be debugged. This will allow users to do quantification on
+the color image after it has been converted to grayscale. Otherwise,
+it uses the blue channel which of course biases the results.
+
+<P><LI><B>02-23-2004:</B> Problem with Flicker not finding an image when
+you restart it with a previously saved .flk file if you have moved the
+image files to a different directory. This is because the .flk file
+saves the path and by moving the files, you have changed the path.
+Flicker has no way of knowing that you changed the path. You can
+either specify the files again, or edit the .flk file.
+
+<P><LI><B>02-23-2004:</B> Problem where the Help menu entries that are
+supposed to pop up a Web browser - don't. This is because the browser
+is not configured correctly with the users operating system.  The
+solution is to just go to the Flicker Web site through a separately
+launched browser. All of the links in Help are available through the
+Web site.
+
+<P><LI><B>12-17-2003:</B> Allow gang-control of brightness/contrast
+range for both left and right images. This is useful if they were
+taken under the same conditions and have about the same initial
+contrast/brightness [Suggested by S. Lockett].
+
+<P><LI><B>12-17-2003:</B> Need to zoom the positions of landmarks, and
+measured spots and circular mask in the new image scroller.
+
+<P><LI><B>11-10-2003:</B> the <B>(Transform | Poly Warp)</B> menu
+command is not available. It needs to be debugged.
+
+<P><LI><B>11-09-2003:</B> The <B>(Transform | Pseudo3D)</B>
+command does not remap the landmarks correctly after doing the pseudo
+3D transform.<P>
+
+
+<PRE>
+
+</PRE>
+
+<A NAME="suggestedFeatures"><P>
+<H3>Suggested Features<IMG SRC="Icons/lightbulb.gif" align="absmiddle" ALT="Suggested features"> 
+/ FAQ</H3>
+
+<P><LI><B>03-16-2004:</B> Note on screen size. Flicker will work with
+a 1024x768 size screen. However, we find it <B>MUCH</B> easier to use
+with a larger screen (e.g. 1280x1024 works nicely). Because we are
+using AWT, it is difficult to optimize wasted whitespace in the main
+window. Until this is resolved, we suggest trying to run Flicker on a
+computer with higher resolution.
+
+<P><LI><B>03-16-2004:</B> Gang scrolling only works if you use the
+<B>Control-click</B> method for scrolling the images. It does not
+currently work if you use the scrollbars. Normally, you would align
+the two images to the same spot using flickering, then enable gang
+scrolling. Then use the <B>Control-click</B> to scroll both images
+together.
+
+<P><LI><B>12-17-2003:</B> Extend the brightness/contrast range
+[Suggested by S. Lockett].
+
+<P><LI><B>12-17-2003:</B> Add option so that when do a (<B>File | Open
+user images</B>) command that presents images from a user directory,
+you can either generate pairs of serially comparable images (e.g., an
+ordered set of images from an optical or E.M. serial sectioning) or
+all pairs of images (the current default) [Suggested by S. Lockett].
+
+<P><LI><B>12-17-2003:</B> Sometimes it does not restore the spot list
+that you have saved with a (<B>File | SaveAs state file</B>) and
+restored with a (<B>File | Open state file</B>) command.
+
+<P><LI><B>12-10-2003:</B> The way we are implementing the image scroller
+does not allow you to center spots you select (Control-Press) with the
+mouse that are close to the edge of the image.  the image.  Currently
+these spots will not be centered since there is no image beyond the
+edge. We will be resolving this by adding a white space guard region
+around the edge of the image.
+
+<P><LI><B>12-09-2003:</B> (GT) Images in all three canvases are getting
+cropped off at the bottom and right sides. When one compares the
+original image with the one displayed in Flicker (scroll to the bottom
+right) part of the image is missing.  Changing the pagestep parameter
+in ImageScroller.java to 1 from 15 seems to help but there is still 5
+pixels width missing. (JC) Related to this is that if you shrink the
+canvas size, it seems to readly cut off what is scrollable.
+
+<P><LI><B>10-31-2003:</B> The <B>(File | Open image file)</B> and
+<B>(File | Open image URL)</B> menu commands are not available for
+color TIFF images at this time. It does work with grayscale TIFF
+images. Note that images with more than 8-bits of grayscale are scaled
+down to 8-bits losing the least significant bits.
+
+<P><LI><B>11-10-2003:</B> Fix blackIsZeroFlag EVERYWHERE... need to
+have XxxxLoaders set it.
+
+<P><LI><B>11-10-2003:</B> If do full quantification of 16-bit TIFF
+images, rethink keeping or re-reading 16-bit TIFF image data as (char
+iPix[]) if we are going to do quantification on that type of image
+without losing grayscale resolution.
+
+<P><LI><B>11-10-2003:</B> Check and debug ImageXform.remapLMS() for
+Pseudo3D and PolyWarp transforms.
+
+<P><LI><B>11-10-2003:</B> Check data structures, implementation, and
+debug the boundary drawing code for <B>(Quantify | Measure by
+boundary)</B> methods.
+
+<P><LI><B>11-10-2003:</B> Check and debug measurements made on the
+Zoom image for magnifications different than 1X. It currently performs
+the measurements as if it were 1X.
+
+<P><LI><B>11-10-2003:</B> Add vertical and horizontal 1D gaussian-like
+line filters for use with other types of data. E.g, here is an example
+of a filter to look for horizontal lines:
+<PRE>
+       0 0 0 0 0 0 0 0 0 0 0 0
+       1 1 1 1 1 1 1 1 1 1 1 1 
+       2 2 2 2 2 2 2 2 2 2 2 2 
+       1 1 1 1 1 1 1 1 1 1 1 1
+       0 0 0 0 0 0 0 0 0 0 0 0 
+</PRE>
+
+<P><LI><B>11-10-2003:</B> Get some better edge enhancement filters.
+
+<P><LI><B>11-10-2003:</B> Add interactive rubber-band ROI window
+definition GUI.
+
+
+<PRE>
+
+</PRE>
+
+<A NAME="resolvedBugs"><P>
+<H3>Resolved Bugs<IMG SRC="Icons/noBug.gif" align="absmiddle" ALT="Resolved bugs"></H3>
+
+<P><LI><B>V0.83.4 07-21-2004:</B> If you saved the Flicker state in a
+.flk file having zoomed one or both images, it does now rezooms the
+image(s) when you restart Flicker on that startup file.
+
+<P><LI><B>V.0.78 03-16-2004:</B> When using a zoom factor different
+from 1.0X, measured spots positions are not generated using
+(<B>C-B</B>) and (<B>C-M</B>) commands. However, if the spots were
+generated at 1.0X, they do zoom correctly.
+
+<P><LI><B>V.0.68 02-23-2004:</B> The paradigm was changed in the
+(<B>File | Open user images | ...</B>) so that it handles both "pairs
+of images" and "single images". This makes make it easier for a user
+to load say a standard active map gel (i.e. Swiss-2DPAGE map) in the
+left image, and then individual user gels into the right image for
+comparison.
+
+<P><LI><B>V.0.68 11-10-2003:</B> Added PopupODcalib() to popup a
+spreadsheet of values of (Step, OD value, Gray Value) editing
+window. This includes a histogram and OD vs gray Peak table of the
+step wedge pixels values inside of the Step Wedge ROI. You can mouse
+over and capture the peaks to edit the values. 
+
+<P><LI><B>V.0.68 11-10-2003:</B> Saved an image calibration in a
+separate .cal file. This avoids having to recompute the calibration if
+we change the images. When you load an image, it can check for the
+corresponding .cal file and then load it and indicate that it exists.
+
+<P><LI><B>V.0.66 2-14-2004:</B> Modify spot circle overlays options so
+that it is easier to edit spots close together. Options being
+investigated include: a) showing only the last current spot; b)
+showing "+" for all spots except for the current spot; c) other
+options. [Suggested by Enrico De Toni]
+
+
+<P><LI><B>V.0.61 01-31-2004:</B> Fixed problem that if you started
+Flicker from a previously saved .flk state file by double clicking on
+it's icon, it did not completely restore the state.  However, if you
+restored the state using (<B>File menu | Open state file</B>) it did
+it correctly. This fixed the problem that measured spot lists were not
+restored with the former, but were with the latter [reported by Enrico
+De Toni].
+
+<P><LI><B>V.0.60 12-09-2003:</B> (JC) Fixed a problem that the image
+is cropped when scrolling is that if you shrink the canvas size, it
+seems to cut off what should be scrollable on the right and bottom
+edges.
+
+<P><LI><B>V.0.60 01-26-2004:</B> Fixed bug that if you saved a Flicker
+state in a .flk file that pointed to some images that you subsequently
+moved or deleted on your disk, Flicker would hang and you would need
+to kill the process (e.g., Task manager in Windows). This has been
+fixed by reporting the problem and then exiting flicker. It is up to
+the user to either restore the image to the previous location, or to
+not use the .flk file. [Reported by Enrico De Toni].
+
+<P><LI><B>V.0.56, 01-07-2004:</B> Fixed bug in the image pipeline
+processing where if you zoom first and then do an image transform, it
+did not zoom the transform.
+
+<P><LI><B>V.0.55, 12-27-2003:</B> Fixed bug in the image pipeline
+where if you zoom first and then use the brightness/contrast filter,
+it did not use the zoomed image. Now you can use both zoom and
+brightness contrast and any other transform and it will do a (iImg >
+oImg > zImg > bgImg) pipeline processing. Of course, doing both zoom
+and brightness/contrast filtering will take longer. Doing a Reset
+images will clear the zoom and BC filtering.
+
+<P><LI><B>V.0.54, 12-22-2003:</B> Fixed the recent images database
+that updates DB/FlkRecentDB.txt save and restore state. It limits the
+history to the last 10 images. The (<B>File | Open recent images</B>)
+lists the images. It records single images from the (<B>File | Open
+file image</B>), (<B>File | Open URL image</B>). It also records pairs
+of images from (<B>File | Open URL user images</B>) and when you load
+a pair of images using the (<B>File | State | Open state file</B>).
+
+<P><LI><B>V.0.53 12-18-2003:</B> Fixed problem where it would jitter
+if you tried to flicker the images after doing a (<B>File | Reset
+images</B>).
+
+<P><LI><B>V.0.49 12-12-2003:</B> Fixed bug so can now save and restore
+correctly circular-mask measured spot lists you generated a series of
+circular mask spot measurements and saved with the (<B>File | Save(As)
+state file</B>) command.
+
+<P><LI><B>V.0.43, 11-29-2003:</B> Implemented fractional zoom using
+image sampling (no bin-linear averaging at this time) and changed the
+scrollbar so the center is 1X, left is fractional to 1/10X and the
+right is magnification to 10X.
+
+<P><LI><B>V.0.41, 11-24-2003:</B> Fixed bug introduced in version 0.37
+when clicked on canvas, it failed under some conditions. Fixed the
+SaveAs state so that it saves more of the state and also restore the
+landmarks and position properly. When using the ZeroG installer, you
+need to enable Java applets and Java in order to use the default
+installer. The other other is to download the installer and save the
+file. Then run it on your computer.
+
+<P><LI><B>V.0.41, 11-24-2003:</B> Added log(grayscale) option to use when
+reading grayscale images more than 8-bits (e.g., 10-bit, 12-bit or
+16-bit tiff grayscale images). This maps it in the TiffLoader.
+
+<P><LI><B>V.0.37, 11-17-2003:</B> Added Resize canvas menu and code to
+resize the three windows up or down using either menu commands
+or the "-"/"+" canvas resize buttons.
+
+<P><LI><B>V.0.36, 11-14-2003:</B> Fixed suble error in ROI rectangle
+drawing routine. Added code to let you define the ROI as between the
+C-U and C-L marks and it will flip their definitions if required.
+
+<P><LI><B>V.0.35, 11-13-2003:</B> Fixed ROI rectangle drawing routine in
+ImageScroller where the ROI rectangle is now drawn correctly if move
+the image scroller in and out of where the rectangle should be. Also
+fixed bug in copying the ROI to the computing window.
+
+
+<LI><B>V.0.33, 11-11-2003:</B> Implemented the <B>(File | Update demo
+images DB)</B> command that downloads the latest demo images and
+DB/FlkDemoDB.txt.<P>
+
+<LI><B>V.0.32, 11-11-2003:</B> fixed bug where the <B>(Quantify |
+Measure by circle | ...)</B> and <B>(Quantify | Background by circle |
+...)</B> menu commands generated negative background corrected
+data. Fixed use of blackIsZero.
+<P>
+
+<LI><B>V.0.31, 11-09-2003:</B> the <B>(Transform | Affine Warp)</B>
+menu command was fixed. It also correctly remaps the displayed
+landmarks in the output image (oImg) where the transform resides.
+<P>
+
+
+<P><HR><P>
+
+<TABLE WIDTH=100% BORDER=0>
+<TR>
+<TD>
+<A HREF="mailto:lemkin@users.sourceforge.net">
+<I>Contact us</I></A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;</TD>
+
+<TD>Flicker is a contributed program available at
+<A HREF="http://open2dprot.sourceforge.net/Flicker" TARGET="_top">
+open2dprot.sourceforge.net/Flicker</A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD>Revised: 05/15/2006</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>
+
+

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+        
+   1. INTRODUCTION:
+
+   This Ant scp-copyFlickerToSFmirror.xml script is used to copy 
+   the Flicker distribution data to the SourceForge Flicker mirror
+   called mirrorFlicker in the open2dprot.sourceforge.net staging diretory
+   for eventualy copying to htdocs/ Web server. 
+      
+   The mirror distribution is created in subdirectory
+   ${IDE_O2P}/../Flicker/dist in a 
+   path specified by the environment variable IDE_O2P
+   (e.g., C:/ED/Flicker).
+   
+   1.1 RUNTIME PROPERTY ARGUMENTS SPECIFIED WHEN RUN ANT
+   
+   The user ${username} and ${password} are supplied at run time 
+   because of security issues.
+   
+     ant -Dusername=myname -Dpassword=mypassword target
+     
+   In particular, the following works with this Ant script:
+     ant.bat -Dusername=%USERNAME% -Dpassword=%PASSWD% \
+             -file scp-copyFlickerToSFmirror.xml  target(s)
+       
+   This is handled as follows in windows (it could be remapped for Unix):
+     a) start the Windows 'cmd' shell
+     b) cd to the subProjects/ directory where SF-mirrors/ resides.
+     c) assign the environment variable %USERNAME%
+        SET USERNAME=myname
+     d) assign the environment variable %PASSWD%
+        SET PASSWD=mypassword
+     e) run one of the following .bat scripts encode the above ant.bat
+        usage with different targets
+          
+      ant-scp-copyToFlickerSFmirror.bat
+          
+   
+   1.2 SPECIFYING THE SCP 'TODIR'
+   
+   The files are on ${sfHost} set to "open2dprot.sourceforge.net" and the
+   ${sfDir} is set to the standard SourceForge account for a project
+   (in this case Open2Dprot or "/home/users/l/le/lemkin/open2dprot".
+   If these change, then set them at runtime.
+
+
+   2. RUNNING THIS SCRIPT TO COPY FLICKER MIRROR TO 
+      SOURCEFORGE STAGING DIRECTORY:
+
+   Run this scp-copyFlickerToSFmirror.xml script to scp mirror
+     
+  
+   3. AUTHORS:
+ 
+   Peter Lemkin, Jai Evans, Greg Thornwall.
+
+   This Ant script was derived by P. Lemkin from the original build.xml
+   script created by Jai Evans for compiling the pipeline modules and 
+   library under Eclipse.
+
+   author P. Lemkin, NCI-Frederick, Frederick, MD, 21702
+   version $Date$   $Revision$
+   see <A HREF="http://open2dprot.sourceforge.net/Flicker">Open2Dprot Home</A>
+   
+
+   4. SOFTWARE LICENSE:
+
+   This work was produced by Peter Lemkin of the National Cancer
+   Institute, an agency of the United States Government.  As a work of
+   the United States Government there is no associated copyright.  It is
+   offered as open source software under the Mozilla Public License
+   (version 1.1) subject to the limitations noted in the accompanying
+   LEGAL file. This notice must be included with the code. The Open2Dprot 
+   Mozilla and Legal files are available on
+   http://Open2Dprot.sourceforge.net/Flicker. 
+
+   
+   5. ANT DOCUMENTATION:
+
+   Ant commands are documented at
+                http://ant.apache.org/manual/CoreTasks/
+
+-->
+
+<project name="scp-copyFlickerToSFmirror.xml" default="copyFlicker" basedir=".">
+
+	<!-- [1] Get the mirror distributions a path specified by 
+	  the environment variable O2P_MIRRORS else
+	  use the default path "C:/Open2Dprot/subProjects".
+	-->
+	<property environment="env"/>
+	<property name="IDE_O2P" value="${env.IDE_O2P}"/>
+	<property name="o2pDir" value="${IDE_O2P}/.."/>
+	<property name="flickerDir" value="${o2pDir}/Flicker"/>
+	<property name="locMirrorDir" value="${flickerDir}/mirrorFlicker"/>
+	<property name="distDir" value="${flickerDir}/dist"/>
+
+	<property name="sfHost" value="open2dprot.sourceforge.net"/>
+	<property name="sfDir" value="/home/users/l/le/lemkin/open2dprot"/>
+
+	<!-- [1.1] Create paths of derived input and output directories
+     used in the rest of the targets.
+    -->
+	<property name="Open2Dprot.author" value="open2dprot.sourceforge.net"/>
+
+    <!-- Add Jera Ant tasks which include Query task  -->
+	<property name="Jera.dir" location="../JeraAntTasks" />
+	<property name="Jeraclasspath" location="${Jera.dir}/JeraAntTasks.jar" />
+
+	<taskdef name="query" classname="com.jera.anttasks.Query" 
+		     classpath="${Jeraclasspath}" >
+	</taskdef>
+
+	<target name="init">
+	  <delete dir="${locMirrorDir}"/> 
+	  <mkdir dir="${locMirrorDir}"/> 
+	</target>
+
+	<target name="copyFlicker" depends="init,make-localMirrorFlicker,mirrorFlicker">
+	</target>
+
+	<!--  scp the local mirrorFlicker directory to SourceForge.net
+	     Prompt for user login name and user password first.
+	     depends="makeMirrorDir"
+	 -->
+	<target name="mirrorFlicker" depends="make-localMirrorFlicker">
+	    <query name="login"/>
+	    <query name="password" password="true"/>
+		<scp todir="${login}:${password}@${sfHost}:${sfDir}" trust="yes">
+			<fileset dir="${locMirrorDir}">
+				<include name="**/*"/>
+			</fileset>
+		</scp>
+	</target>
+	
+	<target name="make-localMirrorFlicker">
+       <copy todir="${locMirrorDir}/">
+	     <fileset dir="${distDir}" includes="**/*" /> 
+	   </copy>
+	</target>
+
+
+</project>

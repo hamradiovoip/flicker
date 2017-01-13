@@ -1,0 +1,37 @@
+MenuName	ClickableURL	ImageURL	BaseURL	DatabaseName
+Human Colorectal adenocarcinoma cells (DL-1)	cgi-bin/map3/DLD1_HUMAN?	ch2dgifs/DLD1_HUMAN/DLD1_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Colorectal epithelia cells	cgi-bin/map3/CEC_HUMAN?	ch2dgifs/CEC_HUMAN/CEC_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Cerebrospinal Fluid    	cgi-bin/map3/CSF_HUMAN?	ch2dgifs/CSF_HUMAN/CSF_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Erythroleukemia Cell	cgi-bin/map3/ELC_HUMAN?	ch2dgifs/ELC_HUMAN/ELC_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human HepG2	cgi-bin/map3/HEPG2_HUMAN?	ch2dgifs/HEPG2_HUMAN/HEPG2_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human HepG2 Secreted Proteins      	cgi-bin/map3/HEPG2SP_HUMAN?	ch2dgifs/HEPG2SP_HUMAN/HEPG2SP_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Promyelocytic leukemia cells (HL-60)	cgi-bin/map3/HL60_HUMAN?	ch2dgifs/HL60_HUMAN/HL60_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Liver	cgi-bin/map3/LIVER_HUMAN?	ch2dgifs/LIVER_HUMAN/LIVER_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Kidney	cgi-bin/map3/KIDNEY_HUMAN?	ch2dgifs/KIDNEY_HUMAN/KIDNEY_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Lymphocytes	cgi-bin/map3/LYMPHOMA_HUMAN?	ch2dgifs/LYMPHOMA_HUMAN/LYMPHOMA_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Lymphoma	cgi-bin/map3/LYMPHOCYTE_HUMAN?	ch2dgifs/LYMPHOMA_HUMAN/LYMPHOCYTE_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Nuclear and Matrix Liver	cgi-bin/map3/NUCLEI_LIVER_HUMAN?	ch2dgifs/NUCLEI_LIVER_HUMAN/NUCLEI_LIVER_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Nucleolar HeLa 1D (SDS_PAGE)	cgi-bin/map3/NUCLEOLI_HELA_1D_HUMAN?	ch2dgifs/NUCLEOLI_HELA_1D_HUMAN/NUCLEOLI_HELA_1D_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Nucleolar HeLa 2D	cgi-bin/map3/NUCLEOLI_HELA_2D_HUMAN?	ch2dgifs/NUCLEOLI_HELA_2D_HUMAN/NUCLEOLI_HELA_2D_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Plasma	cgi-bin/map3/PLASMA_HUMAN?	ch2dgifs/PLASMA_HUMAN/PLASMA_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Platelet	cgi-bin/map3/PLATELET_HUMAN?	ch2dgifs/PLATELET_HUMAN/PLATELET_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Red blood cells	cgi-bin/map3/RBC_HUMAN?	ch2dgifs/RBC_HUMAN/RBC_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Human Macrophage-Like Cell Line (U937)	cgi-bin/map3/U937_HUMAN?	ch2dgifs/U937_HUMAN/U937_HUMAN_id.gif	http://www.expasy.org/	SWISS-2DPROT Human
+Mouse Brown Adipose tissue	cgi-bin/map3/BAT_MOUSE?	ch2dgifs/BAT_MOUSE/BAT_MOUSE_id.gif	http://www.expasy.org/	SWISS-2DPROT Mouse
+Mouse Liver	cgi-bin/map3/LIVER_MOUSE?	ch2dgifs/LIVER_MOUSE/LIVER_MOUSE_id.gif	http://www.expasy.org/	SWISS-2DPROT Mouse
+Mouse Pancreatic islet cells	cgi-bin/map3/ISLETS_MOUSE?	ch2dgifs/ISLETS_MOUSE/ISLETS_MOUSE_id.gif	http://www.expasy.org/	SWISS-2DPROT Mouse
+Mouse Gastrocnemius muscle	cgi-bin/map3/MUSCLE_MOUSE?	ch2dgifs/MUSCLE_MOUSE/MUSCLE_MOUSE_id.gif	http://www.expasy.org/	SWISS-2DPROT Mouse
+Mouse Nuclear Liver (soluble nuclear and matrix)	cgi-bin/map3/NUCLEI_LIVER_MOUSE?	ch2dgifs/NUCLEI_LIVER_MOUSE/NUCLEI_LIVER_MOUSE_id.gif	http://www.expasy.org/	SWISS-2DPROT Mouse
+Mouse White Adipose tissue	cgi-bin/map3/WAT_MOUSE?	ch2dgifs/WAT_MOUSE/WAT_MOUSE_id.gif	http://www.expasy.org/	SWISS-2DPROT Mouse
+Escherichia coli	cgi-bin/map3/ECOLI?	ch2dgifs/ECOLI/ECOLI_id.gif	http://www.expasy.org/	SWISS-2DPROT Ecoli
+Escherichia coli (DIGE 4.5-6.5)	cgi-bin/map3/ECOLI_DIGE4.5-6.5?	ch2dgifs/ECOLI_DIGE4.5-6.5/ECOLI_DIGE4.5-6.5_id.gif	http://www.expasy.org/	SWISS-2DPROT Ecoli
+Escherichia coli (4-5)	cgi-bin/map3/ECOLI4-5?	ch2dgifs/ECOLI4-5/ECOLI4-5_id.gif	http://www.expasy.org/	SWISS-2DPROT Ecoli
+Escherichia coli (4.5-5.5)	cgi-bin/map3/ECOLI4.5-5.5?	ch2dgifs/ECOLI4.5-5.5/ECOLI4.5-5.5_id.gif	http://www.expasy.org/	SWISS-2DPROT Ecoli
+Escherichia coli (5-6)	cgi-bin/map3/ECOLI5-6?	ch2dgifs/ECOLI5-6/ECOLI5-6_id.gif	http://www.expasy.org/	SWISS-2DPROT Ecoli
+Escherichia coli (5.5-6.7)	cgi-bin/map3/ECOLI5.5-6.7?	ch2dgifs/ECOLI5.5-6.7/ECOLI5.5-6.7_id.gif	http://www.expasy.org/	SWISS-2DPROT Ecoli
+Escherichia coli (6-9)	cgi-bin/map3/ECOLI6-9?	ch2dgifs/ECOLI6-9/ECOLI6-9_id.gif	http://www.expasy.org/	SWISS-2DPROT Ecoli
+Escherichia coli (6-11)	cgi-bin/map3/ECOLI6-11?	ch2dgifs/ECOLI6-11/ECOLI6-11_id.gif	http://www.expasy.org/	SWISS-2DPROT Ecoli
+Aribidopsis thaliana	cgi-bin/map3/ARIBIDOPSIS?	ch2dgifs/ARIBIDOPSIS/ARIBIDOPSIS_id.gif	http://www.expasy.org/	SWISS-2DPROT Aribidopsis
+Dictyostelium discoideum	cgi-bin/map3/DICTYSLUG?	ch2dgifs/DICTYSLUG/DICTYSLUG_id.gif	http://www.expasy.org/	SWISS-2DPROT Dicty.slug
+Saccharomyces cerevisiae	cgi-bin/map3/YEAST?	ch2dgifs/YEAST/YEAST_id.gif	http://www.expasy.org/	SWISS-2DPROT Yeast
+Staphylococcus aureus	cgi-bin/map3/STAPHYLOCOCCUS?	ch2dgifs/STAPHYLOCOCCUS/STAPHYLOCOCCUS_id.gif	http://www.expasy.org/	SWISS-2DPROT Staphylococcus aureus

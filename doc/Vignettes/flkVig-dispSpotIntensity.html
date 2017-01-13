@@ -1,0 +1,93 @@
+<HTML>
+<HEAD>
+<!-- META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" -->
+<TITLE> Flicker Vignette - How do I display a spot's intensity?
+</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FBFBFB" 
+ TEXT="Black" 
+ LINK="blue" 
+ VLINK="#FFad0f"
+ ALINK="#00FF00">
+
+
+<CENTER><H2>Flicker Vignette - How do I display a spot's intensity?
+</H2></CENTER>
+
+This vignette shows how do you can display a spot's intensity in the
+title bar of the left or right window. The default is to just show the
+(x,y) coordinates (raster coordinate system with (0,0) in the upper
+left hand corner). The density measurement is taken under the circular
+mask. So that needs to be set accordingly.
+
+
+<H3>Method</H3>
+
+<OL>
+
+<LI> Enable displaying the grayscale using the (<B>View | <IMG
+SRC="../Icons/checkboxON.gif" ALT="Checkbox on">Display gray values (C-G)</B>).
+
+<LI> This will then change the title display for the selected image
+to show for example,<BR>
+&nbsp;&nbsp;&nbsp;&nbsp; plasmaH.gif  (105, 45)  469 tot gray-value<BR>
+or<BR>
+&nbsp;&nbsp;&nbsp;&nbsp; plasmaH.gif  (177, 84)  53 mn gray-value
+
+<LI> To show the total integrated gray-value, (<B>Quantify | <IMG
+SRC="../Icons/checkboxON.gif">Use sum density else mean density</B>)
+is enabled.
+
+<LI> To show the mean integrated gray-value, (<B>Quantify | <IMG
+SRC="../Icons/checkboxOFF.gif">Use sum density else mean density</B>)
+is disabled.
+
+<LI> To show the circular mask, make sure the two options (<B>View |
+Set view measurement options | <IMG SRC="../Icons/checkboxON.gif"
+ALT="Checkbox on">View measurement circle</B>). Make sure the
+(<B>Quantify | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox
+on">List-of-spots else trial-spot measurement-mode (C-J)</B>) is set
+to list-of-spots mode.  This area is the area of pixel integration
+used in computing the integrated density measurement.
+
+<LI> To change the new circular mask size, use the <B>measure circle
+(diameter)</B> slider.  Note: the <I>NxN</I> is one of 1x1, 3x3, 5x5,
+..., 51x51 options which is the size of the rectangle enclosing the
+circular mask.
+
+<LI> As you move the mouse in the selected image, it will display the
+data in the image at that position.
+
+</OL>
+
+<H3>Setup for the demo</H3>
+
+
+<H3>Related vignettes</H3>
+
+
+<P><HR><P>
+
+
+<TABLE WIDTH=100% BORDER=0>
+<TR>
+<TD>
+<A HREF="mailto:lemkin@ncifcrf.gov">
+<I>Contact us</I></A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;</TD>
+
+<TD>Flicker is a contributed program available at
+<A HREF="http://open2dprot.sourceforge.net/Flicker" TARGET="_top">
+open2dprot.sourceforge.net/Flicker</A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD>Revised: 01/19/2004</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

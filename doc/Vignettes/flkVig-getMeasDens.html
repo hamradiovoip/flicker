@@ -1,0 +1,128 @@
+<HTML>
+<HEAD>
+<!-- META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" -->
+<TITLE> Flicker Vignette - How do I measure spot intensity?
+</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FBFBFB" 
+ TEXT="Black" 
+ LINK="blue" 
+ VLINK="#FFad0f"
+ ALINK="#00FF00">
+
+
+<CENTER><H2>Flicker Vignette - How do I measure spot intensity?
+</H2></CENTER>
+
+This vignette shows how do you can measure spot intensity under the
+circular mask. The background corrected measurement estimate is
+computed under the circular mask.  Note the separate background
+measurement <B>(C-B)</B> is used for computing background corrected
+density for measurements made by circular mask <B>(C-M)</B>. The
+background estimate will be used for multiple measurements until you
+change it. If you are measuring a series of spots by circular mask,
+then if you change the background intensity measurement, it will be
+associated with all spots measured since then and saved in the spot
+list until (or if) you change it again. You can number the spots if
+the you have enabled the (<B>Quantify | <IMG
+SRC="Icons/checkboxON.gif">List-of-spots else trial-spot
+measurement-mode (C-J)</B>) option should be enabled.  You may also
+list the saved spots in the report window. Note that if you save the
+flicker state, then the spot list will be saved in the .flk file state
+and an associated .spt spot list file in the <B>spt/</B>
+directory. You can restore the spot list if you start flicker on the
+saved .flk startup file.
+
+
+<H3>Method</H3>
+
+<OL>
+
+<LI> To measure the total integrated gray-value, (<B>Quantify | <IMG
+SRC="../Icons/checkboxON.gif">Use sum density else mean density</B>)
+is enabled.
+
+<LI> To measure the mean integrated gray-value, (<B>Quantify | <IMG
+SRC="../Icons/checkboxOFF.gif">Use sum density else mean density</B>)
+is disabled.
+
+<LI> To show the circular mask, set (<B>View | |Set view measurement
+options | <IMG SRC="../Icons/checkboxON.gif">View measurement
+circle</B>) to enabled.
+
+<LI> Select the new circular mask size in the <B>measure circle
+(diameter)</B> slider.  Note: the <I>NxN</I> is one of 1x1, 3x3, 5x5,
+..., 51x51 options which is the size of the rectangle enclosing the
+circular mask.
+
+<LI> To sequentially number and capture a series of spots, enable
+list-of-spots mode by using the (<B>Quantify | <IMG
+SRC="Icons/checkboxON.gif">List-of-spots else trial-spot
+measurement-mode (C-J)</B>) checkbox.  Then it will number a series of
+<B>(C-M)</B> spot measurements as as "+1", "+2", "+3",
+etc. overlays. Otherwise, the measurement will be numbered as a "+M"
+overlay and data is not saved in the spot list.
+
+<LI> If you want to do background correct, capture the backround
+estimate using the (<B>Quantify | Measure by circle | Capture
+background (C-B)</B>). This is valid for multiple <B>(C-M)</B>
+measurements.
+
+<LI> Select the spot you want to use to estimate the background by
+clicking on it in either the left or right image.
+
+<LI> Capture the background corrected estimate using the (<B>Quantify
+| Measure by circle | Capture measurement (C-M)</B>).
+
+<LI> To measure a set of spots, just repeat subset of these steps for
+each new spot.
+
+<LI> To list the set of saved spots in the popup report window, use
+the (<B>Quantify | Measure by circle | List spots in the spot
+list</B>). Hint: clear the popup report window first. You can save
+this list from the popup report window using its <B>SaveAs</B> button.
+
+<LI> To export a spot list to Excel, after clearing the report window,
+use the (<B>Quantify | Measure by circle | List spots in the spot
+list (tab-delimited)</B>). Then cut and paste the data into Excel.
+</OL>
+
+
+<H3>Setup for the demo</H3>
+
+
+<H3>Related vignettes</H3>
+
+<UL>
+<LI><A HREF="flkVig-getBkgrdDens.html">Vignette</A> 
+    for measuring background intensity
+<LI><A HREF="flkVig-setCirMask.html">Vignette</A> 
+    for setting the circular mask
+</UL>
+
+
+<P><HR><P>
+
+
+<TABLE WIDTH=100% BORDER=0>
+<TR>
+<TD>
+<A HREF="mailto:lemkin@ncifcrf.gov">
+<I>Contact us</I></A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;</TD>
+
+<TD>Flicker is a contributed program available at
+<A HREF="http://open2dprot.sourceforge.net/Flicker" TARGET="_top">
+open2dprot.sourceforge.net/Flicker</A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD>Revised: 01/19/2004</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

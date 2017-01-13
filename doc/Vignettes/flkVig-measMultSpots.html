@@ -1,0 +1,122 @@
+<HTML>
+<HEAD>
+<!-- META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" -->
+<TITLE> Flicker Vignette - How do I generate a list of all measured spots?
+</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FBFBFB" 
+ TEXT="Black" 
+ LINK="blue" 
+ VLINK="#FFad0f"
+ ALINK="#00FF00">
+
+
+<CENTER>
+<H2>Flicker Vignette - How do I generate a list of all measured spots?
+</H2></CENTER>
+
+This vignette shows how do you can mark spots and generate a list of
+all measured intensity values for these spots. It is similar to the
+vignette for <A HREF="flkVig-getMeasDens.html">measuring spot
+intensity</A> for a single spot.<P>
+
+
+<H3>Method</H3>
+
+<OL>
+
+<LI> Enable the multiple spot list measurements using the (<B>Quantify
+| <IMG SRC="../Icons/checkboxON.gif" ALT="Checkbox on">List-of-spots else trial-spot
+measurement-mode (C-J)</B>) menu checkbox.
+
+<LI> Set the measurement circle size for the size spots you want to
+measure using the <B>meas circle diameter</B> scroller. This sets the box
+around the circle as <I>NxN</I> to 1x1, 3x3, 5x5, ..., or 51x51.
+
+<LI> Select the (<B>Quantify | Measure by circle | Capture background
+(C-B)</B>) or type (<B>C-B</B>) to capture the background value
+
+<LI> Select the (<B>Quantify | Measure by circle | Capture measurement
+(C-M)</B>) or type (<B>C-M</B>) to capture the spot measurement
+value. You may use (<B>ALT-key</B> click) to both select the spot and
+add it to the measurement list in one operation.
+
+<LI> To delete a spot, click on the spot. Then use the (<B>Quantify |
+Measure by circle | Delete selected spot from spot list(C-K)</B>)
+command. The next spot you measure will get the next spot measurement
+number - it does not reuse measurement numbers.
+
+<LI> To edit a spot's annotation 'id' data, click on the spot. Then
+use the (<B>Quantify | Measure by circle | Edit selected spot(s) 'id'
+field from spot list(s) (C-I)</B>).  If spots are selected in both
+images, then you can edit both spots together.
+
+<LI> To edit all of a spot's data, click on the spot. Then use the
+(<B>Quantify | Measure by circle | Edit selected spot(s) from spot
+list(s) (C-E)</B>). If spots are selected in both images, then you
+can edit both spots together.
+
+<LI> Repeatedly measure the spots you want using steps [2-7] as
+required.
+
+<LI> See the <A
+HREF="../flkRefMan.html#Fig-SpotOverlays">discussion</A> on the
+various spot overlay options.
+
+<LI> You can review the list by first clearing the popup report window
+and then doing a (<B>Quantify | Measure by circle | List spots in the
+spot list</B>). You can also view the list as tab-delimited data that
+you can then either cut and paste into Excel.
+
+<LI> See the <A HREF="../flkRefMan.html#Fig-SpotOverlays">discussion</A>
+on the various spot overlay options.
+
+<LI> You can review the list by first clearing the popup report window
+and then doing a (<B>Quantify | Measure by circle | List spots in the
+spot list</B>). You can also view the list as tab-delimited data that
+you can then either cut and paste into Excel.
+
+</OL>
+
+
+<H3>Setup for the demo</H3>
+
+
+<H3>Related vignettes</H3>
+
+
+<UL>
+<LI><A HREF="flkVig-getBkgrdDens.html">Vignette</A> 
+    for measuring background intensity
+<LI><A HREF="flkVig-getMeasDens.html">Vignette</A> 
+    for measuring spot intensity under circular mask
+<LI><A HREF="flkVig-setCirMask.html">Vignette</A> 
+    for setting the circular mask
+</UL>
+
+
+<P><HR><P>
+
+
+<TABLE WIDTH=100% BORDER=0>
+<TR>
+<TD>
+<A HREF="mailto:lemkin@ncifcrf.gov">
+<I>Contact us</I></A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;</TD>
+
+<TD>Flicker is a contributed program available at
+<A HREF="http://open2dprot.sourceforge.net/Flicker" TARGET="_top">
+open2dprot.sourceforge.net/Flicker</A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD>Revised: 01/19/2004</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,673 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+ 
+<HTML>
+<HEAD>
+<TITLE>
+Flicker Revision History
+</TITLE>
+ 
+<BODY BGCOLOR="#FBFBFB" 
+      TEXT="Black"
+      LINK="blue" 
+      VLINK="#FFad0f" 
+      ALINK="#00FF00">
+
+ 
+<H2 ALIGN="CENTER">
+Flicker Revision History
+</H2>
+<P>
+
+This describes the revision history. Generally, only the most recent
+versions are kept on the Web site (see <A
+HREF="FlickerJarVersion.txt">Version</A>).
+
+<UL>
+
+
+<P><LI><B>V.0.87.2 04-12-2007</B>: Corrected documentation. 
+Validated that SWISS-2DPAGE clickable image maps still work. 
+Memory change by editin the LAX file from the Edit Menu since
+the use of InstallAnywhere installers was previously depricated. 
+
+<P><LI><B>V.0.87.1.1 12-23-2005</B>: Fixed compilation error. 
+
+<P><LI><B>V.0.87.1 11-07-2005</B>: Changed installer paradigm to use
+<A HREF="http://launch4j.sf.net/">launch4j</A>. Also, new manifest for
+Flicker.jar file that now includes the Class-Path so the demo .bat
+and .sh scripts were simplified in this release. The (<B>Edit menu |
+Resize memory limits</B>) command was depricated - see 
+<A HREF="flkRefMan.html#increasingMemory">Increasing or decreasing the 
+allowable memory used by Flicker</A> in the Reference manual.
+
+<P><LI><B>V0.86.2 08-01-2005:</B> Fixed an intermittant bug such that
+if you were flickering the zoomed lower right part of the image with
+the guard region enabled, it would not always show the correct
+alignment.
+
+
+<P><LI><B>V0.86.1 07-28-2005:</B> Added guard region around perimeter
+of the images. This allows spots that are any edge of the image to be
+aligned in the flicker window. The right and left images can still be
+zoomed, transformed and have their contrast and brightness changed
+while the guard region is on.  The color of the guard region can be
+changed via the edit-set colors menu. The default is to not use the
+guard region. There is an intermittant bug such that if you are
+flickering the zoomed lower right part of the image with the guard
+region enabled, it may not always show the correct alignment. The
+solution until we fix this is to avoid using zoom with the guard when
+flickering.
+
+<P><LI><B>V0.85.7 07-20-2005:</B> Fixed bug in (File | Open recent 
+images) menu command. This involved changes in FlkRecent.java Bugs
+that included fixing bug that allowed array index to be out of 
+bounds in "open recent images" causing it to crash. String compare was
+not correct, deleteOldestEntry() was not being called in the correct
+place and a "for" loop in deleteOldestEntry() was incrementing the
+upper value so it would go into a endless loop. Also fixed bug in 
+ImageScroller.java where it caused "drawImage" in paint twice
+in ImageScroller. This bug might have caused some additional image 
+instability while flickering.
+
+<P><LI><B>V0.85.6 06-15-2005:</B> Fixed thread-race condition which
+occasionally locked up Flicker.
+
+<P><LI><B>V0.85.4 06-14-2005:</B> Improved layout so canvases use more
+of the "real estate" of the main window. Added tool-tips for the
+buttons. We will be adding tool-tips for other GUI controls.
+
+<P><LI><B>V0.85.3 06-08-2005:</B> Fixed bug introduced in V0.84.2 which
+broke the Zoom. Fixed a few other minor bugs.
+
+<P><LI><B>V0.84.2 05-27-2005:</B> Changed the implementation of parts
+of the GUI to use Swing objects (frames, scrollers, buttons and
+panels). Cleaned up some problems related to images not repainting
+correctly when invoking the flicker mode under some conditions. Fixed
+the "add" and "delete" Landmarks that was broken in the previous
+release. Reduced delay for initial image loading.
+
+<P><LI><B>V0.84.1 04-28-2005:</B> Fixed bugs related to incomplete
+restoration of the Flicker state when restarting from a .flk file.
+The old behavior was that the flicker window did not changed when you
+changed the cursor in either the right or left lower
+windows. Remaining bugs related to this that we are working on
+include: the flicker window is not quite square, the position of the
+flicker window is not restored. These will be fixed in the next
+release.
+
+<P><LI><B>V0.83.6 09-12-2004:</B> Added optional Web access to PIR <A
+HREF="http://www.uniprot.org/">UniProt</A>, <A
+HREF="http://pir.georgetown.edu/iproclass">iProClass</A> and <A
+HREF="http://pir.georgetown.edu/iprolink">iProLink</A> Web pages
+through their Swiss-Prot accession names. This is accomplished in a
+2-step process. This is enabled in the (<B>Edit | Select access to
+active DB server | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on"> ...</B>) checkbox
+command to select either Swiss-2DPAGE, UniProt, iProClass or iProLink
+servers. If you measure a spot (select a spot in an active image and
+then type <B>C-M</B>) (and are connected to the Internet), it will
+lookup the Swiss-Prot protein (accession name, and protein id) on the
+Swiss-2DPAGE server. Then, if you enable "Click to access DB", it will
+pop up the particular active DB server you have selected. An
+additional option is to enable the (<B>Edit | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">Auto measure, protein lookup and Web page
+popup</B>) checkbox command. Then when you click on a spot in an
+active image (associated with a Web database), it will: 1. measure the
+spot and add it to the spot list; 2. lookup the Swiss-Prot (name, id);
+and 3. pop up the Web server on the currently selected active DB
+server.
+
+<P><LI><B>V0.83.5 08-25-2004:</B> Fixed but where active image name
+status was not being set properly. Improved documentation in Reference
+Manual <A HREF="flkRefMan.html#SpotListIDlookup">section 1.4.1</A> and
+added a <A HREF="Vignettes/flkVig-putativeID-Assign.html">Vignette on
+assigning putative spot ids</A>.
+
+<P><LI><B>V0.83.4 07-21-2004:</B> If you saved the Flicker state in a
+.flk file having zoomed one or both images, it does now rezooms the
+image(s) when you restart Flicker on that startup file.
+
+<P><LI><B>V.0.83.3 7-03-2004:</B> Fixed remaining problems with zoom
+overlays (see 0.83.1).
+
+<P><LI><B>V.0.83.2 6-21-2004:</B> Fixed another MacOS-X path bug on
+startup, and added Quickstart and other Help menu entries.
+
+<P><LI><B>V.0.83.1 6-17-2004:</B> Fixed problem with truncation of
+zoom function by complete rewrite of Zoom methods and ImageScroller.
+There may still be a few problems with overlays when zoomed greater or
+less than 1.0X. These problems may sometimes include: landmarks,
+measurement in lower quadrant, ROI in lower quadrant, edit measurement
+spots.
+
+<P><LI><B>V.0.82.4 6-10-2004:</B> Fixed MacOS-X path bug on startup.
+and added additional Help menu entries.
+
+<P><LI><B>V.0.82.4 5-25-2004:</B> Changed Help menu documentation
+link.
+
+<P><LI><B>V.0.82.1 5-01-2004:</B> Fixed non-fatal bug that occured
+sometimes when restarting Flicker by clicking on a .flk file. It
+would incorrectly report that you had run out of memory. However,
+it was incorrect since clicking OK would let Flicker startup
+with the correct data.
+
+<P><LI><B>V.0.81.5 4-21-2004:</B> Also fixed problems with image zoom
+and dezoom.
+
+<P><LI><B>V.0.81.4 4-21-2004:</B> Fixed bug in naming of calibration
+files so it now generates for the demo images, "cal/{demo-images}.cal"
+file names; and for sub image directories in
+Images/{sub-dirs}/(images} it generates "cal/{sub-dirs}-DIR-{images}.cal"
+files. 
+
+<P><LI><B>V.0.81.3 3-24-2004:</B> Final fix for bug where Flicker
+would crash on startup if you started it with an empty user directory
+in the Images/ directory. We thought this was fixed on V0.81.2 but it
+wasn't :-) [Thanks to Neil Kitteringham for helping find this bug.]
+
+<P><LI><B>V.0.81.2 3-23-2004:</B> Fixed bug where Flicker would crash
+on starting if you had too many subdirectories of images in the user's
+Images/ directory.
+
+<P><LI><B>V.0.81 3-19-2004:</B> Misc bug fixes. The color TIFF image
+reader is now working for un-banded TIFF images (including
+uncompressed, JPEG compressed and packed bits - but not for LempleZev
+compression because Sun's JAI TIFF reader avoids the copyright
+issue). It does not work with banded images at this time. If you want
+to read a banded or LempleZev compressed image, then convert it using
+a program such as ThumbsPlus or other image manipulation program.
+
+
+<P><LI><B>V.0.80 3-18-2004:</B> Added command (see <A
+HREF="flkRefMan.html#addingUserDemos">discussion Section 4.6.2</A>) to
+allow groups to setup a Flicker compatible database and then import
+the data into the Flicker "open demo images" menu. The new (<B>File |
+Updates | Add user's Flicker Demo Images DB by URL</B>) command adds
+additional demo database from a another Web server to the local
+Flicker demo database [suggested by Mark Holme]. Also fixed problem
+where images were sometimes clipped if you read a larger image than
+the default image or there was a incorrect region at the bottom of the
+new image if it were smaller than the previous image.
+
+<P><LI><B>V.0.79 3-17-2004:</B> We reorganized and simplified some of
+the View menu commands. First, we moved and renamed the (<B>View | Set
+view overlay | View measurements | ...</B>) menu tree to (<B>View |
+Set view measurement options | ...</B>). Second, for consistency, the
+(<B>View | Set view overlay | ...</B>) command was renamed (<B>View |
+Set view overlay options | ...</B>).
+
+"><P><LI><B>V.0.78 3-16-2004:</B> Changed state scrollers (upper right)
+so that they are inoperable unless you select (click on the left or
+right image) and it alerts you to this. Also disabled menu commands
+that require you to select the right or left image until you do
+so. Added default save files for the "Save overlay image" and "Save
+transformed image". Cleaned up the design so it is now easier and more
+consistent to switch between list-of-spots measurement mode and
+trial-measurement mode using the new (<B>Quantify | List-of-spots else
+trial-spot measurement-mode (C-J)</B>) command. Removed the old
+commands which were equivalent but were confusing (<B>Quantify | Set
+view overlay | View measurements | View list-of-spots else trial-spot
+measurement-mode (C-J)</B>) and (<B>Quantify | Measurement
+counters</B>). The visualization of zoomed (dezoomed) spots, ROI,
+landmarks are now generated correctly. Note: you must currently define
+these objects in 1.0X unzoomed mode.
+
+<P><LI><B>V.0.77 3-15-2004:</B> Fixed bug when clearing spot list(s)
+on data from spot list(s) loaded with a .flk file. It was not deleting
+the spot list and reseting the spot counter.
+
+<P><LI><B>V.0.76 3-14-2004:</B> Changed the way the circle mask size
+may be defined. We now only allow it to be set from the scroller "meas
+circle: XXX (diameter)" - the checkboxes previously used are no longer
+available. The maximum size is now 51x51 which should make it easier
+to measure larger spots. If you attempt to delete a spot using the
+(<B>C-K</B>) command, it will ask you if you are sure since there is
+no "undo" command. <BR>
+
+<B>1. NOTE: we changed the old (C-I) short-cut command to
+(C-K)</B>. The (<B>C-I</B>) is <I>NOW</I> used to bring up a short
+edit form to define or change the spot annotation 'id' fields for the
+measured spot(s) selected in the image(s). The same id value you enter
+is assigned to both spots if you are editing two spots (selected from
+the left and right images). The full command is (<B>Quantify | Measure
+by circle | Edit selected spot(s) 'id' fields from spot list(s)
+(C-I)</B>).  We fixed some bugs where the circle size shown was
+different between the circles in a list of measured spots and in the
+non-list spot measurement. The data was the same. <BR>
+
+<B>2. NOTE</B>: we find it useful to adjust the circle size around a
+spot, by temporarily turning off the (<B>View | Set view overlays |
+View measurements | <IMG SRC="Icons/checkboxOFF.gif" ALT="Checkbox off">View
+list-of-spots else trial-spot measurement mode (C-J)</B>) while
+leaving the (C<B>View | Set view overlays | View measurements | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">View measurement circle</B>) on. Then click
+on a spot and type (<B>C-M</B>) to get a trial spot measurement.  As
+you adjust the "meas circle" size diameter scroller, it will redraw
+the circle around the spot as well as display the new integrated
+density in the image title (if (<B>C-G</B>) was enabled. <BR>
+
+<B>3. NOTE</B>: the (<B>View | Set view overlays | View measurements |
+<IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">View list of spot measurements</B>)
+has been moved to the Quantify menu and renamed (<B>Quantify | <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on">View list-of-spots else trial-spot
+measurement mode (C-J)</B>) and given a (<B>C-J</B>) short-cut key to
+make toggling between modes easier.  Fixed problem of trying to save
+an unsaved spot list on exit if you had never defined the .flk startup
+file (it now prompts you for a .flk file name). Fixed the problem
+where the scroller states for the images was not setup in the correct
+order and was being overloaded with the default state.
+
+
+<P><LI><B>V.0.75 3-10-2004:</B> Fixed fixed several bugs: 1) problem
+where loading spot lists takes a long time when restarting from .flk
+file, 2) sorted spot list data for calibrate OD by spot list, various
+error msgs, added un-norm paired spot list table command (in addition
+to norm paired spot list table), 3) synchronized circle mask size menu
+items with scrollable circle mask size slider.
+
+<P><LI><B>V.0.74 3-9-2004:</B> Fixed bug where it prompted whether you
+wanted to clear the spot list if you started Flicker by clicking on a
+.flk file which had spot lists. Changed the Alert window color to a
+less obtrusive pink-gray instead of red. Added (<B>Quantify | Measure
+by Circle | List paired 'id' annotated-spots in both spot lists
+(tab-delimited))</B> - list paired spots that occur in the spot lists
+of both gels. The pairing is defined by assigning the same annotation
+spot 'id' using the (<B>C-I</B>) spot editing command to assign the
+case-sensitive spot identifiers. (<B>C-E</B>) command may also be used
+to edit the ids'.
+
+<P><LI><B>V.0.73 3-8-2004:</B> Additional cleanup and fixed bug where
+screen size grew when longerer messages were introduced.  Alpha-level
+implemention of TIFF images (24-bit RGB).
+
+<P><LI><B>V.0.72 3-5-2004:</B> This version is the alpha-level release
+for the the new calibration by measured spot list. This uses the
+(<B>Quantify | Calibrate | Optical density by spot list</B>). Also
+added an alternative way to measure spots - in addition to using the
+(<B>C-M</B>) <I>after</I> you have selected the spot using the mouse,
+you can alternatively hold the <B>ALT-key</B> when you press the mouse
+to select and measure the spot. This is easier to use when measuring
+many spots. It combines spot selection and measurement in one
+operation. [Thanks to Enrico DeToni and Greg Thornwall]
+
+<P><LI><B>V.0.71 3-4-2004:</B> Changed the file name convention for
+calibration files. Previous to this version, the "cal/{imageFile}.cal"
+files were not unique if the same file name appeared in multiple user
+image file directories using the "Images/{user directories}/{image
+files}". This problem has been fixed by prepending the directory name
+with a "-DIR-" separator before the cal file so the new .cal file name
+is "cal/{user image subdirectory}-DIR-{image file}.cal".
+
+<P><LI><B>V.0.70 3-3-2004:</B> Fixed bug with false popup alert if did
+not find Flicker.properties file the first time it was run. Also fixed
+some of the bugs with the new spot list calibration (not enabled
+yet). Working on new .cal file naming fct so the .cal files will be
+unique.
+
+<P><LI><B>V.0.69 3-1-2004:</B> Fixed calibration ND wedge wizard problems
+with aborting a calibration by answering NO on close. Fixed OD values
+inherited from paired gel that was previously calibrated. This saves
+having to type it in again.
+
+<P><LI><B>V.0.68 2-26-2004:</B> Fixed "Optical-density" radix format
+for the (<B>Quantify menu | Print data-window | Show data-window of
+selected pixel (C-V)</B>) command.  Fixed format for precision of
+floating point data to exactly the number of digits in the fraction
+required. Added new command (<B>File | Open user images | ...</B>) so
+split it into two menu trees. The first, (<B>File | Open user images |
+pairs of images | ...</B>) is the same as the previous functionality.
+The second, (<B>File | Open user images | single images | ...</B>)
+lets you load any single image from any of the user's image
+directories into either the selected left or right image. Fixed peak
+table update and display problem in ND wedge calibration plot and
+table.
+
+<P><LI><B>V.0.67 2-22-2004:</B> Fixed bug in (<B>Quantify | Calibrate
+| Optical density by step wedge</B>) command. Added (<B>Quantify |
+Calibrate| Clear spot list (ask first)</B>) command. Updated the
+Reference manual with examples on spot list overlay views and the
+(<B>Quantify | Calibrate | Optical density by step wedge</B>) command.
+Fixed bug to cancel save .flk file on exit if you were prompted with
+Yes/No/Cancel on saving the edited spot list(s).
+
+<P><LI><B>V.0.66 2-21-2004:</B> Fixed various minor bugs. Changed the
+spot list display paradigm so that the user has more control over the
+spot labeling that is useful for crowed regions. You can do this via
+the (<B>View | Set view overlays | Set view measurements
+(submenu)</B>).  These let you customize the displays.  The submenu
+commands include:
+<UL>
+<LI> <B>View measurement circle</B> for (C-B and (C-M) trial spots
+<LI> <B>View list of spot measurement</B> for viewing spot lists<P>
+
+<LI> <B>Use 'Circle' for spot locations</B> OR
+<LI> <B>Use '+ for spot locations</B> OR neither.<P>
+
+<LI> <B>Use 'spot number' for spot annotations</B> AND/OR
+<LI> <B>Use 'spot identifier for spot annotations</B> OR neither.
+</UL>
+You can select the "current" measured spot (click the mouse on it) and
+the spot labels and annotation will change to the trial object color
+while you have selected it. Two new commands were added to make it
+easier to edit and delete spots in the spot list. We added a string
+"spot identifier". You can set this identifier by selecting the spot
+and then using the (<B>Quantify | Measure by circle | Edit selected
+spot from spot list (C-E)</B>) command. Similarly you can delete any
+spot by selecting it and then using the (<B>Quantify | Measure by
+circle | Delete selected spot from spot list (C-I)</B>)
+command. [Thanks to suggestions by Enrico De Toni].<P>
+
+We added a new scroller "measure circle size" to the parameter
+scrollers.  This is equivalent to going into the (<B>Quantify |
+Measure by circle | Circular mask size (pixels) | ...</B>) and
+selecting a size. However it is more convenient and gives you better
+visual feedback.[Thanks to suggestions by Enrico De Toni].<P>
+
+<B>Calibration of grayscale in other units (e.g., optical density)</B><BR>
+We have activated the grayscale calibration using an neutral density
+(or other known standard) step-wedge scanned with the material (e.g.,
+2D-gel) when it was scanned. You must know the calibration values
+(e.g., OD or CPM, etc.) corresponding to the step wedge. You set the
+computing window Region Of Interest (ROI) over the step wedge and then
+use the (<B>Quantify | Calibrate | Optical density by step wedge</B>)
+command. To demonstrate this process, we have built in four sample
+ROI's and the corresponding OD values corresponding to the step wedge
+scanned with the four demo gels (Leukemia-AML, Leukemia-ALL,
+Leukemia-CLL, Leukemia-HCL). To use this demo, first set the
+(<B>Quantify | Calibrate | Use demo leukemia gels ND wedge calibration
+preloads</B>) first. Then, use the (<B>Quantify | Calibrate | Optical
+density by step wedge</B>) command. We will be adding discussion and
+documentation on calibration in the reference manual and we plan to
+add vignettes.
+
+
+<P><LI><B>V.0.65 2-16-2004:</B> Fixed various minor bugs and
+refactored code. Reset the scroller and trial spot position to the
+upper left hand corner when load a new image. Previously it was using
+the same coordinates at the previous image or illegal coordinates [Bug
+reported by Enrico De Toni].
+
+<P><LI><B>V.0.63 02-11-2004:</B> Added grayscale histogram for the
+computing window region of interest using the (<B>Quantify | Region Of
+Interest (ROI) | Show RPI grayscale histogram (C-H)</B>)
+command. Changed error paradigm so that it is easier to see error
+messages. Error messages are shown in red. If the Popup Report window
+is not visible, it is forced to be visible to call attention to the
+error message.  Reorganized the <A HREF="flkRefMan.html#viewMenu">View
+menu</A> so it is more logical. Added (<B>Quantify | View measurements
+| Use 'circle'# else '+'# for meas. list</B>) - if both <IMG
+SRC="Icons/checkboxON.gif" ALT="Checkbox on"><B>View spot measurements</B> and the <IMG
+enabled, this will show the actual circle masks (of different sizes if
+you changed the sizes) around each measured spot. Otherwise, it shows
+it as a '+' marker. Fixed various other minor bugs.
+
+<P><LI><B>V.0.62 02-02-2004:</B> Added commands to print a 5x5 through
+40x40 gray-scale window (in decimal, octal, or hex number radix) in
+the popup report window. The (<B>Quantify menu | Print data-window |
+Set print-window size</B>) lets you specify the window size. The
+(<B>Quantify menu | Print data-window | Set print-data radix</B>) set
+the data format radix.  The (<B>Quantify menu | Print data-window |
+Show data-window of selected pixel (C-V)</B>). Normally, set the
+print-window size and data radix then use the (C-V) short-cut key
+after you have selected the spot you want to view. The following shows
+typical output:
+<PRE>
+<FONT SIZE=-2>
+<TT>
+Windmp [183:203, 168:188] Center (193,178) 20X20 size,
+sampled: 1 pixels, data-radix: Decimal
+Image: Images\plasmaH.gif
+    X 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203
+  Y   --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+ 168   71  61  57  55  54  54  56  57  56  50  46  42  42  43  45  42  43  48  53  67  80
+ 169   71  53  50  48  45  48  50  55  60  56  46  42  40  43  42  40  37  41  47  54  65
+ 170   88  49  44  42  40  42  45  53  56  61  50  41  40  39  39  37  34  37  38  45  54
+ 171   97  49  41  39  39  40  43  53  60  61  54  43  39  38  37  36  34  36  37  43  50
+ 172  106  47  39  37  36  37  39  53  72  78  72  50  43  38  37  35  33  34  35  39  44
+ 173   84  41  38  37  34  33  35  50  82  94  84  58  48  41  40  37  34  35  35  39  44
+ 174   66  39  38  37  35  33  35  50  84  96  84  59  48  41  40  39  35  37  37  39  44
+ 175   47  41  43  40  36  34  34  49  78  84  71  56  50  43  44  43  38  37  37  47  46
+ 176   50  46  46  46  39  34  35  56  91  95  77  61  58  54  57  54  47  43  41  43  47
+ 177   53  49  51  50  42  37  38  69 117 122  98  74  66  62  65  62  51  47  44  45  50
+ 178   58  59  65  65  53  43  46 106 171 174 139  94  78  71  67  65  57  54  50  48  54
+ 179   63  77  97  97  82  59  55 104 163 164 120  76  64  58  62  62  61  58  55  52  56
+ 180   67  90 122 124 106  72  60  86 132 132  95  64  59  55  64  62  61  59  57  53  57
+ 181   76 140 189 193 174 128  94  59  70  68  60  55  55  54  59  63  60  60  58  55  58
+ 182   82 167 214 215 195 137  97  50  47  49  52  53  53  53  53  56  55  57  59  57  61
+ 183   73 142 194 194 160  97  67  42  44  46  51  52  52  50  53  52  54  57  60  62  63
+ 184   51  62  81  80  60  46  39  38  44  46  51  52  52  51  54  54  66  69  78  80  77
+ 185   48  50  52  52  46  40  39  40  45  48  51  52  51  53  56  57  56  65  70  72  72
+ 186   49  49  50  50  46  41  40  40  42  46  49  51  51  53  55  56  53  62  60  61  61
+ 187   51  55  63  62  56  46  43  40  40  41  45  51  53  57  58  55  50  48  52  49  50
+ 188   70  90  97  90  71  57  52  47  41  40  46  56  61  66  64  60  51  46  48  47  50
+</TT>
+</FONT></PRE>
+
+<P><LI><B>V.0.61 01-31-2004:</B> Fixed problem that if you started
+Flicker from a previously saved .flk state file by double clicking on
+it's icon, it did not completely restore the state.  However, if you
+restored the state using (<B>File menu | Open state file</B>) it did
+it correctly. This fixed the problem that measured spot lists were not
+restored with the former, but were with the latter [reported by Enrico
+De Toni]. Also fixed the graphics problem where spot positions of "+#"
+markers in measured circles were correctly measured, but the position
+was off a few pixels.
+
+<P><LI><B>V.0.60 01-28-2003:</B> Fixed bug that if you saved a Flicker
+state in a .flk file that pointed to some images that you subsequently
+moved or deleted on your disk, Flicker would hang and you would need
+to kill the process (e.g., Task manager in Windows). This has been
+fixed by reporting the problem and then exiting flicker. It is up to
+the user to either restore the image to the previous location, or to
+not use the .flk file. [Reported by Enrico De Toni]. Also fixed bug in
+(<B>Quantify menu | Measure by circle | List spots in the spot list
+(tab-delimited</B>) where the table header was not aligned with the
+data. [Reported by Enrico De Toni].
+
+<P><LI><B>V.0.59, 01-24-2004:</B> Fixed bug where data could not be
+added to the circle measurement list. The problem occurs if you
+defined a set of circle measurements, then saved the Flicker state
+(File | Save(As) State file), and then restored this state in a later
+session. The original spots were there, but you could not add
+additional spots. Note, you can currently measure up to 1000
+spots. [Thanks to Enrico De Toni for reporting this bug.]
+
+<P><LI><B>V.0.58, 01-19-2004:</B> Moved Flicker from the Open2Dgel
+project to the new <http://open2dprot.sourceforge.net"
+TARGET="_top">Open2Dprot</A>.
+
+<P><LI><B>V.0.57, 01-13-2004:</B> Fixed bug when accessing
+Swiss-2DPAGE database where it sometimes does not generate
+the correct URL for clickable spots.
+
+<P><LI><B>V.0.56, 01-07-2004:</B> Fixed bug in the image pipeline
+processing where if you zoom first and then do an image transform, it
+did not zoom the transform.
+
+<P><LI><B>V.0.55, 12-27-2003:</B> Fixed bug in the image pipeline
+processing where if you zoom first and then use the
+brightness/contrast filter, it did not use the zoomed image. Now you
+can use both zoom and brightness contrast and any other transform and
+it will do a (iImg > oImg > zImg > bgImg) pipeline processing. Of
+course, doing both zoom and brightness/contrast filtering will take
+longer. Doing a Reset images will clear the zoom and BC filtering.
+
+<P><LI><B>V.0.54, 12-22-2003:</B> Fixed the recent images database
+that updates DB/FlkRecentDB.txt save and restore state. It limits the
+history to the last 10 images. The (<B>File | Open recent images</B>)
+lists the images. It records single images from the (<B>File | Open
+file image</B>), (<B>File | Open URL image</B>). It also records pairs
+of images from (<B>File | Open URL user images</B>) and when you load
+a pair of images using the (<B>File | State | Open state file</B>).
+
+<P><LI><B>V.0.53, 12-19-2003:</B> Added (<B>View | Gang zoom images</B>)
+command to zoom the left and right images together. This is useful if
+the images have exactly the same magnification.  Added an alternate
+way of listing the measured spots list as (<B>Quantify | Measure by
+circle | List spots in the spot list (tab-delimited)</B>). This lets
+you cut and paste it or read the SaveAs text file from the popup
+report window into Excel or other software. (Thanks to Stephen Lockett
+for suggestions). Also fixed problem where it would jitter if you
+tried to flicker the images after doing a (<B>File | Reset
+images</B>).
+
+
+<P><LI><B>V.0.52, 12-17-2003:</B> fixed drawing error with numbered
+spots where is was off a few pixels when it drew "+1", "+2, "+3", etc.
+
+<P><LI><B>V.0.51, 12-13-2003:</B> Moved the (<B>File | Update |
+...</B>) server from the mirror (<A
+HREF="http://www.ccrnp.ncifcrf.gov/Flicker" TARGET="_top">
+http://www.ccrnp.ncifcrf.gov/Flicker</A>) to the SourceForge server <A
+HREF="http://open2dprot.sourceforge.net" TARGET="_top">
+http://open2dprot.sourceforge.net</A>.
+
+<P><LI><B>V.0.50, 12-12-2003:</B> Fixed bug where the
+"Flicker.parameters" file was generated correctly using the (<B>File |
+Quit</B>) command, but not it you close the window from the GUI. Also,
+added a command (<B>Edit | Reset default view</B>) to set the view to
+the initial value without reading your "Flicker.parameters" file. This
+lets you overide your saved parameter default.
+
+<P><LI><B>V.0.49, 12-12-2003:</B> Added additional user setable
+parameters to the state that is saved with (<B>File | Save(As) state
+file</B>). Also save a subset of these parameters that are generic
+user preferences in a "Flicker.properties" when you Quit the
+program. When you next start Flicker, it will attempt to read and use
+these user preferences.  For example, you may want to use a red trial
+object cursor instead of yellow, etc. Fixed bug so can now save and
+restore correctly circular-mask measured spot lists you generated a
+series of circular mask spot measurements and saved with the (<B>File
+| State | Save(As)...</B>) command.
+
+<P><LI><B>V.0.48, 12-11-2003:</B> Added (<B>File | SaveAs overlay
+image</B>) menu command to save the selected image including overlays
+as a GIF image you specify. If you are displaying the gray value as
+you move the mouse (<B>View | Display gray values (C-G)</B> and the
+size of the circle mask is > 1, then draw the circle mask as you move
+the mouse so the user can see the area being measured. Added "tot" or
+"mn" prefix to this displayed data values depending on whether the
+(<B>Quantify | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on"> Use sum density else
+mean density</B>).  Added (<B>Quantify | Measure by circle | Delete
+selected spot from the spot list</B>) so you can edit the
+list. Changed the default trial object color from yellow to orange
+which is a little easier to see. Changed the default circular mask
+size from 5x5 to 11x11. Changed the default measurement circular mask
+color from yellow to red.
+
+<P><LI><B>V.0.46, 12-10-2003:</B> Move the user's image discovery
+menus from (<B>File | Open demo images | ...</B>) to (<B>File | Open
+user images | ...</B>) since they are not really part of the demo
+images.  Added ability to save measured circular mask spots in a spot
+list that is saved (when you do a (File | State | SaveAs ...) in the
+"spt/" directory as a file with the same name as the image but with a
+".spt" file extension. You can now sequentially label a series of
+circular mask spot measurements and it labels them with "+1", "+2",
+etc. You can also make a report of all spots. They will be saved when
+you save the state and are restored when you restore the state.  You
+can now adjust the trial object color through the (Edit | Set colors |
+Trial object color).
+
+<P><LI><B>V.0.45, 12-09-2003:</B> Added extension to demo images. If
+the use had put one or more directories of the image data in the
+Images/ folder. Then when Flicker starts, it will create additional
+submenu entries in the (<B>File | Open demo images | ...</B>) that are the
+names of the user's directories. Within each submenu, it will generate
+all combinations of the image files within the corresponding directory
+and denote them as for example, "image3 vs. image5", etc. The maximum
+measurement circle size has been increased from 11x11 to 15x15. A new
+measurement option, <B>(Quantify | <IMG SRC="Icons/checkboxON.gif" ALT="Checkbox on">Use
+measurement counter)</B> has been added to let you track your
+measurements in the report log more easily.
+
+<P><LI><B>V.0.44, 12-01-2003:</B> Only has the zoom/dezoom method
+transform. It is ONLY invoked from the ZoomMag scroller - not from
+the Transform menu.
+
+<P><LI><B>V.0.43, 11-28-2003:</B> New zoom/dezoom transform method
+that covers 1/10X to 10X zoom. Fixed the Median filter. Added "Max
+3x3" and "Min 3x3" filters. This version has both AWT zoom and
+transform zoom.
+
+<P><LI><B>V.0.42, 11-26-2003:</B> Added (<B>(File | Save Transformed
+image</B>) and (<B>(Edit | Enable saving transformed images when do a
+'Save(As) state'</B>) to save transformed images to a "tmp/" directory
+as .gif files.
+
+<P><LI><B>V.0.41, 11-24-2003:</B> Fixed bug introduced in version 0.37
+when clicked on canvas, it failed under some conditions. Fixed the
+SaveAs state so that it saves more of the state and also restore the
+landmarks and position properly. Added log(grayscale) option to use
+when reading grayscale images more than 8-bits (e.g., 10-bit, 12-bit
+or 16-bit tiff grayscale images).
+
+<P><LI><B>V.0.37, 11-17-2003:</B> Added Resize canvas menu and code to
+resize the three windows up or down using either menu commands or the
+"-"/"+" canvas resize buttons. The menu commands are (<B>Edit |
+Canvas size | in(de)crease size</B>). Added (<B>Edit | Resize Flicker
+memory limits</B>) to let the user change the initial startp memory
+limits over the range of 30Mb to 1768 Mb.
+
+<P><LI><B>V.0.36, 11-14-2003:</B> Fixed suble error in ROI rectangle
+drawing routine. Added code to let you define the ROI as between the
+C-U and C-L marks and it will flip their definitions if required.
+
+<LI><B>Version 0.35, 11-14-2003:</B> fixed minor bugs, added (C-R) to
+(Quantify | Region of interest (ROI) Capture measurement by ROI (C-R))
+command
+
+<LI><B>Version 0.35, 11-13-2003:</B> fixed ROI display and measurement,
+misc. minor bugs.
+
+<LI><B>Version 0.34, 11-12-2003:</B> fixed misc. minor bugs.
+
+<LI><B>Version 0.33, 11-11-2003:</B> fixed misc. minor bugs.
+
+<LI><B>Version 0.32, 11-10-2003:</B> Implemented the (File | Update |
+Update Demo Images DB)
+
+<LI><B>Version 0.31, 11-10-2003:</B> Refactored affine warping and
+fixed various other commands including Quantify Measure by circles and
+added Measure by ROI. Added C-T command and a few other commands.
+Fixed thresholding automatic transforms when move sliders on the
+selected image.  Avoid race condition if adjusting threshold and angle
+sliders by ignoring command if already doing a transform. Other misc.
+fixes.
+
+<LI><B>Version 0.30, 11-07-2003:</B> Affine working.
+
+<LI><B>Version 0.29, 11-03-2003:</B> Addressed misc. minor bugs
+
+<LI><B>Version 0.28, 10-31-2003:</B> This is the initial alpha-level
+release. It is functional however with a few problems which are in the
+process of being addressed
+
+<P>
+
+</UL>
+
+</DL>
+
+<P><HR><P>
+
+<TABLE WIDTH=100% BORDER=0>
+<TR>
+<TD>
+<A HREF="mailto:lemkin@users.sourceforge.net">
+<I>Contact us</I></A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;</TD>
+
+<TD>Flicker is a contributed program available at
+<A HREF="http://open2dprot.sourceforge.net/Flicker" TARGET="_top">
+open2dprot.sourceforge.net/Flicker</A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+y<TD>Revised: 04/12/2006</TD>
+</TR>
+</TABLE>
+ 
+</BODY>
+</HTML>

@@ -1,0 +1,35 @@
+Open2Dprot Software under the Mozilla Public License (version 1.1)
+-----------------------------------------------------------------
+June 8, 2003 
+Name changed from Open2Dgel to Open2Dprot Jan 17, 2004
+
+This document comprises the LEGAL File pursuant to Articles 3.4 and 4
+of the Mozilla Public License (version 1.1) stating the intellectual
+property and other limitations associated with the use of Open2Dprot
+under this License.  Dr. Peter Lemkin as an employee of The National
+Cancer Institute (NCI), an agency of the United States Government, is
+the Initial Developer of Open2Dprot (the Original Code).  As such, the
+following limitations apply to this License:
+
+1. This is a work of the United States Government and as such there is
+   no copyright associated with it.  Notwithstanding herein, the
+   Government does not provide or grant any automatic license to any
+   copyright or patent.
+
+2. Neither the NCI, the National Institutes of Health or the United
+   States Government endorse Open2Dprot or any product.  Express or
+   implied endorsement by these entities is prohibited.
+
+3. The NCI, as an agency of the United States Government, is forbidden
+   by statute to indemnify a third party.  Thus, no indemnification
+   for any loss, claim, damage or liability is intended or provided by
+   NCI under this License.  The NCI, as an agency of the United States
+   Government, assumes liability only to the extent provided under the
+   federal Tort Claims Act, 28 U.S.C. 2671 et seq.
+
+4. This License shall be construed and governed in accordance with
+   Federal law as applied by the Federal courts in the District of
+   Columbia.  In case of conflict in law between Federal law and the
+   laws of any other jurisdiction, Federal law as applied by the
+   Federal courts in the District of Columbia shall prevail.
+

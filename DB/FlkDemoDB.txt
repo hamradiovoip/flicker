@@ -1,0 +1,10 @@
+SubMenuName	SubMenuEntry	ClickableURL1	ImageURL1	ClickableURL2	ImageURL2	StartupData
+Human Plasma	(Swiss-2DPAGE vs Merril) gels GIF		Images/plasmaH.gif		Images/plasmaL.gif	TRUE
+Human Plasma	(Swiss-2DPAGE vs Merril) gels TIFF		Images/plasmaH.tif		Images/plasmaL.tif	TRUE
+Human Plasma	(Swiss2D-PAGE vs Merril) gels - clickable	http://www.expasy.org/cgi-bin/map3/PLASMA_HUMAN?	Images/PLASMA_HUMAN_id.gif		Images/plasmaL.gif	FALSE
+"Leukemias (Lester,Lipkin,Lemkin)"	AML vs ALL		Images/Human-AML.ppx		Images/Human-ALL.ppx	FALSE
+"Leukemias (Lester,Lipkin,Lemkin)"	AML vs CLL		Images/Human-AML.ppx		Images/Human-CLL.ppx	FALSE
+"Leukemias (Lester,Lipkin,Lemkin)"	AML vs HCL		Images/Human-AML.ppx		Images/Human-HCL.ppx	FALSE
+"Leukemias (Lester,Lipkin,Lemkin)"	ALL vs CLL		Images/Human-ALL.ppx		Images/Human-CLL.ppx	FALSE
+"Leukemias (Lester,Lipkin,Lemkin)"	ALL vs HCL		Images/Human-ALL.ppx		Images/Human-HCL.ppx	FALSE
+"Leukemias (Lester,Lipkin,Lemkin)"	CLL vs HCL		Images/Human-CLL.ppx		Images/Human-HCL.ppx	FALSE

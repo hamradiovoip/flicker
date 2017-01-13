@@ -1,0 +1,364 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+ 
+<HTML>
+<HEAD>
+<TITLE>Flicker comparison of 2-Dimensional Electrophoretic Gels
+</TITLE>
+ 
+<BODY BGCOLOR="#FBFBFB" 
+      TEXT="Black"
+      LINK="blue" 
+      VLINK="#FFad0f" 
+      ALINK="#00FF00">
+
+<CENTER>
+<A HREF="Gifs/Flicker-Comparison-ActiveWebMap.jpg">
+<IMG SRC="Gifs/FlickerIcon.jpg" ALIGN="CENTER" ALT="Flicker icon"></A>
+</CENTER>
+
+<H2 ALIGN="CENTER">
+Flicker Comparison of 2-Dimensional Electrophoretic Gels
+</H2>
+  
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="5" CELLSPACING="1">
+<TR> 
+<P><TD BGCOLOR="#e9eecc" ALIGN="center">
+<B><FONT COLOR="#000000">Welcome To Flicker</FONT></B> </TD>
+</TR>
+<TR><PRE>
+</PRE></TR>
+</TABLE>
+<P>
+
+
+<CENTER><H2> <A HREF="http://open2dprot.sourceforge.net/Flicker"
+TARGET="_top">
+http://open2dprot.sourceforge.net/Flicker</A> 
+</H2></CENTER>
+
+<A NAME="Introduction"><P>
+<H2>Introduction</H2>
+
+Flicker is an open-source stand-alone computer program for visually
+comparing 2D gel images.  Two-dimensional polyacrylamide gel
+electrophoresis (2D-PAGE) gels are often difficult to compare because
+of rubber-sheet distortions.  Flicker allows you to <A
+HREF="flkRefMan.html#putativeSpotLookup">visually compare your gel
+images</A> against each other or against those found in Internet
+databases.  Many published Internet gels have a subset of spots
+identified which may make them useful to compare with your gels. Some
+of these Internet gels are active maps that you can click on a spot to
+inquire of its identity. You may be able to draw putative conclusions
+as to the identification of some spots in your gels that visually
+appear to be the same spots as in reference gels.  The Flicker program
+integrates these various needs to help you try to make putative spot
+identifications. See the <A HREF="#quickStart">Quick start
+examples</A> below for a short list of some of these methods.<P>
+
+Of course Flicker might be useful for comparing other types of images
+such as 2D-blots, 1D gels, serial microscope sections, time-lapse,
+microarrays, etc. - any type of image where there are distortions or
+intensity variation of the images, differing numbers of spots, and
+other systematic and procedural experimental differences. It can read
+black and white or color JPEG and GIF images, and black and white TIFF
+images (some un-banded color TIFF images are available).<P>
+
+The Flicker application is Java program that runs under the MS
+Windows, MacOS-X, Linux and Solaris operating systems. It is <A
+HREF="flkRefMan.html#installFlicker">downloaded</A> to and runs on your
+computer. Flicker has been made open source and was contributed to the
+<A HREF="http://Open2Dprot.sourceforge.net/"
+TARGET="_top">Open2Dprot</A> project. Both the executable binary as
+well as the source code is available. <P>
+
+The original version of Flicker was a Java applet that ran in your Web
+browser (<A HREF="flkRefMan.html#References">[Lemkin97a]-[Lemkin97c],
+[Lemkin99], [Lemkin02]</A>) and is available at <A
+HREF="http://www.ccrnp.ncifcrf.gov/flicker" TARGET="_top">
+http://www.ccrnp.ncifcrf.gov/flicker</A>. However, being a Java applet,
+it had many limitations in its capabilities.  To resolve these
+limitations it was converted in 2003 to a Java application by Peter
+Lemkin and Greg Thornwall with help from Jai Evans. Code was added
+from the open-source MicroArray Explorer program, <A
+HREF="http://maexplorer.sourceforge.net/">
+http://maexplorer.sourceforge.net/</A>, to implement some of the new
+features in Flicker.  The new version of Flicker is much more flexible
+and makes it easier for you to compare your gels with each other or
+with reference gels on Internet databases. A limited measurement
+functionality is available to estimate spot or region quantification.
+<P>
+
+The new version is described in a book chapter <A
+HREF="PDF/Lemkin-ProteomicsProtocolsHandbook-279-306-2005.pdf"
+TARGET="doc"> Comparing 2-D Electrophoretic Gels Across Internet
+Databases</A>, PF Lemkin, GC Thornwall, J Evans (2005) in "The
+Proteomics Handbook", JM Walker (Ed), Humana Press Inc, Totowa, NJ, pp
+279-305.<P>
+
+
+<A NAME="individualsWhoCanNotLookAtFlickeringImages"><P>
+<TABLE BORDER=1><TR><TD>
+<H4>Notice: some individuals have problems looking at flickering images</H4>
+Some individuals have problems with flickering images. The Flicker
+program allows you to flicker-compare two images at flicker rates of 0.1 second/frame
+up to 3 seconds/frame (individually selected on a per-image basis). 
+<I>If you are bothered by flickering images, do not download
+this program or do not use the flicker image comparison option.</I>
+However, the program can be used without flicker and may still be useful
+to zoom/dezoom images, adjust brightness/contrast,
+do image transforms, identify and label spots via comparison with SWISS-2DPROT
+images, etc. In this case, don't enable the flicker option.
+</TD></TR></TABLE>
+<P>
+
+<A NAME="quickStart"><P>
+<TABLE BORDER=1><TR><TD>
+<H3>
+<IMG SRC="Icons/smart_tip.gif" align="absmiddle" ALT="Quick start examples">
+Quick start examples
+</H3>
+</TD></TR></TABLE>
+
+The following are brief sketches of several ways that Flicker could be
+used. There are many other ways of using Flicker, and these are detailed in
+the <A HREF="flkRefMan.html">Reference Manual</A>.<P>
+
+
+A. Compare two gels to find spot differences.
+<OL>
+<LI> Open 2 gels to compare (your own or gels from the Internet).
+<LI> <A HREF="flkRefMan.html#FlickeringDescription">Flicker align</A>
+      similar regions for the spot(s) of interest.
+<LI> When they are aligned, you can see local spot differences
+     between the gels.
+</OL><P>
+
+B. Compare your gel against an Internet reference gel to try to
+putatively identify the spot.
+<OL>
+
+<LI> Open 2 gels to compare (let one of them be an <A
+     HREF="#activeImageMaps">active reference gel</A>).
+<LI> Flicker align similar regions for the spot(s) of interest.
+<LI> If one of the gels is an active reference gel, then you can 
+     click on it to putatively identify
+     the protein.    
+</OL><P>
+
+C. Quantitate a list of spots.  Flicker has a rudimentary <A
+HREF="flkRefMan.html#quantifyMenu">spot list definition and
+quantification</A> capability that might be used as follows:
+
+<OL>
+<LI> Open 2 gels to compare.
+<LI> Flicker align similar regions for the each of the spot(s) of
+     interest.
+<LI> <A HREF="flkRefMan.html#creatingSpotLists">Add spots of interest
+      to spot lists</A> (a separate list for each gel).
+<LI> Click on corresponding spots in each gel and pair them using
+     a common annotation id.
+<LI> List the spots in the paired spot list (this can be generated
+     as tab-delimited data for export to Excel).
+</OL><P>
+
+D. <A HREF="flkRefMan.html#putativeSpotLookup">Putatively identify a
+list of spots</A> in your gel that are identified in an active
+reference gel by first identifying spots in the reference gel and then
+using them to identify corresponding spots in your gel.
+
+<OL>
+<LI> Open 2 gels to compare (let one of them be an <A
+     HREF="#activeImageMaps">active reference gel</A>).
+<LI> Flicker align similar regions for each of the spot(s) of
+     interest.
+<LI> Add spots of interest to spot lists (a separate list for each gel).
+<LI> Request Flicker to visit the active reference gel Web server
+     and try to lookup the protein id (e.g, Swiss-PROT) for the spots you 
+     have defined in the active gel.
+<LI> Then click on corresponding spots in your gel and then 
+     <A HREF="flkRefMan.html#SpotListIDlookup">pair them using
+     a common annotation id</A> from the reference gel.
+<LI> List the spots in the paired spot list (this can be generated
+     as tab-delimited data for export to Excel).
+</OL><P>
+
+
+<A NAME="Why2Dgels"><P>
+<H3>Use of 2D-PAGE in modern proteomics</H3>
+
+This approach may be useful for comparing similar protein samples
+created in different laboratories to help putatively identify or
+suggest possible protein spot identifications. The gels should be run
+under similar pH and molecular weight ranges if possible. Although
+available for over three decades, 2D polyacrylamide gel
+electrophoresis (2D-PAGE) is still routinely used <A
+HREF="flkRefMan.html#ProtRefs">[1]</A> even considering the now common
+use of mass spectrometry <A HREF="flkRefMan.html#ProtRefs">[2-7]</A>
+and recently protein arrays <A HREF="flkRefMan.html#ProtRefs">[8]</A>
+for protein identification. If you have <A
+HREF="flkRefMan.html#putativeSpotLookup">defined a list of spots in an
+active gel</A> (such as one of the Swiss-2DPAGE gels) and you are
+connected to the Internet, you can request Flicker to lookup the
+annotation information (Swiss-Prot id and name) for each spot in the
+list. Then you can define a list of spots in your gel that correspond
+to spots in the annotated active reference gel, and then assign these
+protein identifications to your gel.
+<P>
+ 
+Recent advances, such as IEF "zoom" fractionation gels <A
+HREF="flkRefMan.html#ProtRefs">[9]</A> that divide the protein sample
+by pH range or immunoaffinity subtraction with LC <A
+HREF="flkRefMan.html#ProtRefs">[5]</A>, greatly increase the
+resolution and numbers of spots able to be discriminated by subsequent
+2D-gel electrophoresis. Another increasingly common image comparison
+technique uses 2 to 6 cyanine dyes using dye multiplexing to label
+multiple control and experimental samples run in the same gel such as
+DIGE <A HREF="flkRefMan.html#ProtRefs">[10]</A> and scanned with very
+high resolution systems <A
+HREF="flkRefMan.html#ProtRefs">[11]</A>. Multiple scans of the same
+gel using different color filters can then be color mapped to see the
+contributions of the different samples. This is useful if one has
+control over the experimental design when determining the reference
+gel, set of control gels, and experimental gels. However, it does not
+solve the problem of trying to putatively compare one's own sample
+against an Internet reference gel where they have identified protein
+spots. 
+<P>
+
+<A NAME="FindingRefGelsOnWeb"><P>
+<H3>Finding reference gels on the Internet</H3>
+
+A number of 2D-gel image databases are available on the Web where some
+of the proteins are identified for various types of samples.  Both <A
+HREF="http://www.expasy.org/ch2d/2d-index.html">WORLD-2DPAGE</A> and
+<A HREF="http://www.expasy.org/ch2d/2DHunt/index.html">2D-HUNT</A> on
+the <A HREF="http://www.expasy.org/" <A
+HREF="http://www.expasy.org/ch2d/"> SWISS-2DPAGE<A> <A
+HREF="flkRefMan.html#ProtRefs">[12-15]</A> server can be used to find
+Web URL addresses for a number of 2D protein gel databases. The Web
+site a large number of tissues with databases that include a wide
+range of human tissues, mouse tissues, <I>E. coli</I>,
+<I>aribidopsis</I>, <I>dictyostelium</I>, and yeast.  You might also
+try a <A
+HREF="http://www.google.com/search?hl=en&lr=&ie=UTF-8&oe=UTF-8&q=%282D+or+2-D+or+two-Dimensional%29+gel+electrophoresis+database+and+identify&btnG=Google+Search">Google
+2D-gel search</A>.
+
+<P>
+
+<A NAME="activeImageMaps"><P> 
+<H3>Active 2D image maps in Internet 2D-gel databases</H3>
+
+Some 2D-gel image Web databases have active maps (e.g., SWISS-2DPAGE)
+where you can <A HREF="flkRefMan.html#putativeSpotLookup">click on a
+spot</A> in an active gel image to identify the protein if it is in
+their database (see <A
+HREF="http://www.expasy.org/ch2d/2d-index.html">WORLD-2DPAGE</A>). Clicking
+on a spot queries the associated Web server database to determine if
+the spot you pointed to is in that database.  If it is, it then
+reports the protein identity of the spot with links to SWISS-PROT
+etc. Alternatively, you can have it report the ID and protein name in
+the reporting window or assign it to the selected spots annotation.
+
+
+<H3>Using active maps with Flicker to putatively identify protein spots</H3>
+
+We have integrated this capability in Flicker so that if you are
+viewing an active map (say from SWISS-2DPAGE), you can switch from
+<I>Flicker</I> mode to <I>Clickable image database</I> (DB) mode and
+then just <A HREF="flkRefMan.html#clickToIDSpot">click on the spot to
+query the database</A> which then will bring up the <A
+HREF="flkRefMan.html#putativeSpotLookup">specific protein annotation Web
+page</A> from the associated active DB server (e.g., SWISS-2DPAGE) in
+a Web browser. This is most useful after you have flicker-aligned your
+gel with the reference gel map image.  Comparing one's own
+experimental 2D gel image data with gel images of similar biological
+material from such Internet reference databases opens up the
+possibility of using the spots in these reference gels to suggest the
+putative identification of apparently corresponding spots in your
+gels. The image analysis method described here allows scientists to
+more easily collaborate and compare their gel image data over the Web.
+<P>
+
+<H3>Methods for 2D gel comparison</H3>
+
+When two 2D gels are to be compared, simple techniques may not
+suffice. There are a several methods for comparing two gel images: 1)
+put the images side by side and visually compare them; or 2) slide one
+gel (autoradiograph or stained gel) over the other while back lighted;
+or 3) build a 2D gel quantitative computer database from both gels
+after scanning and quantitatively analyzing these gels using a 2D gel
+database system; 4) more recently dye multiplexing has been used to
+label different samples in the same gel. A variant if this is to warp
+two gels so they are the same geometry, then generate pseudo color
+images and look for differences by color differences. These methods
+may be impractical for many investigators since in the first case the
+physical gel or autoradiograph from another lab may not be locally
+available.  The first method may work for very similar gels with only
+a few differences. The second method will work better for gels that
+are not so similar but that have local regions that are similar. The
+third method may be excessive if only a single visual comparison is
+needed because of the costs (labor and equipment) of building a
+multi-gel database solely to answer the question of whether one spot
+is probably the same spot in the two gels. The fourth method may have
+some problems if spot sizes vary for similar spots.
+<P>
+
+Flicker was developed to fill the need for a quick comparison of a
+researcher's gel image against one of these internet reference
+2D-gels. We have also provided a limited quantification facility
+for manually measuring, annotating, a limited number of spots.
+<P>
+
+The <A HREF="flkRefMan.html">Flicker Reference Manual</A> describes
+the operation of the various commands. The current <A
+HREF="flkStatus.html">status</A> of the program and the <A
+HREF="flkRevisionHistory.html">revision history</A> is updated as
+changes occur in the software. You <A HREF="flkRefMan.html#installFlicker">download</A>
+the software to install it on your computer. Flicker is downloaded as
+a Zip file from the 
+<A HREF="https://sourceforge.net/project/showfiles.php?group_id=99808">
+Files Mirror</A>.<P>
+
+
+<P>
+
+Please <A HREF="mailto:lemkin@ncifcrf.gov">contact us</A> with
+suggestions and comments. If you make interesting changes in the
+source code, please send us a copy and describe your changes so we can
+merge them in the released version.
+
+<P> 
+<PRE>
+</PRE>
+
+<HR ALIGN="LEFT" NOSHADE>
+<P> 
+
+<A HREF="https://sourceforge.net/project/stats/?report=last_30&group_id=99808">&nbsp;</A>
+
+<TABLE WIDTH=100% BORDER=0>
+<TR>
+<TD>
+<A HREF="mailto:lemkin@users.sourceforge.net">
+<I>Contact us</I></A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;</TD>
+
+<TD>Flicker is a contributed program available at
+<A HREF="http://Open2Dprot.sourceforge.net/Flicker" TARGET="_top">
+Open2Dprot.sourceforge.net/Flicker</A>
+<BR>
+Powered by <A HREF="http://sourceforge.net/"> 
+  <IMG SRC="http://sourceforge.net/sflogo.php?group_id=99808" WIDTH="88" HEIGHT="31" BORDER="0" ALT="SourceForge Logo"></A>
+</TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD>Revised: 04/12/2007</TD>
+</TR>
+</TABLE>
+ 
+</BODY>
+</HTML>
+

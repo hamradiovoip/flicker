@@ -1,0 +1,2 @@
+DbMenuName	ClickableURL	ImageURL	DatabaseName	TimeStamp
+SWISS-2DPROT Human Plasma	http://www.expasy.org/cgi-bin/map3/PLASMA_HUMAN?	http://www.expasy.org/ch2dgifs/PLASMA_HUMAN/PLASMA_HUMAN_id.gif	SWISS-2DPROT Human	20030918-170230

@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+   
+   1. INTRODUCTION:
+   
+   This Ant build.xml script is used to compile and build the distribution
+   (./dist/) Flicker 
+   
+   
+   2. TARGETS AVAILABLE
+   
+   The main target is "flicker"
+   
+   buildAll        - do 'clean' through 'distZip'
+   clean           - remove the bin/ and dist/
+   init            - create the directories required
+   build-Jar       - build the Flicker jar file in the dist/
+   copyDoc         - add the HTML, Gifs, Icons and demo/ to dist/
+   copyData        - add data for running Flicker demo to dist/
+   catHTMLdocs     - concatenate the HTML to full doc files to dist/
+   html2pdf        - convert full doc HTML files to PDFs in dist/
+   build-EXE       - package jar in Windows EXE file in dist/ 
+   makeJavadocs    - build javadocs in dist/  
+   distZip         - build Flicker-VERSION-dist.zip of dist/ data 
+   
+   makeMirrorDir   - make dist/ into mirrorFlicker to stage for SF webserver
+   scpMirror       - scp mirrorFlicker to SF to stage copying it to web server
+   
+   FilesMirror     - anonymous FTP the zipped file to upload.sourceforge.net 
+     
+      
+   3. AUTHORS: 
+   
+   This Ant script was created by Peter Lemkin, Greg Thornwall, Jai Evans.
+
+   version $Date$   $Revision$
+   see <A HREF="http://open2dprot.sourceforge.net/Flicker">Flicker Home</A>
+   
+
+   4. SOFTWARE LICENSE:
+
+   This work was produced by Peter Lemkin of the National Cancer
+   Institute, an agency of the United States Government.  As a work of
+   the United States Government there is no associated copyright.  It is
+   offered as open source software under the Mozilla Public License
+   (version 1.1) subject to the limitations noted in the accompanying
+   LEGAL file. This notice must be included with the code. The Open2Dprot 
+   Mozilla and Legal files are available on
+   http://Open2Dprot.sourceforge.net/Flicker. 
+
+   
+   5. ANT DOCUMENTATION:
+
+   Ant commands are documented at
+                http://ant.apache.org/manual/CoreTasks/ 
+-->
+
+<!-- base dir should be at the same level as the cvs modules .. -->
+<project name="flicker" default="buildAll" basedir=".">
+
+  <property name="VERSION" value="-V0.87.2"/>
+  <property name="pgmName" value="Flicker"/>
+
+  <!-- [1] Get IDE/CVS Open2Dprot directory from the
+   environment variable "IDE_O2P" and set it to Ant
+   property "IDE_O2P". E.g., "IDE_O2P" could be "C:/ED/O2P" (for us).
+
+   [TODO] it works if the env variable is set correctly.
+   It does NOT do the default correctly if the env is NOT set.
+   -->
+  <property environment="env"/>
+  <property name="IDE_WS" value="${env.IDE_WS}"/>
+
+  <!-- set properties for this build script -->
+  <!-- <property name="program.loc" value="." /> -->
+  <property name="program.loc" value="${IDE_WS}\${pgmName}"/>
+
+  <property name="ext" value="${program.loc}/ext/" />
+  <property name="bin" value="${program.loc}/bin" />
+  <property name="locMirrorDir" value="${program.loc}/mirror${pgmName}" />
+
+  <property name="dist" value="${program.loc}/dist" />
+  <property name="src" value="${program.loc}/src" />
+
+  <property name="doc" value="${program.loc}/doc" />
+  <property name="license" value="${program.loc}/license" />
+  <property name="Gifs" value="${program.loc}/Gifs" />
+  <property name="Icons" value="${program.loc}/Icons" />
+
+  <property name="PDF" value="${program.loc}/PDF" />
+  <property name="log" value="${program.loc}/log" />
+
+  <property name="DB" value="${program.loc}/DB" />
+  <property name="cal" value="${program.loc}/cal" />
+  <property name="spt" value="${program.loc}/spt" />
+  <property name="tmp" value="${program.loc}/tmp" />
+  <property name="Images" value="${program.loc}/Images" />
+  <property name="FlkStartups" value="${program.loc}/FlkStartups" />
+
+  <property name="zipDistFile" value="${pgmName}${VERSION}-dist.zip"/>
+  <property name="class.path" value="jai_codec.jar jai_core.jar" />
+  <property name="icon.file" value="${pgmName}.ico" />
+
+  <!-- CVS sourceforge host  -->
+  <property name="sfHost" value="open2dprot.sourceforge.net"/>
+  <property name="sfDir" value="/home/users/l/le/lemkin/open2dprot"/>
+
+  <!-- Add Jera Ant tasks which include Query task  -->
+  <property name="Jera.dir" location="../JeraAntTasks" />
+  <property name="Jeraclasspath" location="${Jera.dir}/JeraAntTasks.jar" />
+
+  <taskdef name="query" classname="com.jera.anttasks.Query" 
+		     classpath="${Jeraclasspath}" >
+  </taskdef>
+
+  <!-- html2ps dir-->
+  <property name="htmp2ps.loc" value="../html2ps" />
+
+  <!-- NOTE: Must have the full path here since it is an arg on the cmd line -->
+  <!-- 
+  <property name="distpdf" value="${IDE_O2P}\${pgmName}\PDF" />
+  <property name="srcpdf" value="${IDE_O2P}\${pgmName}\dist" />
+  -->
+
+
+  <!-- properties for launch4j -->
+  <property name="launch4j.dir" location="../launch4j" />
+  <property name="l4jclasspath" location="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar:${launch4j.dir}/src/net/sf/launch4j/ant/*.class" />
+
+  <path id="project.classpath">
+    <pathelement location="${ext}/jai_codec.jar" />
+    <pathelement location="${ext}/jai_core.jar" />
+  </path>
+
+  <property name="Flk.author" value="P. Lemkin, G. Thornwall, J. Evans" />
+
+
+  <!-- Set targets for this build script, note dependencies -->
+
+  <!-- Remove created directories. -->
+  <target name="clean">
+    <delete dir="${bin}" />
+    <delete dir="${dist}" />
+    <delete dir="${log}" />
+    <delete file="${zipDistFile}"/>
+  </target>
+
+  <!-- Create directories  -->
+  <target name="init">
+    <mkdir dir="${bin}" />
+    <mkdir dir="${dist}" />
+    <mkdir dir="${log}" />
+
+    <!-- Make source data directories in case they don't exist -->
+    <mkdir dir="${dist}/cal" />
+    <mkdir dir="${dist}/DB" />
+    <mkdir dir="${dist}/Images" />
+    <mkdir dir="${dist}/spt" />
+    <mkdir dir="${dist}/tmp" />
+
+    <!-- Make distribution directories -->
+    <mkdir dir="${dist}/cal" />
+    <mkdir dir="${dist}/DB" />
+    <mkdir dir="${dist}/Images" />
+    <mkdir dir="${dist}/spt" />
+    <mkdir dir="${dist}/tmp" />
+    <mkdir dir="${dist}/PDF" />
+    <mkdir dir="${dist}/Vignettes" />
+    <mkdir dir="${dist}/Gifs" />
+    <mkdir dir="${dist}/Icons" />
+    <mkdir dir="${dist}/license" />
+    <mkdir dir="${dist}/license/release-license-jai_files" />
+    <mkdir dir="${dist}/javadocs" />
+  </target>
+
+
+  <!-- Build program} including mirror and distribution without rebuilding PDFs-->
+  <target name="buildAll" 
+    depends="clean,init,build-Jar,copyData,catHTMLdocs,copyDoc,copySrc,build-EXE,makeJavadocs,distZip">
+  </target>
+
+
+  <!-- Build program} including mirror and distribution with rebuilding PDFs -->
+  <target name="buildAllPDFs" 
+    depends="clean,init,build-Jar,copyData,catHTMLdocs,copyDoc,build-pdfs,copySrc,build-EXE,makeJavadocs,distZip">
+  </target>
+
+
+  <!-- Build ${pgmName} -->
+  <target name="build-Jar" depends="init">
+
+    <!-- compile ${pgmName} classes and put them into ${bin} -->
+    <javac destdir="${bin}">
+      <classpath refid="project.classpath" />
+      <src path="${src}" />
+      <include name="*.java" />
+    </javac>
+
+    <!-- create ${pgmName}.jar and put it into ${dist} -->
+    <jar destfile="${dist}/${pgmName}.jar">
+      <manifest>
+        <attribute name="Built-By" value="${Flk.author}" />
+        <attribute name="Main-Class" value="${pgmName}" />
+        <attribute name="Class-Path" value="${class.path}" />
+      </manifest>
+      <fileset dir="${bin}" />
+    </jar>
+
+    <!-- copy files and dirs to ${dist} -->
+    <copy todir="${dist}">
+      <fileset dir="${ext}">
+        <include name="*.jar" />
+      </fileset>
+    </copy>
+  </target>
+
+
+  <!-- Copy program run-time data -->
+  <target name="copyData" depends="init">
+    <!-- copy directories into ${dist} needed to run flicker -->
+    <copy file="./${pgmName}-startup.bat" todir="${dist}" />
+    <copy file="./${pgmName}-startup.sh" todir="${dist}" />
+
+    <copy todir="${dist}/DB">
+      <fileset dir="${DB}">
+        <include name="*" />
+      </fileset>
+    </copy>
+
+    <copy todir="${dist}/Images">
+      <fileset dir="${Images}">
+        <include name="*" />
+      </fileset>
+    </copy>
+
+    <copy todir="${dist}/spt">
+      <fileset dir="${spt}">
+        <include name="*" />
+      </fileset>
+    </copy>
+
+    <copy todir="${dist}/cal">
+      <fileset dir="${cal}">
+        <include name="*" />
+      </fileset>
+    </copy>
+    <copy todir="${dist}/tmp">
+      <fileset dir="${tmp}">
+        <include name="*" />
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- Copy program documentation -->
+  <target name="copyDoc" depends="init">
+    <!-- copy documentation into ${dist} -->
+    <copy todir="${dist}/PDF">
+      <fileset dir="./PDF">
+        <include name="*.pdf" />
+      </fileset>
+    </copy>
+
+    <copy todir="${dist}">
+      <fileset dir="${doc}">
+        <include name="*.html" />
+      </fileset>
+    </copy>
+
+    <copy todir="${dist}/Vignettes">
+      <fileset dir="${doc}/Vignettes">
+        <include name="*.html" />
+      </fileset>
+    </copy>
+
+    <copy todir="${dist}/Gifs">
+      <fileset dir="${Gifs}">
+        <include name="*" />
+      </fileset>
+    </copy>
+
+    <copy todir="${dist}/Icons">
+      <fileset dir="${Icons}">
+        <include name="*" />
+      </fileset>
+    </copy>
+
+    <copy todir="${dist}/license">
+      <fileset dir="${license}">
+        <include name="*" />
+      </fileset>
+    </copy>
+
+    <copy todir="${dist}/license/release-license-jai_files">
+      <fileset dir="${license}/release-license-jai_files">
+        <include name="*" />
+      </fileset>
+    </copy>
+  </target>
+
+
+  <!-- Copy new PDFs just generated into program documentation -->
+  <target name="copyNewPDFs" depends="init">
+    <!-- copy documentation into ${dist} -->
+    <copy todir="${dist}/PDF">
+      <fileset dir="./PDF">
+        <include name="*.pdf" />
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- Copy Java source files data to dist -->
+  <target name="copySrc">
+    <copy todir="${dist}/src">
+      <fileset dir="${src}" includes="**/*" />
+    </copy>
+  </target>
+
+
+  <!-- Concatenate module documentation doc/*.html 
+      files to single HTML file. Note: the filelist is passed from
+      the specific module invocation of build-module.
+     -->
+  <property name="docFileList" 
+      value="flkHome.html,flkToc.html,flkContributors.html,flkTocRefMan.html,flkRefMan.html,flkPDFs.html,FlickerJarVersion.html,flkRevisionHistory.html,flkStatus.html,Vignettes/flkVignettesToc.html,Vignettes/flkVig-help.html,Vignettes/flkVig-selectImg.html,Vignettes/flkVig-positionImgs.html,Vignettes/flkVig-cmp2Imgs.html,Vignettes/flkVig-putativeID.html,Vignettes/flkVig-loadActiveMapImg.html,Vignettes/flkVig-loadImg.html,Vignettes/flkVig-cmpOwnImgs.html,Vignettes/flkVig-reset.html,Vignettes/flkVig-cngColors.html,Vignettes/flkVig-cngCanvasSize.html,Vignettes/flkVig-cngParams.html,Vignettes/flkVig-cngOverlays.html,Vignettes/flkVig-cngZoom.html,Vignettes/flkVig-usingXforms.html,Vignettes/flkVig-usingWarp.html,Vignettes/flkVig-setLandmarks.html,Vignettes/flkVig-dispSpotIntensity.html,Vignettes/flkVig-getBkgrdDens.html,Vignettes/flkVig-getMeasDens.html,Vignettes/flkVig-measMultSpots.html,Vignettes/flkVig-measMultSpots.html,Vignettes/flkVig-setCirMask.html,Vignettes/flkVig-measROI.html,Vignettes/flkVig-saving-dotFlk.html,Vignettes/flkVig-restartUsing-dotFlk.html,Vignettes/flkVig-saveImgGifs.html,Vignettes/flkVig-saveText.html">
+  </property>
+
+  <property name="docVignettesFileList" 
+      value="Vignettes/flkVignettesToc.html,Vignettes/flkVig-help.html,Vignettes/flkVig-selectImg.html,Vignettes/flkVig-positionImgs.html,Vignettes/flkVig-cmp2Imgs.html,Vignettes/flkVig-putativeID.html,Vignettes/flkVig-loadActiveMapImg.html,Vignettes/flkVig-loadImg.html,Vignettes/flkVig-cmpOwnImgs.html,Vignettes/flkVig-reset.html,Vignettes/flkVig-cngColors.html,Vignettes/flkVig-cngCanvasSize.html,Vignettes/flkVig-cngParams.html,Vignettes/flkVig-cngOverlays.html,Vignettes/flkVig-cngZoom.html,Vignettes/flkVig-usingXforms.html,Vignettes/flkVig-usingWarp.html,Vignettes/flkVig-setLandmarks.html,Vignettes/flkVig-dispSpotIntensity.html,Vignettes/flkVig-getBkgrdDens.html,Vignettes/flkVig-getMeasDens.html,Vignettes/flkVig-measMultSpots.html,Vignettes/flkVig-measMultSpots.html,Vignettes/flkVig-setCirMask.html,Vignettes/flkVig-measROI.html,Vignettes/flkVig-saving-dotFlk.html,Vignettes/flkVig-restartUsing-dotFlk.html,Vignettes/flkVig-saveImgGifs.html,Vignettes/flkVig-saveText.html">
+  </property>
+
+  <target name="catHTMLdocs" depends="init">
+    <echo message=" Concatenate doc/*.html files in particular"/>
+    <echo message=" order to make 'full${pgmName}Doc.html' file for"/>
+    <echo message=" subsequent conversion to PDF file."/>
+    <concat destfile="${dist}/fullFlkDoc.html">
+      <filelist dir="${doc}" files="${docFileList}"/>
+    </concat>
+    <concat destfile="${dist}/fullFlkVignettesDoc.html">
+      <filelist dir="${doc}" files="${docVignettesFileList}"/>
+    </concat>
+  </target>
+
+
+  <!-- Target build program Windows EXE using launch4j -->
+  <target name="build-EXE" depends="init,build-Jar">
+    <copy file="${icon.file}" todir="${dist}" />
+    <!-- create ${pgmName}.exe launcher -->
+    <taskdef name="launch4j"
+                 classname="net.sf.launch4j.ant.Launch4jTask" 
+			     classpath="${l4jclasspath}" >
+    </taskdef>
+    <launch4j>
+      <config headerType="0" 
+				    jar="${dist}/${pgmName}.jar"
+                    chdir="." outfile="${dist}/${pgmName}.exe" 
+				    icon="${icon.file}">
+        <jre minVersion="1.4.0" />
+      </config>
+    </launch4j>
+  </target>
+
+
+  <!-- Generate javadocs from source code in dist/javadocs -->
+  <target name="makeJavadocs" depends="init">
+    <javadoc destdir="dist/javadocs" 
+           defaultexcludes="yes"
+           windowtitle="${pgmName} Docs"        
+           author="true" version="true" use="true"
+           private="true">
+      <fileset dir="src" includes="*.java"/>
+    </javadoc>
+  </target>
+
+
+  <!-- Generate pdfs from source html. 
+    WARNING: it can take 5 mins to run these scripts!
+   -->
+  <target name="build-pdfs" depends="cvtHtml2Ps,cvtPs2Pdf,copyNewPDFs,delTmpPSfiles">
+
+  </target>
+
+  <!-- Convert HTML full docs to PS by running Perl "html2ps" script
+     conversion HTML to PS
+     -->
+  <target name="cvtHtml2Ps">
+    <delete file="${PDF}\fullFlkDoc.ps"/>
+    <delete file="${PDF}\fullFlkVignettesDoc.ps"/>
+    <delete file="${log}\fullFlkDocError.log"/>
+    <delete file="${log}\fullFlkVignettesDocError.log"/>
+
+    <echo message=" Running html2ps on flkFlkDoc.html - be patient"/>
+    <exec executable="perl" dir="${htmp2ps.loc}" 
+          output="${log}/fullFlkDocError.log" 
+          vmlauncher="false" os="${os.name}">
+      <arg line="html2ps -d ${dist}\fullFlkDoc.html > ${PDF}\fullFlkDoc.ps" />
+    </exec>
+
+    <echo message=" Running html2ps on fullFlkVignettesDoc.html - be patient"/>
+    <exec executable="perl" dir="${htmp2ps.loc}"
+          output="${log}\fullFlkVignettesDocError.log" 
+          vmlauncher="false" os="${os.name}">
+      <arg line="html2ps -d ${dist}\fullFlkVignettesDoc.html > ${PDF}\fullFlkVignettesDoc.ps" />
+    </exec>
+  </target>
+
+  <!-- Convert HTML full docs PS files to Pdf using bash scripts-->
+  <target name="cvtPs2Pdf" >
+    <echo message=" Running ps2pdf on fullFlkFlkDoc.ps - be patient (several minutes)"/>
+    <exec executable="bash" dir="${PDF}"
+       output="${log}/fullFlkDocPS.log"
+       vmlauncher="false" os="${os.name}">
+      <arg line="ps2pdf ${PDF}\fullFlkDoc.ps" />
+    </exec>
+
+    <echo message=" Running ps2pdf on fullFlkVignettesDoc.ps - be patient (several minutes)"/>
+    <exec executable="bash" dir="${PDF}" 
+         output="${log}/fullFlkVignettesDocPS.log" 
+         vmlauncher="false" os="${os.name}">
+      <arg line="ps2pdf ${PDF}\fullFlkVignettesDoc.ps" />
+    </exec>
+  </target>
+
+  <!-- Delete temporary .ps files used in html2pdf conversion -->
+  <target name="delTmpPSfiles" >
+    <delete file="${PDF}\fullFlkDoc.ps"/>
+    <delete file="${PDF}\fullFlkVignettesDoc.ps"/>
+
+    <!-- [TODO] Maybe also clean up log/ directory 
+     <delete file="${log}\fullFlkDocError.log"/>    
+     <delete file="${log}\fullFlkVignettesDocError.log"/> 
+     <delete file="${log}\fullFlkDocErrorPS.log"/>    
+     <delete file="${log}\fullFlkVignettesDocError.log"/> 
+     -->
+  </target>
+
+
+  <!-- Generate Zip of distribution -->
+  <target name="distZip">
+    <delete file="${zipDistFile}"/>
+    <zip zipfile="${zipDistFile}" basedir="dist"/>
+  </target>
+
+  <!-- ********************************************** -->
+
+  <!-- Make local mirrorDir -->
+  <target name="makeMirrorDir" depends="buildAll">
+    <mkdir dir="${locMirrorDir}"/>
+    <copy todir="${locMirrorDir}/">
+      <fileset dir="${dist}" includes="**/*" />
+    </copy>
+  </target>
+
+
+  <!-- [TODO] scp the local mirror${pgmName} directory to SourceForge.net
+	     Prompt for user login name and user password first.
+	     depends="makeMirrorDir"
+  -->
+  <target name="scpMirror">
+    <query name="login"/>
+    <query name="password" password="true"/>
+    <scp todir="${login}:${password}@${sfHost}:${sfDir}" trust="yes">
+      <fileset dir="${locMirrorDir}">
+        <include name="**/*"/>
+      </fileset>
+    </scp>
+  </target>
+
+
+  <!-- [TODO] Copy Zipped distribution to SourceForge public incoming 
+	   directory. This depends="distZip"
+	   -->
+  <target name="FilesMirror">
+    <ftp server="upload.sourceforge.net"
+              userid="anonymous"
+              password="guest@users.sourceforge.net"
+              remotedir="incoming"
+              verbose="yes">
+      <fileset dir=".">
+        <include name="${zipDistFile}"/>
+      </fileset>
+    </ftp>
+  </target>
+  
+  
+  <!-- Debugging target - some properties for Ant, Java and the System -->
+  <target name="debug">
+    <echo message="user name= ${user.name}" />   
+    <echo message="Operating Sysytem= ${os.name}" />
+    <echo message="os architecture= ${os.arch}" />     
+    <echo message="sun.os.patch.level= ${sun.os.patch.level}" />  
+    <echo message="file encoding= ${file.encoding}" />        
+    <echo message="file encoding.pkg= ${file.encoding.pkg}" />       
+    <echo message="path sep= '${path.separator}'" />
+    <echo message="ant.home= ${ant.home}" />
+    <echo message="line.separator= '${line.separator}'" />
+    <echo message="basedir= ${basedir}" />
+    <echo message="user.home= ${user.home}" />
+    <echo message="ant.file: ${ant.file}"         />
+    <echo message="ant.project.name: ${ant.project.name}" />
+    <echo message="ant.java.version: ${ant.java.version}" />
+    <echo message="Java Runtime Environment version: ${java.version}" />
+    <echo message="Java Runtime Environment vendor: ${java.vendor}" />
+    <echo message="Java Runtime Environment vendor URL: ${java.vendor.url}" />
+    <echo message="Java installation directory: ${java.home}" />
+    <echo message="Java Virtual Machine specification version: ${java.vm.specification.version}" />
+    <echo message="Java Virtual Machine specification vendor: ${java.vm.specification.vendor}" />
+    <echo message="Java Virtual Machine specification name: ${java.vm.specification.name}" />
+    <echo message="java.specification.name=${java.specification.name}" /> 
+    <echo message="Java Virtual Machine  implementation version: ${java.vm.version}" />
+    <echo message="Java Virtual Machine implementation vendor: ${java.vm.vendor}" />
+    <echo message="Java Virtual Machine implementation name: ${java.vm.name}"/>
+    <echo message="Java Runtime Environment specification version: ${java.specification.version}"/>
+    <echo message="Java Runtime Environment specification vendor: ${java.specification.vendor}"/>
+    <echo message="java.vendor.url.bug =${java.vendor.url.bug}" />    
+    <echo message="Java Runtime Environment specification name: ${java.specification.name}"/>
+    <echo message="Java class format version number: ${java.class.version}"/>
+    <echo message="Java class path: ${java.class.path}"/>
+    <echo message="List of paths to search when loading libraries: ${java.library.path}"/>
+    <echo message="Path of extension directory or directories: ${java.ext.dirs}"/>
+    <echo message="Default temp file path: ${java.io.tmpdir}"/>
+    <echo message="java.awt.graphicsenv= ${java.awt.graphicsenv}" />
+    <echo message="Operating system name: ${os.name}"/>
+    <echo message="Operating system architecture: ${os.arch}"/>
+    <echo message="Operating system version: ${os.version}"/>
+  </target>
+
+</project>
